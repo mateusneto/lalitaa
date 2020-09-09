@@ -93,11 +93,8 @@ app.use((req, res, next) => {
 });
 
 //ROUTES
-/*app.use('/', viewRouter);
-app.use('/api/v1/servicos', servicosRouter); //Route for servicos
+app.use('/', viewRouter);
 app.use('/api/v1/usuarios', usuariosRouter); //Route for usuarios
-app.use('/api/v1/reviews', reviewsRouter); //Route for reviews
-app.use('/api/v1/bookings', bookingRouter); //Route for bookings*/
 
 app.all('*', (req, res, next) => {
    next(new AppError(`can't find ${req.originalUrl} on this server`, 404));
@@ -106,5 +103,5 @@ app.all('*', (req, res, next) => {
 //Error handling middleware
 app.use(globalErrorHandler);
 
-//Exporting app variable
+//Exporting app variabled
 module.exports = app;
