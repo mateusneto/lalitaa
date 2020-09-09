@@ -45,6 +45,7 @@ process.on('unhandledRejection', err => {
    });
 });
 
+//Receives SIGTERM signal from STRIPE
 process.on('SIGTERM', () => {
    console.log('👍🏽 SIGTERM RECEIVED. SHUTTING DOWN gracefully');
 
