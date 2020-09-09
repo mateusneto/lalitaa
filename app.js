@@ -5,6 +5,7 @@ const path = require('path');
 //My own modules
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
+const usuariosRouter = require('./routes/usuariosRoutes');
 
 //Third Party Modules
 const express = require('express');
@@ -93,7 +94,7 @@ app.use((req, res, next) => {
 });
 
 //ROUTES
-app.use('/', viewRouter);
+//app.use('/', viewRouter);
 app.use('/api/v1/usuarios', usuariosRouter); //Route for usuarios
 
 app.all('*', (req, res, next) => {

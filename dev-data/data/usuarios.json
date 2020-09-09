@@ -1,0 +1,59 @@
+[
+   {
+      "role": "administrador",
+      "active": "true",
+      "nome": "Mateus Neto",
+      "nomeUsuario": "mateusneto",
+      "email": "mateusneto@cliline.com",
+      "fotografia": "foto.png",
+      "password": "$2a$12$p.h7X5rCMLhW1BcDl53PHes3Nv7dNXEg5TAHy5PSWVLPSU5vQPsHK"
+   },
+   {
+      "role": "usuario",
+      "active": "true",
+      "nome": "Raquel Neto",
+      "nomeUsuario": "raquelneto",
+      "email": "raquelneto@cliline.com",
+      "password": "$2a$12$Z/KDM906xmhPc6lAqTTUS.c6ClOicQ.raWbUZ3KJ1DME6.Vw5.ZTG"
+   },
+   {
+      "role": "usuario",
+      "active": "true",
+      "nome": "Chano Sebastião",
+      "nomeUsuario": "chanoneto",
+      "e-mail": "chanoneto@gmail.com",
+      "password": "$2a$12$EjUW0XQMvNCrK1YFgmTpGO.2TB7EzQPa6QduBc2xUNWSyu5TcDTf."
+   },
+   {
+      "role": "usuario",
+      "active": "true",
+      "nome": "Anneide Neto",
+      "nomeUsuario": "AnneideNeto13",
+      "email": "anneideneto@cliline.com",
+      "password": "$2a$12$GstVz3xzdzLqhy.PjN3xXe8BLy3QDe2WBY6emdmrKCfGGKZ56eyWC"
+   },
+   {
+      "role": "moderador",
+      "active": "true",
+      "nome": "Rui Neto",
+      "nomeUsuario": "Ruineto25",
+      "email": "ruineto@cliline.com",
+      "password": "$2a$12$/T8uQ3wECycLw2M5NnUtO.MBd4.A9t0.ret8nW7bNV5XkMcUbsjOC"
+   },
+   {
+      "role": "usuario",
+      "active": "true",
+      "nome": "Maria Rosa",
+      "nomeUsuario": "mariarosa70",
+      "email": "mariarosa@cliline.com",
+      "password": "$2a$12$UR3y6XCK7KvNszwpoc6ju.b/Ubkb07Wxnag0n/rc9D7y2Ce/NHltm"
+   },
+   {
+      "role": "usuario",
+      "active": "true",
+      "nome": "saliana Domingos",
+      "nomeUsuario": "saliana3",
+      "email": "saliana@cliline.com",
+      "password": "$2a$12$BzDX6/rfJKbSg1WsE.V5p.vdQMmPRsDD0z2n8Xvo2iRkMGkW5NaBi"
+   }
+]
