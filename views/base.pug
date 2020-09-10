@@ -5,8 +5,10 @@ html(lang='en')
             meta(charset='UTF-8')
             meta(name='viewport' content='width=device-width, initial-scale=1.0')
             meta(http-equiv='X-UA-Compatible' content='ie=edge')
+            //-change for prod '/css/style.css'
             link(rel="stylesheet", href="/css/style.css")
-            link(rel='icon' type='image/x-icon' href='/img/favicon.jpeg')
+            //- /imagens/lalitaa/favicons/favicon.ico
+            link(rel='icon' type='image/x-icon' href='../public/imagens/Lalitaa/favicons/favicon.ico') 
             link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900')
             title _ CLILINE - #{title}
     body(data-alert=`${alert ? alert:''}`)
@@ -24,5 +26,5 @@ html(lang='en')
         //- script(src="/js/mapbox.js")
         
         //- script(src="/js/login.js")
-        script(src='https://js.stripe.com/v3/')
+        //-script(src='https://js.stripe.com/v3/')
         script(src="/js/bundle.js")

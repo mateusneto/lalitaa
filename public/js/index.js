@@ -4,7 +4,7 @@ import '@babel/polyfill';
 //import { displayMap } from './mapbox';
 import { login, logOut } from './login';
 import { updateSettings } from './updateSettings';
-import { comprarServico } from './stripe';
+//import { comprarServico } from './stripe';
 import { showAlert } from './alerts';
 
 //DOM Elements
@@ -41,6 +41,7 @@ if (userDataForm)
       form.append('nome', document.getElementById('name').value);
       form.append('nomeUsuario', document.getElementById('username').value);
       form.append('email', document.getElementById('email').value);
+      form.append('numeroTelemovel', document.getElementById('numeroTelemovel').value);
       form.append('fotografia', document.getElementById('photo').files[0]);
 
       updateSettings(form, 'dados');
@@ -64,12 +65,12 @@ if (userPasswordForm)
       document.getElementById('password-confirmacao').value = '';
    });
 
-if (bookBtn)
+/*if (bookBtn)
    bookBtn.addEventListener('click', e => {
       e.target.textContent = 'Processing...';
       const { servicoId } = e.target.dataset;
       comprarServico(servicoId);
-   });
+   });*/
 
 const alertMessage = document.querySelector('body').dataset.alert;
 if (alertMessage) showAlert('Success', alertMessage, 20);

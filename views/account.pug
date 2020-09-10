@@ -35,8 +35,11 @@ block content
                         .form__group.ma-bt-md
                             label.form__label(for='email') Email address
                             input#email.form__input(type='email', value=`${usuario.email}`, required,name='email')
+                        .form__group.ma-bt-md
+                            label.form__label(for='numeroTelemovel') Telemovel
+                            input#numeroTelemovel.form__input(type='text', value=`${usuario.numeroTelemovel}`, required,name='numeroTelemovel')
                         .form__group.form__photo-upload
-                            img.form__user-photo(src=`imagens/usuarios/${usuario.fotografia}`, alt='User photo')
+                            img.form__user-photo(src=`imagens/dev/usuarios/${usuario.fotografia}`, alt='User photo')
                             input.form__upload(type="file",accept='image/*',id='photo',name='fotografia')
                             label(for="photo") Escolher nova fotografia
                         .form__group.right
