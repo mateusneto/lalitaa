@@ -57,7 +57,7 @@ exports.signup = catchAsync(async (req, res, next) => {
    const url = `${req.protocol}://${req.get('host')}/me`;
    // console.log(url);
 
-   //await new Email(novoUsuario, url).sendWelcome();  //enable after implementing PUG TEMPLATES
+   await new Email(novoUsuario, url).sendWelcome(); //enable after implementing PUG TEMPLATES
 
    createSendToken(novoUsuario, 201, req, res);
 });
@@ -210,7 +210,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
    /* ------delete CODE BELLOW after IMPLEMENTING PUG TEMPLATES */
 
-   const resetURL = `${req.protocol}://${req.get('host')}/api/v1/usuarios/resetPassword/${resetToken}`;
+   /*const resetURL = `${req.protocol}://${req.get('host')}/api/v1/usuarios/resetPassword/${resetToken}`;
 
    const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didn't forget your password, please ignore this email!`;
 
@@ -231,11 +231,11 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
       await usuario.save({ validateBeforeSave: false });
 
       return next(new AppError('There was an error sending the email. Try again later!'), 500);
-   }
+   }*/
 
    //send it back to user's e-mail
-   /*-----------AFTER IMPLEMENTING PUG TEMPLATES---------------------
-   
+   /*-----------AFTER IMPLEMENTING PUG TEMPLATES---------------------*/
+
    try {
       const resetURL = `${req.protocol}://${req.get('host')}/api/v1/usuarios/resetPassword/${resetToken}`;
       await new Email(usuario, resetURL).sendPasswordReset();
@@ -250,7 +250,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
       await usuario.save({ validateBeforeSave: false }); //Turn validation off before saving
 
       return next(new AppError('There was an error sending the e-mail, please try again', 500));
-   }*/
+   }
 });
 
 exports.resetPassword = catchAsync(async (req, res, next) => {

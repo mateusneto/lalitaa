@@ -7,6 +7,7 @@ const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const usuariosRouter = require('./routes/usuariosRoutes');
 const storeOwnerRouter = require('./routes/storeOwnerRoutes');
+const viewRouter = require('./Routes/viewRoutes');
 
 //Third Party Modules
 const express = require('express');
@@ -95,7 +96,7 @@ app.use((req, res, next) => {
 });
 
 //ROUTES
-//app.use('/', viewRouter);
+app.use('/', viewRouter);
 app.use('/api/v1/usuarios', usuariosRouter); //Route for usuarios
 app.use('/api/v1/donosdeloja', storeOwnerRouter); //Route for store Owners
 

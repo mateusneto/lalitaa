@@ -1,0 +1,14 @@
+header.header
+    nav.nav.nav-tours
+        a.nav__el(href='/') Todos Serviços
+        .header__logo
+            img(src='/img/favicon.jpeg' alt='Logo')
+    nav.nav.nav__user
+        if usuario
+            a.nav__el.nav__el--logout Sair
+            a.nav__el(href='me')
+                img.nav__user-img(src=`/imagens/usuarios/${usuario.fotografia}` alt=`${usuario.nome}`)
+                span= usuario.nome.split(' ')[0]
+        else
+            a.nav__el(href='/login') Login
+            a.nav__el.nav__el--cta Criar conta
