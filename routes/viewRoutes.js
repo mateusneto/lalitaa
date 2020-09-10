@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.use(viewsController.alerts);
 
-router.get('/', authController.isLoggedIn, viewsController.mostrarConta);
+router.get('/', authController.isLoggedIn, viewsController.mostrarConta); //trocar
 router.get('/login', authController.isLoggedIn, viewsController.getLoginForm);
 //router.get('/servico/:slug', authController.isLoggedIn, viewsController.mostrarServico);
 
