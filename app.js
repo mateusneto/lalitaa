@@ -6,6 +6,7 @@ const path = require('path');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const usuariosRouter = require('./routes/usuariosRoutes');
+const storeOwnerRouter = require('./routes/storeOwnerRoutes');
 
 //Third Party Modules
 const express = require('express');
@@ -96,6 +97,7 @@ app.use((req, res, next) => {
 //ROUTES
 //app.use('/', viewRouter);
 app.use('/api/v1/usuarios', usuariosRouter); //Route for usuarios
+app.use('/api/v1/donosdeloja', storeOwnerRouter); //Route for store Owners
 
 app.all('*', (req, res, next) => {
    next(new AppError(`can't find ${req.originalUrl} on this server`, 404));

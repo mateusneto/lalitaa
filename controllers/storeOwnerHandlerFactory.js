@@ -107,7 +107,7 @@ exports.updateMe = Model =>
       if (req.file) filteredBody.fotografia = req.file.filename;
       //Update user document
       const doc = await Model.findByIdAndUpdate(
-         req.usuario._id, //changed from '_id' to 'id'
+         req.storeOwner._id, //changed from '_id' to 'id'
          filteredBody,
          {
             new: true,
@@ -118,14 +118,14 @@ exports.updateMe = Model =>
       res.status(200).json({
          status: 'success',
          data: {
-            usuario: doc
+            storeOwner: doc
          }
       });
    });
 
 exports.deleteMe = Model =>
    catchAsync(async (req, res, next) => {
-      await Model.findByIdAndUpdate(req.usuario.id, { active: false });
+      await Model.findByIdAndUpdate(req.storeOwner.id, { active: false });
 
       res.status(204).json({
          status: 'success',

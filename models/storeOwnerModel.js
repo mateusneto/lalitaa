@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
-const usuarioSchema = new mongoose.Schema({
+const storeOwnerSchema = new mongoose.Schema({
    nome: {
       type: String,
       required: [true, 'please tell us your name']
@@ -29,9 +29,16 @@ const usuarioSchema = new mongoose.Schema({
    fotografia: { type: String, default: 'default.jpg' },
    role: {
       type: String,
-      enum: ['usuario', 'moderador', 'administrador'],
-      default: 'usuario'
+      enum: ['donoLoja', 'administrador'],
+      default: 'donoLoja'
    },
+   //Child Referencing
+   stores: [
+      {
+         type: mongoose.Schema.ObjectId,
+         ref: 'Store' //creating a reference to usuarioModel
+      }
+   ],
    password: {
       type: String,
       required: [true, 'Please provide a password'],
@@ -56,15 +63,10 @@ const usuarioSchema = new mongoose.Schema({
       type: Boolean,
       default: true,
       select: false
-   },
-   estado: {
-      type: String,
-      enum: ['online', 'offline'],
-      default: 'offline'
    }
 });
 
-usuarioSchema.pre('save', async function (next) {
+storeOwnerSchema.pre('save', async function (next) {
    //Only run if password was modified
    if (!this.isModified('password')) return next();
 
@@ -76,7 +78,7 @@ usuarioSchema.pre('save', async function (next) {
    next();
 });
 
-usuarioSchema.pre('save', function (next) {
+storeOwnerSchema.pre('save', function (next) {
    if (!this.isModified('password') || this.isNew) return next();
 
    this.passwordChangedAt = Date.now() - 1000;
@@ -84,18 +86,18 @@ usuarioSchema.pre('save', function (next) {
    next();
 });
 
-usuarioSchema.pre(/^find/, function (next) {
+storeOwnerSchema.pre(/^find/, function (next) {
    //this points to the current query
    this.find({ active: { $ne: false } });
    next();
 });
 
 //Compare input password with existing password
-usuarioSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
+storeOwnerSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
    return await bcrypt.compare(candidatePassword, userPassword);
 };
 
-usuarioSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
+storeOwnerSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
    if (this.passwordChangedAt) {
       const changedTimestamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
 
@@ -106,7 +108,7 @@ usuarioSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
    return false;
 };
 
-usuarioSchema.methods.createPasswordResetToken = function () {
+storeOwnerSchema.methods.createPasswordResetToken = function () {
    const resetToken = crypto.randomBytes(32).toString('hex');
 
    this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
@@ -118,5 +120,5 @@ usuarioSchema.methods.createPasswordResetToken = function () {
    return resetToken;
 };
 
-const Usuario = mongoose.model('Usuario', usuarioSchema);
-module.exports = Usuario;
+const StoreOwner = mongoose.model('StoreOwner', storeOwnerSchema);
+module.exports = StoreOwner;
