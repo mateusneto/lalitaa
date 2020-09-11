@@ -100,7 +100,7 @@ const storeSchema = new mongoose.Schema(
 
 //Indexes
 //storeSchema.index({ preco: 1 }); //single field index
-storeSchema.index({ preco: 1, mediaDeAvaliacoes: -1 }); //Compound index
+//storeSchema.index({ preco: 1, mediaDeAvaliacoes: -1 }); //Compound index
 storeSchema.index({ slug: 1 });
 
 //Virtual populate: virtual populating 'servicoModel' with data from 'ReviewModel'
