@@ -13,7 +13,8 @@ const usuarioSchema = new mongoose.Schema({
       required: [true, 'Please Provide a username'],
       unique: true,
       minlength: 3,
-      maxlength: 20
+      maxlength: 20,
+      trim: true
    },
    email: {
       type: String,
@@ -24,7 +25,8 @@ const usuarioSchema = new mongoose.Schema({
    },
    numeroTelemovel: {
       type: String,
-      unique: true
+      unique: true,
+      trim: true
    },
    fotografia: { type: String, default: 'default.jpg' },
    role: {

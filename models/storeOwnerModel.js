@@ -3,68 +3,77 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
-const storeOwnerSchema = new mongoose.Schema({
-   nome: {
-      type: String,
-      required: [true, 'please tell us your name']
-   },
-   nomeUsuario: {
-      type: String,
-      required: [true, 'Please Provide a username'],
-      unique: true,
-      minlength: 3,
-      maxlength: 20
-   },
-   email: {
-      type: String,
-      required: [true, 'please insert your email'],
-      unique: true,
-      lowercase: true,
-      validate: [validator.isEmail, 'Please insert a valid email']
-   },
-   numeroTelemovel: {
-      type: String,
-      unique: true
-   },
-   fotografia: { type: String, default: 'default.jpg' },
-   role: {
-      type: String,
-      enum: ['donoLoja', 'administrador'],
-      default: 'donoLoja'
-   },
-   //Child Referencing
-   stores: [
-      {
-         type: mongoose.Schema.ObjectId,
-         ref: 'Store' //creating a reference to usuarioModel
+const storeOwnerSchema = new mongoose.Schema(
+   {
+      nome: {
+         type: String,
+         required: [true, 'please tell us your name']
+      },
+      nomeUsuario: {
+         type: String,
+         required: [true, 'Please Provide a username'],
+         unique: true,
+         minlength: 3,
+         maxlength: 20,
+         trim: true
+      },
+      email: {
+         type: String,
+         required: [true, 'please insert your email'],
+         unique: true,
+         lowercase: true,
+         validate: [validator.isEmail, 'Please insert a valid email']
+      },
+      numeroTelemovel: {
+         type: String,
+         unique: true,
+         trim: true
+      },
+      fotografia: { type: String, default: 'default.jpg' },
+      role: {
+         type: String,
+         enum: ['donoLoja', 'administrador'],
+         default: 'donoLoja'
+      },
+      //Child Referencing
+      stores: [
+         {
+            type: mongoose.Schema.ObjectId,
+            ref: 'Store' //creating a reference to usuarioModel
+         }
+      ],
+      password: {
+         type: String,
+         required: [true, 'Please provide a password'],
+         minlength: 8,
+         select: false
+      },
+      passwordConfirmacao: {
+         type: String,
+         required: [true, 'Please confirm your password'],
+         validate: {
+            //This only works on 'create()' and 'save()'
+            validator: function (el) {
+               return el === this.password;
+            },
+            message: 'Passwords are not the same'
+         }
+      },
+      passwordChangedAt: Date,
+      passwordResetToken: String,
+      passwordResetExpires: Date,
+      active: {
+         type: Boolean,
+         default: true,
+         select: false
       }
-   ],
-   password: {
-      type: String,
-      required: [true, 'Please provide a password'],
-      minlength: 8,
-      select: false
    },
-   passwordConfirmacao: {
-      type: String,
-      required: [true, 'Please confirm your password'],
-      validate: {
-         //This only works on 'create()' and 'save()'
-         validator: function (el) {
-            return el === this.password;
-         },
-         message: 'Passwords are not the same'
-      }
-   },
-   passwordChangedAt: Date,
-   passwordResetToken: String,
-   passwordResetExpires: Date,
-   active: {
-      type: Boolean,
-      default: true,
-      select: false
+   {
+      //Show up virtual properties(fields that are not stored in the database) whenever there is an output
+      toJSON: { virtuals: true },
+      toObject: { virtuals: true }
    }
-});
+);
 
 storeOwnerSchema.pre('save', async function (next) {
    //Only run if password was modified
@@ -89,6 +98,16 @@ storeOwnerSchema.pre('save', function (next) {
 storeOwnerSchema.pre(/^find/, function (next) {
    //this points to the current query
    this.find({ active: { $ne: false } });
+   next();
+});
+
+storeOwnerSchema.pre(/^find/, function (next) {
+   //query middleware to populate documents with referenced data
+   this.populate({
+      path: 'stores',
+      select: '-__v -storeProducts -estado -descricao -imagemDeCapa -moderadores'
+   });
+
    next();
 });
 

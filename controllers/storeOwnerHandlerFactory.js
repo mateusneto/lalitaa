@@ -11,6 +11,21 @@ const filterObj = (obj, ...allowedFields) => {
    return newObj;
 };
 
+exports.verifyOwner = Model =>
+   catchAsync(async (req, res, next) => {
+      const loja = await Model.findById(req.params.id);
+
+      if (!loja) {
+         return next(new AppError('Nenhum documento encontrado com este ID', 404));
+      }
+
+      if (loja.storeOwner.id !== res.locals.storeOwner.id) {
+         return next(new AppError('Esta loja não lhe pertence', 404));
+      }
+
+      next();
+   });
+
 exports.createOne = Model =>
    catchAsync(async (req, res, next) => {
       const doc = await Model.create(req.body);

@@ -167,7 +167,7 @@ exports.storeOwnerIsLoggedIn = async (req, res, next) => {
 };
 
 exports.restrictTo = (...roles) => {
-   //Function to restrict 'delete' Route to administrador e moderador
+   //Function to restrict certain Routes to certain types 'roles' of users
    return (req, res, next) => {
       if (!roles.includes(req.storeOwner.role)) {
          return next(new AppError('You do not have permission for this action', 403));

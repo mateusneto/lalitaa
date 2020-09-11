@@ -1,11 +1,10 @@
 //Third-Party modules
-//const nodemailer = require('nodemailer');
-//const pug = require('pug');
-//const htmlToText = require('html-to-text');
-
 const nodemailer = require('nodemailer');
+const pug = require('pug');
+const htmlToText = require('html-to-text');
 
-const sendEmail = async options => {
+/*----------Without PUG */
+/*const sendEmail = async options => {
    // 1) Create a transporter
    const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
@@ -29,9 +28,9 @@ const sendEmail = async options => {
    await transporter.sendMail(mailOptions);
 };
 
-module.exports = sendEmail;
+module.exports = sendEmail;*/
 
-/* --------After Implementing PUG TEMPLATES---------------
+/* --------After Implementing PUG TEMPLATES---------------*/
 
 module.exports = class Email {
    constructor(usuario, url) {
@@ -88,13 +87,10 @@ module.exports = class Email {
    }
 
    async sendWelcome() {
-      await this.send('welcome', 'Bem-vindo a Cliline');
+      await this.send('welcome', 'Bem-vindo a Lalitaa');
    }
 
    async sendPasswordReset() {
       await this.send('passwordReset', 'Your password reset token (valid for 10 minutes)');
    }
 };
-
-
-*/
