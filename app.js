@@ -12,6 +12,7 @@ const storeRouter = require('./routes/storeRoutes');
 const produtoRouter = require('./routes/produtoRoutes');
 const storeReviewsRouter = require('./routes/storeReviewRoutes');
 const produtoReviewsRouter = require('./routes/produtoReviewRoutes');
+const bookingRouter = require('./routes/bookingRoutes');
 
 //Third Party Modules
 const express = require('express');
@@ -108,6 +109,7 @@ app.use('/api/v1/lojas/:id/produtos', storeRouter); //Route for estore owners de
 app.use('/api/v1/produtos', produtoRouter); //Route for admin dealing with products
 app.use('/api/v1/storereviews', storeReviewsRouter); //Route for reviews
 app.use('/api/v1/produtoreviews', produtoReviewsRouter); //Route for reviews
+app.use('/api/v1/bookings', bookingRouter); //Route for bookings
 
 app.all('*', (req, res, next) => {
    next(new AppError(`can't find ${req.originalUrl} on this server`, 404));
