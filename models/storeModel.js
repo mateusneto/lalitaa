@@ -12,8 +12,8 @@ const storeSchema = new mongoose.Schema(
       nome: {
          type: String,
          required: [true, 'Nome em falta'],
-         maxlength: [30, 'O nome do servico tem de ter 40 digitos ou menos'],
-         minlength: [3, 'O nome do servico tem de ter 3 ou mais digitos']
+         maxlength: [30, 'O nome da loja tem de ter 40 digitos ou menos'],
+         minlength: [3, 'O nome da loja tem de ter 3 ou mais digitos']
          //validate: [validator.isAlpha, 'Apenas letras no nome'],
       },
       nomeLoja: {
@@ -31,10 +31,11 @@ const storeSchema = new mongoose.Schema(
          ref: 'StoreOwner',
          required: [true, 'Loja deve pertencer a um dono']
       },
+      //Child referencing
       storeProducts: [
          {
             type: mongoose.Schema.ObjectId,
-            ref: 'Product'
+            ref: 'Produto'
          }
       ],
       estado: {
@@ -105,7 +106,7 @@ storeSchema.index({ slug: 1 });
 
 //Virtual populate: virtual populating 'servicoModel' with data from 'ReviewModel'
 storeSchema.virtual(/*Field to be created on the model*/ 'reviews', {
-   ref: 'StoreReview', //name of the referenced model
+   ref: 'Review', //name of the referenced model
    foreignField: 'store', //name of the field where the reference to the current model is stored
    localField: '_id'
 });
@@ -126,6 +127,7 @@ storeSchema.pre(/^find/, function (next) {
 
 /* ----- */
 storeSchema.index({ storeOwner: 1 }); //Not allowing a store to have more than 1 owner
+
 storeSchema.pre(/^find/, function (next) {
    //.pre 'find' query middleware to populate documents with referenced data
    this.populate({
@@ -135,6 +137,16 @@ storeSchema.pre(/^find/, function (next) {
 
    next();
 });
+
+storeSchema.pre(/^find/, function (next) {
+   //query middleware to populate documents with referenced data
+   this.populate({
+      path: 'storeProducts',
+      select: 'nome'
+   });
+   next();
+});
+
 /* ----- */
 
 /*storeSchema.pre(/^find/, function (next) {

@@ -1,5 +1,6 @@
 //My own modules
 const storeController = require('./../controllers/storeController');
+const produtoController = require('../controllers/produtoController');
 const authController = require('./../controllers/storeOwnerAuthController');
 //const reviewRouter = require('./reviewsRoutes');
 //const reviewController = require('./../controllers/reviewController');
@@ -41,7 +42,7 @@ router
 router.route('/distances/:latlng/unit/:unit').get(storeController.getDistances);
 */
 
-/*------------------------------------------------------*/
+/*--------------------------STORES----------------------------*/
 
 router
    .route('/')
@@ -69,6 +70,45 @@ router
       authController.restrictTo('moderador', 'administrador', 'donoLoja'),
       storeController.verifyOwner,
       storeController.removerStore
+   );
+
+/*--------------------------PRODUTOS----------------------------*/
+
+router.route('/:id/produtos').get(storeController.mostrarProdutos).post(
+   authController.storeOwnerProtect,
+   //res.locals.storeOwner = owner
+   storeController.verifyOwner,
+   storeController.setStoreOwnerId,
+   //req.body.storeOwner
+   authController.restrictTo('moderador', 'administrador', 'donoLoja'), //Added after
+   storeController.setStoreId,
+   storeController.criarProduto
+);
+
+router
+   .route('/:id/produtos/:produtoId')
+   .get(storeController.mostrarProduto)
+   .patch(
+      authController.storeOwnerProtect,
+      //res.locals.storeOwner = owner
+      storeController.verifyOwner,
+      storeController.setStoreOwnerId,
+      //req.body.storeOwner
+      storeController.setStoreId,
+      storeController.verifyStore,
+      storeController.verifyStoreProduct,
+      storeController.actualizarProduto
+   )
+   .delete(
+      authController.storeOwnerProtect,
+      //res.locals.storeOwner = owner
+      storeController.verifyOwner,
+      storeController.setStoreOwnerId,
+      //req.body.storeOwner
+      storeController.setStoreId,
+      storeController.verifyStore,
+      storeController.verifyStoreProduct,
+      storeController.removerProduto
    );
 
 //exporting router for stores

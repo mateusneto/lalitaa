@@ -1,5 +1,6 @@
 //My own modules
 const Store = require('./../models/storeModel');
+const Produto = require('../models/produtoModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const factory = require('./storeOwnerHandlerFactory');
@@ -30,7 +31,8 @@ exports.uploadStoreImages = upload.fields([{ name: 'imagemDeCapa', maxCount: 1 }
 // upload.array('imagens',5) => req.files
 
 exports.resizeStoreImages = catchAsync(async (req, res, next) => {
-   if (!req.body.imagemDeCapa) return next(); // previous -->  !req.files.imagemDeCapa
+   //if (!req.files.imagemDeCapa || !req.files.imagens) return next(); -->> for production
+   if (!req.body.imagemDeCapa) return next(); //for development
 
    //Process imagem de capa
    req.body.imagemDeCapa = `store-${req.params.id}-${Date.now()}-cover.jpeg`;
@@ -51,14 +53,62 @@ exports.setStoreOwnerId = (req, res, next) => {
    next();
 };
 
-/* ----------------------Controllers for servicos------------------------- */
+exports.setStoreId = factory.setStoreId(Store);
+
+/* ----------------------Controllers for Store------------------------- */
 exports.mostrarStores = factory.getAll(Store);
 exports.mostrarStore = factory.getOne(Store /*, { path: 'reviews' }*/);
 exports.criarStore = factory.createOne(Store);
-exports.actualizarStore = factory.updateOne(Store);
 exports.verifyOwner = factory.verifyOwner(Store);
+exports.verifyStore = factory.verifyStore(Store);
+exports.actualizarStore = factory.updateOne(Store);
 exports.removerStore = factory.deleteOne(Store);
+
+/* ----------------------Controllers for Store Products------------------------- */
+exports.criarProduto = factory.createOne(Produto);
+exports.mostrarProdutos = factory.getAllProducts(Produto);
+exports.mostrarProduto = factory.getOneProduct(Produto);
+exports.actualizarProduto = factory.updateOneProduct(Produto);
+exports.removerProduto = factory.deleteProduct(Produto);
 /* ------------------------------------------------------------------------*/
+exports.verifyStoreProduct = factory.verifyStoreProduct(Produto);
+
+exports.verificarProduto = (req, res, next) => {
+   //console.log(res.locals);
+   //console.log(req.params);
+
+   //if (req.body.storeOwner)
+   console.log(req.body);
+
+   console.log('-----Produto-----');
+   console.log(produto);
+   console.log('-----req.params');
+   console.log(req.params);
+   console.log('-----res.Locals.store---');
+   console.log(res.locals.store);
+   console.log('-----req.body---');
+   console.log(res.locals.store);
+
+   if (produto.store.id !== req.params.id) {
+      //console.log(produto.store.id);
+      //console.log(res.locals.store.id);
+
+      return next(new AppError('Este produto nao pertence a sua loja', 404));
+   }
+
+   if (produto.store.id !== res.locals.store.id) {
+      //console.log(produto.store.id);
+      //console.log(res.locals.store.id);
+
+      return next(new AppError('Este produto nao pertence a sua loja', 404));
+   }
+
+   next();
+};
+
+exports.ya = (req, res, next) => {
+   console.log('Olá');
+};
 
 /*exports.aliasTopServicos = (req, res, next) => {
    req.query.limit = '3';

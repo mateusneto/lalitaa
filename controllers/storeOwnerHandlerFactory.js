@@ -16,7 +16,7 @@ exports.verifyOwner = Model =>
       const loja = await Model.findById(req.params.id);
 
       if (!loja) {
-         return next(new AppError('Nenhum documento encontrado com este ID', 404));
+         return next(new AppError('Nenhuma loja encontrado com este ID', 404));
       }
 
       if (loja.storeOwner.id !== res.locals.storeOwner.id) {
@@ -25,6 +25,60 @@ exports.verifyOwner = Model =>
 
       next();
    });
+
+exports.verifyStoreProduct = Model =>
+   catchAsync(async (req, res, next) => {
+      const produto = await Model.findById(req.params.produtoId);
+
+      if (!produto) {
+         return next(new AppError('Nenhum produto encontrado com este ID', 404));
+      }
+
+      if (produto.store.id !== req.params.id) {
+         console.log(produto.store.id);
+         console.log(req.params.id);
+         return next(new AppError('Este produto não existe nesta loja', 404));
+      }
+
+      next();
+   });
+
+exports.verifyStore = Model =>
+   catchAsync(async (req, res, next) => {
+      //req.body.storeOwnerId
+      //res.locals.storeOwner
+      const loja = await Model.findById(req.params.id);
+
+      if (!loja) {
+         return next(new AppError('Nenhum documento encontrado com este ID', 404));
+      }
+      console.log(req.usuario);
+      if (req.usuario.role === 'administrador') {
+         res.locals.store = loja;
+         next();
+      }
+
+      if (loja.storeOwner.id !== res.locals.storeOwner.id) {
+         return next(new AppError('Esta loja não lhe pertence', 404));
+      }
+
+      console.log(loja);
+
+      res.locals.store = loja;
+
+      next();
+   });
+
+exports.setStoreId = Model =>
+   catchAsync(async (req, res, next) => {
+      //if (!req.body.loja) req.body.loja = req.params.id;
+      const store = await Model.findById(req.params.id);
+      if (!req.body.store) req.body.store = store;
+
+      next();
+   });
+
+/*----------------------Lojas-------------------------- */
 
 exports.createOne = Model =>
    catchAsync(async (req, res, next) => {
@@ -43,6 +97,8 @@ exports.getAll = Model =>
       //To allow for nested get revies of servico (hack)
       let filter = {};
       if (req.params.servicoId) filter = { servico: req.params.servicoId };
+
+      console.log(filter);
 
       //Execute query
       const features = new APIFeatures(Model.find(filter), req.query).filter().sort().limitFields().paginate();
@@ -143,6 +199,112 @@ exports.deleteMe = Model =>
       await Model.findByIdAndUpdate(req.storeOwner.id, { active: false });
 
       res.status(204).json({
+         status: 'success',
+         data: null
+      });
+   });
+
+/* --------------------Produtos------------------------ */
+
+exports.getAllProducts = Model =>
+   catchAsync(async (req, res, next) => {
+      //To allow for nested get reviews of servico (hack)
+      /* let filter = {};
+      if (req.params.servicoId) filter = { servico: req.params.servicoId };
+
+      //Execute query
+      const features = new APIFeatures(Model.find(filter), req.query).filter().sort().limitFields().paginate();*/
+
+      console.log(req.params);
+
+      const doc = await Model.find({
+         store: { $in: req.params.id }
+      }); //.explain();
+
+      console.log('-------------------');
+      console.log(doc);
+
+      //SEND RESPONSE
+      res.status(200).json({
+         status: 'success',
+         results: doc.length,
+         data: {
+            doc
+         }
+      });
+   });
+
+exports.getOneProduct = (Model, popOptions) =>
+   catchAsync(async (req, res, next) => {
+      let query = Model.findById(req.params.produtoId);
+      if (popOptions) query = query.populate(popOptions);
+
+      /*const doc = await Model.find({
+         _id: { $in: '5f5d6b3e2542e22856a97415' }
+      });*/
+
+      const doc = await query;
+
+      if (!doc) {
+         return next(new AppError('Nenhum serviço encontrado com este ID', 404));
+      }
+
+      res.status(200).json({
+         status: 'success',
+         data: {
+            data: doc
+         }
+      });
+   });
+
+exports.updateOneProduct = Model =>
+   catchAsync(async (req, res, next) => {
+      const produto = await Model.findByIdAndUpdate(req.params.produtoId, req.body, {
+         new: true,
+         runValidators: true
+      });
+
+      if (!produto) {
+         return next(new AppError('Nenhum produto encontrado com este ID', 404));
+      }
+
+      if (produto.store.id !== req.params.id) {
+         return next(new AppError('Este produto nao pertence a sua loja', 404));
+      }
+
+      if (produto.store.storeOwner.id !== res.locals.storeOwner.id) {
+         return next(new AppError('Este produto nao existe nesta loja', 404));
+      }
+
+      /*if (produto.store._id !== res.locals.store._id) {
+         return next(new AppError('Este produto nao pertence a sua loja', 404));
+      }*/
+
+      res.status(200).json({
+         status: 'Success',
+         data: {
+            produto
+         }
+      });
+   });
+
+exports.deleteProduct = Model =>
+   catchAsync(async (req, res, next) => {
+      const produto = await Model.findByIdAndDelete(req.params.produtoId);
+
+      if (!produto) {
+         return next(new AppError('No produto with this id', 404));
+      }
+
+      if (produto.store.id !== req.params.id) {
+         return next(new AppError('Este produto nao pertence a sua loja', 404));
+      }
+
+      if (produto.store.storeOwner.id !== res.locals.storeOwner.id) {
+         return next(new AppError('Este produto nao existe nesta loja', 404));
+      }
+
+      res.status(200).json({
          status: 'success',
          data: null
       });
