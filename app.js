@@ -10,6 +10,8 @@ const storeOwnerRouter = require('./routes/storeOwnerRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const storeRouter = require('./routes/storeRoutes');
 const produtoRouter = require('./routes/produtoRoutes');
+const storeReviewsRouter = require('./routes/storeReviewRoutes');
+const produtoReviewsRouter = require('./routes/produtoReviewRoutes');
 
 //Third Party Modules
 const express = require('express');
@@ -104,6 +106,8 @@ app.use('/api/v1/donosdeloja', storeOwnerRouter); //Route for store Owners
 app.use('/api/v1/lojas', storeRouter); //Route for stores
 app.use('/api/v1/lojas/:id/produtos', storeRouter); //Route for estore owners deal with products on their stores
 app.use('/api/v1/produtos', produtoRouter); //Route for admin dealing with products
+app.use('/api/v1/storereviews', storeReviewsRouter); //Route for reviews
+app.use('/api/v1/produtoreviews', produtoReviewsRouter); //Route for reviews
 
 app.all('*', (req, res, next) => {
    next(new AppError(`can't find ${req.originalUrl} on this server`, 404));
