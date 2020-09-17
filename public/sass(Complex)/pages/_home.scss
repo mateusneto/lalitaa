@@ -1,0 +1,95 @@
+.section-about {
+   background-image: linear-gradient(to left bottom, $color-primary-dark, $color-primary-light);
+   padding: 10rem 0 20rem 0;
+
+   @include respond(tab-port) {
+      padding: 5rem 0 15rem 0;
+   }
+}
+
+.section-features {
+   padding: 10rem 0;
+
+   background-image: linear-gradient(to left bottom, $color-primary-dark, $color-primary-light);
+   background-size: cover;
+   /*
+   & > * {
+      transform: skewX(-5deg);
+   }
+
+   */
+   @include respond(tab-land) {
+      padding: 10rem 1rem;
+   }
+   @include respond(tab-port) {
+      padding: 5rem 0;
+   }
+}
+
+.section-tours {
+   background-image: linear-gradient(to left bottom, $color-primary-dark, $color-primary-light);
+   padding: 20rem 0 3rem 0;
+
+   @include respond(tab-land) {
+      padding: 15rem 1rem 3rem 1rem;
+   }
+
+   @include respond(tab-port) {
+      padding: 15rem 0 -2rem 0;
+   }
+}
+
+.section-stories {
+   padding: 15rem 0;
+   background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+
+   @include respond(tab-port) {
+      padding: 10rem 0;
+   }
+}
+
+.section-book {
+   padding: 15rem 0;
+   margin-top: -20rem;
+   background-image: linear-gradient(to left bottom, $color-primary-dark, $color-primary-light);
+
+   @include respond(tab-land) {
+      padding: 15rem 1rem;
+   }
+
+   @include respond(tab-port) {
+      padding: 20rem 0;
+   }
+}
+
+.book {
+   background-image: linear-gradient(
+         90deg,
+         rgba($color-primary-light, 0.9) 0%,
+         $color-primary-light 38%,
+         transparent 38%
+      ),
+      url(/Cliline/dev-data/imagens/imagens/arte1.png);
+   background-size: 150%;
+   border-radius: $border-radius;
+   box-shadow: $shadow-light;
+
+   @include respond(tab-port) {
+      background-image: linear-gradient(to right, rgba($color-primary-light, 0.93) 0%, $color-primary-light 100%),
+         url(/Cliline/dev-data/imagens/imagens/arte1.png);
+   }
+
+   &__form {
+      width: 50%;
+      padding: 6rem;
+
+      @include respond(tab-land) {
+         width: 58%;
+      }
+
+      @include respond(tab-port) {
+         width: 100%;
+         text-align: center;
+      }
+   }
+}

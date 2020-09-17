@@ -1,0 +1,72 @@
+/*
+COLORS
+
+
+foto: #f9b3b6
+
+Primary: #ffc0cb
+Primary light: #fcdce4
+Primary dark: #c99ca5
+Primary white: #fcf0f2
+Primary strong: #84646c
+
+
+shadow: #846c6c
+shadow light: #9f7d84
+
+
+grey: #9b9c9c
+grey 2: #989c94
+*/
+
+:root {
+   --color-primary: #ffc0cb;
+   --color-primary-light: #fcdce4;
+   --color-primary-dark: #c99ca5;
+   --color-primary-white: #fcf0f2;
+   --color-primary-strong: #84646c;
+
+   --color-white: rgb(255, 255, 255);
+   --color-white-grey: rgb(236, 236, 236);
+
+   --color-main-back: rgb(212, 177, 177);
+
+   --shadow-color: 0 2rem 6rem #846c6c;
+   --shadow-color-light: #9f7d84;
+
+   --grey-color: #a6aaaa;
+   --grey-color-light: #c6cac2;
+   --grey-color-dark: #818380;
+}
+
+$bp-seven: 43.75rem;
+$bp-six: 37.5rem;
+$bp-five: 33.125rem;
+$bp-four: 25rem;
+
+* {
+   margin: 0;
+   padding: 0;
+}
+
+*,
+*::before,
+*::after {
+   box-sizing: inherit;
+}
+
+html {
+   box-sizing: border-box;
+   font-size: 62.5%; // 1rem = 10px  ----- 10px/16px = 62.5%
+}
+
+body {
+   //font-family: 'Comfortaa', cursive;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 400;
+   line-height: 1.6;
+   color: var(--grey-color);
+   background-image: linear-gradient(to bottom right, var(--color-primary-light), var(--color-primary-dark));
+   background-size: cover;
+   background-repeat: no-repeat;
+}

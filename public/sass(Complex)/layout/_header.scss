@@ -1,0 +1,28 @@
+.header {
+   height: 99vh;
+   background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+   background-size: cover;
+   background-position: center;
+   position: relative;
+
+   &__logo-box {
+      position: absolute;
+      top: 4rem;
+      left: 4rem;
+   }
+
+   &__logo {
+      height: 7rem;
+      border-radius: 1rem;
+      /*box-shadow: 0.1rem 0.1rem 0.1rem 0.5rem #c9656527;*/
+      box-shadow: $shadow-light;
+   }
+
+   &__text-box {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+   }
+}

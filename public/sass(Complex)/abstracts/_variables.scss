@@ -1,0 +1,47 @@
+/*Cores
+light: 	#f97676;
+medium: #FE5858;
+dark:	#e15050;
+background-image: linear-gradient(to right bottom, #f78d8de0, #e16565dd);
+*/
+
+//Color variables
+$color-primary: #f97676;
+
+$color-primary-light: #fd9c9c;
+$color-primary-dark: #fd8080;
+
+$color-white: #fff;
+$color-pink: pink;
+$color-grey-light: rgb(150, 150, 150);
+
+$logo-color: #fe5858;
+$logo-color-dark: #822f2f;
+
+$color-valid: lime;
+$color-invalid: orangered;
+
+$box-shadow-color-link: #c25c5c;
+$box-shadow-color-hover: #c15959;
+$box-shadow-color-active: #ff7a7a76;
+
+// Shadows
+//---$shadow: 0 1.5rem 4rem $box-shadow-color-link;---
+
+$shadow: 0 0.1rem 0.4rem $box-shadow-color-link;
+$shadow-light: 0 0.1rem 0.4rem $box-shadow-color-link;
+
+//Border radius
+$border-radius: 3px;
+
+//Font sizes
+$default-font-size: 1.6rem;
+
+//Grid variables
+$grid-width: 114rem;
+$gutter-vertical: 8rem;
+$gutter-vertical-small: 6rem;
+$gutter-horizontal: 5rem;
+
+//gutter remover
+$gutterRemover: 0;
