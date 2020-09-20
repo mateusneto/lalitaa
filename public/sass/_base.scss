@@ -22,23 +22,68 @@ grey 2: #989c94
 :root {
    --color-primary: #ffc0cb;
    --color-primary-light: #fcdce4;
-   --color-primary-dark: #c99ca5;
+   --color-primary-dark: #d6a5ae;
    --color-primary-white: #fcf0f2;
-   --color-primary-strong: #84646c;
+   --color-primary-strong: #9e747e;
 
    --color-white: rgb(255, 255, 255);
    --color-white-grey: rgb(236, 236, 236);
 
-   --color-main-back: rgb(212, 177, 177);
+   --color-black: rgb(0, 0, 0);
 
-   --shadow-color: 0 2rem 6rem #846c6c;
+   --color-main-back: #a1a1a1;
+
+   --shadow-color: 0px 0px 0.3px 0.8px var(--color-primary);
    --shadow-color-light: #9f7d84;
+
+   --shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.103);
+   --shadow-2: 0 0.3rem 0.5rem rgba(155, 58, 58, 0.479);
 
    --grey-color: #a6aaaa;
    --grey-color-light: #c6cac2;
    --grey-color-dark: #818380;
 }
 
+//color variables
+$color-primary: #ffc0cb;
+$color-primary-light: #fcdce4;
+$color-primary-dark: #d6a5ae;
+$color-primary-white: #fcf0f2;
+$color-primary-strong: #9e747e;
+
+$color-white: rgb(255, 255, 255);
+$color-white-grey: rgb(236, 236, 236);
+
+$color-green: rgb(81, 204, 81);
+$color-green-dark: rgb(52, 136, 52);
+$color-green-light: rgb(103, 226, 103);
+
+$color-black: rgb(0, 0, 0);
+
+$color-main-back: rgb(212, 177, 177);
+
+$shadow-color: 0px 0px 0.3px 0.8px $color-primary;
+$shadow-color-light: #9f7d84;
+
+$shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.103);
+$shadow-2: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103);
+
+$grey-color: #a6aaaa;
+$grey-color-light: #c6cac2;
+$grey-color-dark: #818380;
+
+//font variables
+$font-barlow: 'Barlow', sans-serif;
+$font-opensans: 'Open Sans', sans-serif;
+$font-quicksand: 'Quicksand', sans-serif;
+$font-comfortaa: 'Comfortaa', cursive;
+$font-della: 'Della Respira', serif;
+$font-nunito: 'Nunito', sans-serif;
+$font-lato: 'Lato', sans-serif;
+$font-josefin: 'Josefin Slab', serif;
+$font-courier: 'Courier Prime', monospace;
+
+//Breakpoints variables
 $bp-seven: 43.75rem;
 $bp-six: 37.5rem;
 $bp-five: 33.125rem;
@@ -61,12 +106,11 @@ html {
 }
 
 body {
-   //font-family: 'Comfortaa', cursive;
-   font-family: 'Open Sans', sans-serif;
+   font-family: $font-lato;
    font-weight: 400;
    line-height: 1.6;
    color: var(--grey-color);
-   background-image: linear-gradient(to bottom right, var(--color-primary-light), var(--color-primary-dark));
+   background-color: var(--color-main-back);
    background-size: cover;
    background-repeat: no-repeat;
 }

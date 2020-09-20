@@ -25,6 +25,11 @@ const storeSchema = new mongoose.Schema(
          minlength: [3, 'O nome da loja tem de ter 3 ou mais digitos'],
          validate: [validator.isAlpha, 'Apenas letras no nome']
       },
+      numeroTelemovel: {
+         type: String,
+         required: [true, 'Loja deve ter um numero de telemovel'],
+         unique: true
+      },
       //Parent referencing
       storeOwner: {
          type: mongoose.Schema.ObjectId,
@@ -42,6 +47,17 @@ const storeSchema = new mongoose.Schema(
          type: String,
          enum: ['online', 'offline'],
          default: 'offline'
+      },
+      entregas: {
+         type: String,
+         enum: ['Sim', 'Não'],
+         default: 'Sim'
+      },
+      lojaFisica: {
+         type: String,
+         enum: ['Sim', 'Não'],
+         default: 'Sim',
+         required: true
       },
       slug: String,
       mediaDeAvaliacoes: {

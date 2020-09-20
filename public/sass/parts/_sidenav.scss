@@ -1,6 +1,6 @@
 .sidebar {
-   z-index: 1000;
-   background-color: var(--color-white);
+   z-index: 10;
+   background-color: var(--color-primary-white);
    margin-top: 7rem;
 
    flex: 0 0 15%;
@@ -8,6 +8,7 @@
    display: flex;
    flex-direction: column;
    justify-content: space-between;
+   align-items: flex-end;
    position: fixed;
    box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.103);
 }
@@ -19,6 +20,8 @@
    font-size: 1.7rem;
    list-style: none;
    margin-top: 3.5rem;
+   display: flex;
+   flex-direction: column;
 
    @media only screen and (max-width: $bp-seven) {
       span {
@@ -38,6 +41,7 @@
    }
 
    &__item::before {
+      box-shadow: var(--shadow-2);
       content: '';
       position: absolute;
       top: 0;
@@ -69,6 +73,7 @@
       padding: 1.5rem 3rem;
 
       display: flex;
+      //justify-content: space-between;
       align-items: center;
    }
 

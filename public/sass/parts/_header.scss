@@ -1,5 +1,5 @@
 .header {
-   z-index: 1000;
+   z-index: 100;
    font-size: 1.4rem;
    height: 7rem;
    width: 100%;
@@ -18,7 +18,30 @@
 .logo {
    height: 5.25rem;
    margin-left: 2rem;
+   cursor: pointer;
 }
+
+/*.logo__box {
+   box-shadow: var(--shadow);
+   font-size: 0.8rem;
+   font-weight: bold;
+   height: 6rem;
+   width: 6rem;
+   border-radius: 50%;
+   background-color: var(--color-primary-light);
+   color: var(--color-black);
+   position: absolute;
+   // top: 0.3rem;
+   // left: 3rem;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.logo--try {
+   width: 90%;
+}*/
 
 ////////////////////////////////////////
 // SEARCH BOX
@@ -28,16 +51,19 @@
    }
 
    flex: 0 0 20%;
+   justify-self: center;
 
    display: flex;
    align-items: center;
-   justify-content: center;
+   justify-content: flex-end;
 
    &__input {
+      box-shadow: var(--shadow);
       font-family: inherit;
-      font-size: inherit;
-      color: inherit;
-      background-color: var(--color-primary-white);
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--color-primary-strong);
+      background-color: var(--color-primary);
       border: none;
       padding: 0.7rem 2rem;
       border-radius: 100px;
@@ -65,7 +91,7 @@
 
    &__button {
       border: none;
-      background-color: var(--color-primary-white);
+      background-color: var(--color-primary);
       transition: all 0.2s;
 
       &:focus {
@@ -94,6 +120,8 @@
 
    align-items: center;
 
+   box-shadow: var(--shadow);
+
    & > * {
       padding: 0 2rem;
       cursor: pointer;
@@ -118,13 +146,14 @@
    }
 
    &__notification {
+      box-shadow: var(--shadow);
       font-size: 0.8rem;
       font-weight: bold;
       height: 1.75rem;
       width: 1.75rem;
       border-radius: 50%;
       background-color: var(--color-primary);
-      color: var(--color-primary-strong);
+      color: var(--color-black);
       position: absolute;
       top: 1.5rem;
       right: 1.2rem;
@@ -135,7 +164,7 @@
    }
 
    &__user {
-      @media only screen and (max-width: $bp-four) {
+      @media only screen and (max-width: $bp-five) {
          span {
             display: none;
          }
@@ -143,13 +172,13 @@
    }
 
    &__user-photo {
+      box-shadow: var(--shadow-2);
       height: 3.75rem;
-      border-radius: 50%;
+      border-radius: 4px;
       margin-right: 1rem;
    }
 
    &__user-name {
-      font-weight: bold;
       color: var(--color-primary-strong);
    }
 }
