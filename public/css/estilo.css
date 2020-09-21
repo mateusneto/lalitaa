@@ -27,7 +27,7 @@ grey 2: #989c94
   --color-white: rgb(255, 255, 255);
   --color-white-grey: rgb(236, 236, 236);
   --color-black: rgb(0, 0, 0);
-  --color-main-back: #a1a1a1;
+  --color-main-back: #8d8f8d;
   --shadow-color: 0px 0px 0.3px 0.8px var(--color-primary);
   --shadow-color-light: #9f7d84;
   --shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.103);
@@ -68,6 +68,15 @@ body {
   grid-template-columns: [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(22rem, 1fr) [full-end]; }
   @media only screen and (max-width: 43.75rem) {
     .store__container {
+      grid-template-columns: [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(11rem, 1fr) [full-end]; } }
+
+.produto__container {
+  background-color: var(--color-main-back);
+  display: grid;
+  grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+  grid-template-columns: [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(22rem, 1fr) [full-end]; }
+  @media only screen and (max-width: 43.75rem) {
+    .produto__container {
       grid-template-columns: [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(11rem, 1fr) [full-end]; } }
 
 .content {
@@ -275,6 +284,37 @@ body {
     height: 2.5rem;
     margin-right: 1rem;
     fill: currentColor; }
+  .side-nav__callbtn {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #51cc51;
+    color: white;
+    border: none;
+    border-radius: o;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__callbtn svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__callbtn:hover {
+      background-color: #67e267; }
+    .side-nav__callbtn:active {
+      background-color: #348834; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__callbtn {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__callbtn span {
+          display: none; } }
 
 .stores {
   grid-column: sidebar-end/center-end;
@@ -319,6 +359,12 @@ body {
     grid-row: 1 / 2;
     grid-column: 1 / -1;
     z-index: 1; }
+  .store__img--min {
+    border-top: 2px solid #9e747e;
+    width: 20rem; }
+    @media only screen and (max-width: 43.75rem) {
+      .store__img--min {
+        width: 9rem; } }
   .store__like {
     grid-row: 1 / 2;
     grid-column: 2 / 3;
@@ -344,6 +390,19 @@ body {
     color: white;
     font-weight: 400;
     box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .store__nome--min {
+      width: 100%;
+      z-index: 3;
+      padding: 1.25rem;
+      font-family: "Lato", sans-serif;
+      font-size: 1.6rem;
+      text-align: center;
+      background-color: #9e747e;
+      color: white;
+      font-weight: 400; }
+      @media only screen and (max-width: 43.75rem) {
+        .store__nome--min {
+          display: none; } }
   .store__status, .store__rating, .store__type, .store__delivery, .store__location, .store__detail {
     font-size: 1.6rem;
     margin-left: 2rem;
@@ -369,4 +428,106 @@ body {
     .store__btn:hover {
       background-color: #c6cac2; }
     .store__btn:active {
+      background-color: #818380; }
+
+.produtos {
+  grid-column: sidebar-end/center-end;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 7rem;
+  background-color: var(--color-main-back);
+  padding-top: 10rem;
+  color: var(--color-white); }
+
+.produto {
+  background-color: var(--color-primary-strong);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 1rem;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103);
+  max-width: 34rem;
+  /*
+    &__btn--2 {
+       display: flex;
+       align-items: center;
+       justify-content: space-evenly;
+       grid-column: 1 / 2;
+       background-color: $color-green;
+       color: $color-white;
+       //grid-gap: 0.2rem;
+       svg {
+          fill: $color-white;
+          height: 2rem;
+          width: 2rem;
+          margin-right: 1rem;
+       }
+ 
+       &:hover {
+          background-color: $color-green-light;
+       }
+       &:active {
+          background-color: $color-green-dark;
+       }
+    }*/ }
+  .produto:active .produto__nome {
+    background-color: #d6a5ae; }
+  .produto__img {
+    width: 100%;
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    z-index: 1;
+    max-width: 34rem;
+    cursor: pointer; }
+    .produto__img:hover {
+      box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+  .produto__like {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    fill: #ffc0cb;
+    height: 2.5rem;
+    width: 2.5rem;
+    z-index: 2;
+    justify-self: end;
+    margin: 1rem;
+    cursor: pointer; }
+  .produto__nome {
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    justify-self: center;
+    align-self: end;
+    width: 100%;
+    z-index: 3;
+    font-family: "Lato", sans-serif;
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 1.25rem;
+    background-color: #9e747e;
+    color: white;
+    font-weight: 400;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+  .produto__status, .produto__preco, .produto__tamanho, .produto__cor, .produto__tipo, .produto__detail {
+    font-size: 1.6rem;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: stretch; }
+    .produto__status svg, .produto__preco svg, .produto__tamanho svg, .produto__cor svg, .produto__tipo svg, .produto__detail svg {
+      fill: white;
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+  .produto__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 1 / 3;
+    grid-gap: 0.7rem; }
+    .produto__btn svg {
+      fill: #9e747e;
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .produto__btn:hover {
+      background-color: #c6cac2; }
+    .produto__btn:active {
       background-color: #818380; }
