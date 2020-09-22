@@ -32,7 +32,7 @@ const storeOwnerSchema = new mongoose.Schema(
       fotografia: { type: String, default: 'default.jpg' },
       role: {
          type: String,
-         enum: ['donoLoja', 'administrador'],
+         enum: ['donoLoja'],
          default: 'donoLoja'
       },
       //Child Referencing

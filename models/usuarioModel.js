@@ -18,7 +18,6 @@ const usuarioSchema = new mongoose.Schema({
    },
    email: {
       type: String,
-      required: [true, 'please insert your email'],
       unique: true,
       lowercase: true,
       validate: [validator.isEmail, 'Please insert a valid email']

@@ -29,6 +29,14 @@ grey 2: #989c94
 
    --color-login: #ff91a3;
 
+   --color-gold: rgb(255, 215, 0);
+   --color-gold-light: rgb(255, 230, 89);
+   --color-gold-strong: rgb(192, 163, 0);
+
+   --color-blue: rgb(0, 191, 255);
+   --color-blue-light: rgb(102, 217, 255);
+   --color-blue-strong: rgb(8, 149, 196);
+
    --color-white: rgb(255, 255, 255);
    --color-white-grey: rgb(236, 236, 236);
 
@@ -57,12 +65,21 @@ $color-primary-strong-2: #6e5359;
 
 $color-login: #ff6f87;
 
+$color-gold: rgb(255, 215, 0);
+$color-gold-light: rgb(255, 230, 89);
+$color-gold-strong: rgb(192, 163, 0);
+
+$color-blue: rgb(0, 191, 255);
+$color-blue-light: rgb(102, 217, 255);
+$color-blue-strong: rgb(8, 149, 196);
+
 $color-white: rgb(255, 255, 255);
 $color-white-grey: rgb(236, 236, 236);
 
 $color-green: rgb(81, 204, 81);
 $color-green-dark: rgb(52, 136, 52);
 $color-green-light: rgb(103, 226, 103);
+$color-green-strong: rgb(10, 141, 10);
 
 $color-black: rgb(0, 0, 0);
 

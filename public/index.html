@@ -14,11 +14,14 @@
       <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300&display=swap" rel="stylesheet" />
       <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet" />
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet" />
-      <link
-         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,300&display=swap"
-         rel="stylesheet"
-      />
+
       <link rel="stylesheet" href="css/estilo.css" />
+
+      <!---------------------------FOR PHONE NUMBER INPUT----------------------------->
+      <link rel="stylesheet" href="intl-tel-input-master/build/css/intlTelInput.css" />
+      <script src="intl-tel-input-master/build/js/intlTelInput.js"></script>
+      <!------------------------------------------------------------------------------>
+
       <link rel="shortcut icon" href="imagens/Lalitaa/favicons/favicon.ico" type="image/x-icon" />
 
       <title>Lalitaa</title>
@@ -51,13 +54,13 @@
                   <span class="user-nav__notification">4</span>
                </div>
 
-               <button class="user-nav__loginbtn">
+               <!-- <button class="user-nav__loginbtn">
                   <!-- <span>ENTRAR</span> -->
-                  <span>Dono de loja</span>
-               </button>
+               <!-- <span>Dono de loja</span> -->
+               <!--</button> -->
 
                <!---------------------Only for logged in users---------------------->
-               <!-- <div class="user-nav__icon-box">
+               <div class="user-nav__icon-box">
                   <svg class="user-nav__icon">
                      <use xlink:href="imagens/dev/sprite.svg#icon-message-square"></use>
                   </svg>
@@ -67,13 +70,12 @@
                <div class="user-nav__user">
                   <img src="imagens/dev/usuarios/anneide.jpg" alt="user photo" class="user-nav__user-photo" />
                   <span class="user-nav__user-name">Anneide</span>
-               </div> -->
+               </div>
                <!-------------------------------------------------------------------->
             </nav>
          </header>
 
-         <!-- <div class="content">
-            
+         <div class="content">
             <nav class="sidebar">
                <ul class="side-nav">
                   <li class="side-nav__item side-nav__item--active">
@@ -104,7 +106,7 @@
                   </li>
                </ul>
                <!-----------CODE BELLOW ONLY FOR SPECIFIC STORE PAGE-------------->
-         <!-- <img src="imagens/dev/lojas/boutiqueragazza.jpg" alt="" class="side-nav__store__img" />
+               <!-- <img src="imagens/dev/lojas/boutiqueragazza.jpg" alt="" class="side-nav__store__img" />
                <button class="side-nav__chatbtn">
                   <svg class="side-nav__icon">
                      <use xlink:href="imagens/dev/sprite2.svg#icon-message"></use>
@@ -117,17 +119,43 @@
                   </svg>
                   <span>Ligar</span>
                </button> -->
-         <!------------------------------------------------------------------->
-         <!--</nav>
-         </div> -->
+               <!------------------------------------------------------------------->
 
-         <main class="main">
-            <div class="login__form">
-               <!-- <span class="login__form__header">Entre na sua conta</span> -->
+               <!-----------CODE BELLOW ONLY FOR USER SETTINGS PAGE-------------->
+               <!-- <button class="side-nav__compras">
+                  <svg class="side-nav__icon">
+                     <use xlink:href="imagens/dev/sprite.svg#icon-shopping-bag"></use>
+                  </svg>
+                  <span>COMPRAS</span>
+               </button> -->
+               <!------------------------------------------------------------------->
+
+               <!-----------CODE BELLOW ONLY FOR STORE OWNER SETTINGS PAGE-------------->
+
+               <!-- <a href="#" class="side-nav__lojas">
+                  <svg class="side-nav__icon">
+                     <use xlink:href="imagens/dev/sprite.svg#icon-home"></use>
+                  </svg>
+                  <span>LOJAS</span>
+               </a>
+
+               <a href="#" class="side-nav__criarLoja">
+                  <svg class="side-nav__icon">
+                     <use xlink:href="imagens/dev/sprite.svg#icon-home"></use>
+                  </svg>
+                  <span>CRIAR LOJA</span>
+               </a> -->
+
+               <!------------------------------------------------------------------->
+            </nav>
+         </div>
+
+         <!-- <main class="main">
+            <!------------------Login for users-------------------------------->
+         <!-- <div class="login__form">
                <img src="imagens/Lalitaa/Lalitaa_logo_transparent.png" alt="" class="login__form__header" />
                <form class="form form--login" action="#">
                   <div class="form__group">
-                     <!-- <label for="email" class="form__label">Nome de usuario / E-mail</label> -->
                      <input
                         type="email"
                         name=""
@@ -139,7 +167,6 @@
                   </div>
 
                   <div class="form__group ma-bt-md">
-                     <!-- <label for="password" class="form__label">Palavra-passe</label> -->
                      <input
                         type="password"
                         name=""
@@ -154,8 +181,300 @@
                      <button class="btn login__btn">ENTRAR</button>
                   </div>
                </form>
-            </div>
-         </main>
+            </div> -->
+         <!------------------------------------------------------------------->
+
+         <!------------------------Sign Up-------------------------->
+         <!-- <div class="login__form">
+               <img src="imagens/Lalitaa/Lalitaa_logo_transparent.png" alt="" class="login__form__header" />
+               <form class="form form--login" action="#">
+                  <div class="form__group">
+                     <input type="text" name="" id="nome" class="form__input" placeholder="Nome" required />
+                  </div>
+
+                  <div class="form__group">
+                     <input
+                        type="text"
+                        name=""
+                        id="nomeUsuario"
+                        class="form__input"
+                        placeholder="Nome de usuario"
+                        required
+                     />
+                  </div>
+
+                  <div class="form__group">
+                     <input type="email" name="" id="email" class="form__input" placeholder="E-mail" />
+                  </div>
+
+                  <div class="form__group">
+                     <input type="tel" name="" id="numeroTelemovel" class="form__input" />
+                  </div>
+
+                  <div class="form__group ma-bt-md">
+                     <input
+                        type="password"
+                        name=""
+                        id="password"
+                        class="form__input"
+                        placeholder="Palavra-passe"
+                        required
+                        minlength="8"
+                     />
+                  </div>
+
+                  <div class="form__group ma-bt-md">
+                     <input
+                        type="password"
+                        name=""
+                        id="passwordConfirm"
+                        class="form__input"
+                        placeholder="Confirmar palavra-passe"
+                        required
+                        minlength="8"
+                     />
+                  </div>
+                  <div class="form__group">
+                     <button class="btn login__btn">Criar conta</button>
+                  </div>
+               </form>
+            </div> -->
+         <!------------------------------------------------------------------->
+         <!--</main>-->
+
+         <!-------------------------User settings Dasboard-------------------->
+         <!-- <div class="userDashboard__container">
+            <section class="userDashboard">
+               <div class="userDashboard__item">
+                  <form class="form item__form">
+                     <img src="imagens/dev/usuarios/anneide.jpg" alt="" class="form__userimg" />
+                     <input type="file" accept="image/*" class="btn form__upload" id="photo" name="photoo" />
+                     <label for="photo">Alterar foto</label>
+
+                     <button class="btn form__update">Actualizar</button>
+                  </form>
+               </div>
+
+               <div class="userDashboard__item">
+                  <form class="form form--login" action="#">
+                     <div class="form__group">
+                        <label for="nome" class="form__label">Nome</label>
+                        <input type="text" name="" id="nome" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="nomeUsuario" class="form__label">Nome usuario</label>
+                        <input type="text" name="" id="nomeUsuario" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="email" class="form__label">E-mail</label>
+                        <input type="email" name="" id="email" class="form__input" placeholder="" />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="numeroTelemovel" class="form__label">Numero telemovel</label>
+                        <input type="tel" name="" id="numeroTelemovel" class="form__input" />
+                     </div>
+
+                     <div class="form__group">
+                        <button class="btn login__btn">Actualizar dados</button>
+                     </div>
+                  </form>
+               </div>
+
+               <div class="userDashboard__item">
+                  <form class="form form--login" action="#">
+                     <div class="form__group">
+                        <label for="password-current" class="form__label">Password</label>
+                        <input
+                           type="password"
+                           name=""
+                           id="password-current"
+                           class="form__input"
+                           placeholder=""
+                           required
+                        />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="password" class="form__label">Password nova</label>
+                        <input type="password" name="" id="password" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="password-confirm" class="form__label">Confirmar password</label>
+                        <input type="password" name="" id="passwordConfirm" class="form__input" placeholder="" />
+                     </div>
+
+                     <div class="form__group">
+                        <button class="btn login__btn">Actualizar password</button>
+                     </div>
+                  </form>
+               </div>
+            </section>
+         </div> -->
+         <!------------------------------------------------------------------->
+
+         <!-------------------------Store Owner settings Dasboard-------------------->
+         <!-- <div class="storeOwnerDashboard__container">
+            <section class="storeOwnerDashboard">
+               <div class="storeOwnerDashboard__item">
+                  <form class="form item__form">
+                     <img src="imagens/dev/usuarios/anneide.jpg" alt="" class="form__storeOwnerimg" />
+                     <input type="file" accept="image/*" class="btn form__upload" id="photo" name="photoo" />
+                     <label for="photo">Alterar foto</label>
+
+                     <button class="btn form__update">Actualizar</button>
+                  </form>
+               </div>
+
+               <div class="storeOwnerDashboard__item">
+                  <form class="form form--login" action="#">
+                     <div class="form__group">
+                        <label for="nome" class="form__label">Nome</label>
+                        <input type="text" name="" id="nome" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="nomeUsuario" class="form__label">Nome usuario</label>
+                        <input type="text" name="" id="nomeUsuario" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="email" class="form__label">E-mail</label>
+                        <input type="email" name="" id="email" class="form__input" placeholder="" />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="numeroTelemovel" class="form__label">Numero telemovel</label>
+                        <input type="tel" name="" id="numeroTelemovel" class="form__input" />
+                     </div>
+
+                     <div class="form__group">
+                        <button class="btn login__btn">Actualizar dados</button>
+                     </div>
+                  </form>
+               </div>
+
+               <div class="storeOwnerDashboard__item">
+                  <form class="form form--login" action="#">
+                     <div class="form__group">
+                        <label for="password-current" class="form__label">Password</label>
+                        <input
+                           type="password"
+                           name=""
+                           id="password-current"
+                           class="form__input"
+                           placeholder=""
+                           required
+                        />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="password" class="form__label">Password nova</label>
+                        <input type="password" name="" id="password" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="password-confirm" class="form__label">Confirmar password</label>
+                        <input type="password" name="" id="passwordConfirm" class="form__input" placeholder="" />
+                     </div>
+
+                     <div class="form__group">
+                        <button class="btn login__btn">Actualizar password</button>
+                     </div>
+                  </form>
+               </div>
+            </section>
+         </div> -->
+         <!------------------------------------------------------------------->
+
+         <!-------------------------Store Owner create new store page-------------------->
+         <!-- <div class="newStoreDashboard__container">
+            <section class="newStoreDashboard">
+               <div class="newStoreDashboard__item">
+                  <form class="form form--login" action="#">
+                     <div class="form__group">
+                        <label for="nome" class="form__label">Nome da loja</label>
+                        <input type="text" name="" id="nome" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="nomeLoja" class="form__label">Nome unico da loja</label>
+                        <input type="text" name="" id="nomeLoja" class="form__input" placeholder="" required />
+                     </div>
+
+                     <img src="imagens/dev/lojas/storebasicimg.png" alt="" class="form__userimg" />
+                     <input type="file" accept="image/*" class="btn form__upload" id="photo" name="photoo" />
+                     <label for="photo">Adicionar foto</label>
+
+                     <div class="form__group">
+                        <button class="btn login__btn">Criar loja</button>
+                     </div>
+                  </form>
+               </div>
+            </section>
+         </div> -->
+         <!------------------------------------------------------------------->
+
+         <!-------------------------Store Owner create new product page-------------------->
+         <!-- <div class="produtoDashboard__container">
+            <section class="produtoDashboard">
+               <div class="produtoDashboard__item">
+                  <form class="form form--login" action="#">
+                     <div class="form__group">
+                        <label for="nome" class="form__label">Nome do produto</label>
+                        <input type="text" name="" id="nome" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="nomeLoja" class="form__label">Tipo do produto</label>
+                        <input type="text" name="" id="nomeLoja" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="nomeLoja" class="form__label">Preço do produto</label>
+                        <input type="text" name="" id="nomeLoja" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="nomeLoja" class="form__label">Tamanho do produto</label>
+                        <input type="text" name="" id="nomeLoja" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="nomeLoja" class="form__label">Cor do produto</label>
+                        <input type="text" name="" id="nomeLoja" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="nomeLoja" class="form__label">Marca do produto</label>
+                        <input type="text" name="" id="nomeLoja" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="nomeLoja" class="form__label">Genero do produto</label>
+                        <input type="text" name="" id="nomeLoja" class="form__input" placeholder="" required />
+                     </div>
+
+                     <div class="form__group">
+                        <label for="nomeLoja" class="form__label">Descrição do produto</label>
+                        <input type="text" name="" id="nomeLoja" class="form__input" placeholder="" required />
+                     </div>
+
+                     <img src="imagens/dev/lojas/storebasicimg.png" alt="" class="form__userimg" />
+                     <input type="file" accept="image/*" class="btn form__upload" id="photo" name="photoo" />
+                     <label for="photo">Adicionar foto</label>
+
+                     <div class="form__group">
+                        <button class="btn login__btn">Criar produto</button>
+                     </div>
+                  </form>
+               </div>
+            </section>
+         </div> -->
+         <!------------------------------------------------------------------->
 
          <!-- <div class="produto__container">
             <section class="produtos">
@@ -1266,5 +1585,16 @@
          </footer>
          -->
       </div>
+
+      <!----------------------only for signup--------------------->
+      <script>
+         var input = document.querySelector('#numeroTelemovel');
+         intlTelInput(input, {
+            onlyCountries: ['AO'],
+            initialCountry: 'AO',
+            utilsScript: 'intl-tel-input-master/build/js/utils.js'
+         });
+      </script>
+      <!---------------------------------------------------------->
    </body>
 </html>

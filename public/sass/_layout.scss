@@ -49,6 +49,98 @@
    }
 }
 
+.userDashboard__container {
+   background-color: var(--color-main-back);
+   display: grid;
+   height: 100vh;
+
+   grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+   grid-template-columns:
+      [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(
+         8,
+         [col-start] minmax(min-content, 14rem) [col-end]
+      )
+      [center-end] minmax(22rem, 1fr) [full-end];
+
+   @media only screen and (max-width: $bp-seven) {
+      grid-template-columns:
+         [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(
+            8,
+            [col-start] minmax(min-content, 14rem) [col-end]
+         )
+         [center-end] minmax(11rem, 1fr) [full-end];
+   }
+}
+
+.storeOwnerDashboard__container {
+   background-color: var(--color-main-back);
+   display: grid;
+   height: 100vh;
+
+   grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+   grid-template-columns:
+      [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(
+         8,
+         [col-start] minmax(min-content, 14rem) [col-end]
+      )
+      [center-end] minmax(22rem, 1fr) [full-end];
+
+   @media only screen and (max-width: $bp-seven) {
+      grid-template-columns:
+         [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(
+            8,
+            [col-start] minmax(min-content, 14rem) [col-end]
+         )
+         [center-end] minmax(11rem, 1fr) [full-end];
+   }
+}
+
+.newStoreDashboard__container {
+   background-color: var(--color-main-back);
+   display: grid;
+   height: 100vh;
+
+   grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+   grid-template-columns:
+      [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(
+         8,
+         [col-start] minmax(min-content, 14rem) [col-end]
+      )
+      [center-end] minmax(22rem, 1fr) [full-end];
+
+   @media only screen and (max-width: $bp-seven) {
+      grid-template-columns:
+         [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(
+            8,
+            [col-start] minmax(min-content, 14rem) [col-end]
+         )
+         [center-end] minmax(11rem, 1fr) [full-end];
+   }
+}
+
+.produtoDashboard__container {
+   background-color: var(--color-main-back);
+   display: grid;
+   height: 100vh;
+
+   grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+   grid-template-columns:
+      [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(
+         8,
+         [col-start] minmax(min-content, 14rem) [col-end]
+      )
+      [center-end] minmax(22rem, 1fr) [full-end];
+
+   @media only screen and (max-width: $bp-seven) {
+      grid-template-columns:
+         [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(
+            8,
+            [col-start] minmax(min-content, 14rem) [col-end]
+         )
+         [center-end] minmax(11rem, 1fr) [full-end];
+   }
+}
+
 .main {
    background-color: $color-main-back;
    padding: 8rem 6rem;
@@ -87,9 +179,9 @@
       border-bottom: 3px solid #ff3e30;
    }
 
-   .form__group:not(:last-child) {
-      margin-bottom: 2.5rem;
-   }
+   // .form__group {
+   //    margin-bottom: 2.5rem;
+   // }
 
    .form__label {
       color: $color-primary-strong;
@@ -110,7 +202,6 @@
    background-color: $color-white;
    color: $color-primary-strong;
    border: none;
-   border-radius: o;
    font-family: inherit;
    font-size: 1.5rem;
    text-transform: uppercase;

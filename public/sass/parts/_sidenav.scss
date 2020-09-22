@@ -101,6 +101,134 @@
       }
    }
 
+   &__compras {
+      width: 20rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      background-color: $color-gold;
+      color: $color-primary-strong;
+
+      border: none;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-gold-light;
+      }
+
+      &:active {
+         background-color: $color-gold-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
+
+   &__lojas {
+      width: 20rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      text-decoration: none;
+
+      background-color: $color-blue;
+      color: $color-white;
+
+      border: none;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-blue-light;
+      }
+
+      &:active {
+         background-color: $color-blue-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
+
+   &__criarLoja {
+      width: 20rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      text-decoration: none;
+
+      background-color: $color-green;
+      color: $color-white;
+
+      border: none;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-green-light;
+      }
+
+      &:active {
+         background-color: $color-green-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
+
    &__chatbtn {
       width: 20rem;
 
@@ -111,7 +239,6 @@
       background-color: $color-primary-white;
       color: $color-primary-strong;
       border: none;
-      border-radius: o;
       font-family: inherit;
       font-size: 1.5rem;
       text-transform: uppercase;
