@@ -58,6 +58,7 @@
    justify-content: flex-end;
 
    &__input {
+      display: none;
       box-shadow: var(--shadow);
       font-family: inherit;
       font-size: 1.5rem;
@@ -90,6 +91,7 @@
    }
 
    &__button {
+      display: none;
       border: none;
       background-color: var(--color-primary);
       transition: all 0.2s;
@@ -131,12 +133,15 @@
       align-items: center;
    }
 
-   & > *:hover {
-      background-color: var(--color-primary-light);
-   }
+   // & > *:hover {
+   //    background-color: var(--color-primary-light);
+   // }
 
    &__icon-box {
       position: relative;
+      &:hover {
+         background-color: var(--color-primary-light);
+      }
    }
 
    &__icon {
@@ -161,6 +166,35 @@
       display: flex;
       justify-content: center;
       align-items: center;
+   }
+
+   &__loginbtn {
+      color: $color-white;
+      background-color: $color-primary-strong;
+      border: none;
+      font-size: 1.7rem;
+      border-radius: 2px;
+      box-shadow: $shadow-2;
+
+      height: 5rem;
+      max-width: 15rem;
+      z-index: 2;
+      justify-self: end;
+      margin: 1rem;
+      cursor: pointer;
+
+      &:hover {
+         background-color: $color-primary-dark;
+      }
+      &:active {
+         background-color: $color-primary-strong;
+      }
+
+      svg {
+         fill: $color-primary-strong;
+         height: 2rem;
+         width: 2rem;
+      }
    }
 
    &__user {

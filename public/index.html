@@ -46,27 +46,34 @@
 
                <div class="user-nav__icon-box">
                   <svg class="user-nav__icon">
-                     <use xlink:href="imagens/dev/sprite.svg#icon-message-square"></use>
-                  </svg>
-                  <span class="user-nav__notification">7</span>
-               </div>
-
-               <div class="user-nav__icon-box">
-                  <svg class="user-nav__icon">
                      <use xlink:href="imagens/dev/sprite.svg#icon-shopping-cart"></use>
                   </svg>
                   <span class="user-nav__notification">4</span>
                </div>
 
+               <button class="user-nav__loginbtn">
+                  <!-- <span>ENTRAR</span> -->
+                  <span>Dono de loja</span>
+               </button>
+
+               <!---------------------Only for logged in users---------------------->
+               <!-- <div class="user-nav__icon-box">
+                  <svg class="user-nav__icon">
+                     <use xlink:href="imagens/dev/sprite.svg#icon-message-square"></use>
+                  </svg>
+                  <span class="user-nav__notification">7</span>
+               </div>
+
                <div class="user-nav__user">
                   <img src="imagens/dev/usuarios/anneide.jpg" alt="user photo" class="user-nav__user-photo" />
                   <span class="user-nav__user-name">Anneide</span>
-               </div>
+               </div> -->
+               <!-------------------------------------------------------------------->
             </nav>
          </header>
 
-         <div class="content">
-            <!--  -->
+         <!-- <div class="content">
+            
             <nav class="sidebar">
                <ul class="side-nav">
                   <li class="side-nav__item side-nav__item--active">
@@ -96,20 +103,61 @@
                      </a>
                   </li>
                </ul>
-               <!-- CODE BELLOW ONLY FOR SPECIFIC STORE PAGE-->
-               <img src="imagens/dev/lojas/boutiqueragazza.jpg" alt="" class="store__img--min" />
-               <span class="store__nome--min">Boutique Ragazza</span>
+               <!-----------CODE BELLOW ONLY FOR SPECIFIC STORE PAGE-------------->
+         <!-- <img src="imagens/dev/lojas/boutiqueragazza.jpg" alt="" class="side-nav__store__img" />
+               <button class="side-nav__chatbtn">
+                  <svg class="side-nav__icon">
+                     <use xlink:href="imagens/dev/sprite2.svg#icon-message"></use>
+                  </svg>
+                  <span>CHAT</span>
+               </button>
                <button class="side-nav__callbtn">
-                     <span>Ligar</span>
-                     <svg class="side-nav__icon">
-                        <use xlink:href="imagens/dev/sprite.svg#icon-phone"></use>
-                     </svg>
-                  </button>
-               <!--------------------------------------------->
-            </nav>
-         </div>
+                  <svg class="side-nav__icon">
+                     <use xlink:href="imagens/dev/sprite.svg#icon-phone"></use>
+                  </svg>
+                  <span>Ligar</span>
+               </button> -->
+         <!------------------------------------------------------------------->
+         <!--</nav>
+         </div> -->
 
-         <div class="produto__container">
+         <main class="main">
+            <div class="login__form">
+               <!-- <span class="login__form__header">Entre na sua conta</span> -->
+               <img src="imagens/Lalitaa/Lalitaa_logo_transparent.png" alt="" class="login__form__header" />
+               <form class="form form--login" action="#">
+                  <div class="form__group">
+                     <!-- <label for="email" class="form__label">Nome de usuario / E-mail</label> -->
+                     <input
+                        type="email"
+                        name=""
+                        id="email"
+                        class="form__input"
+                        placeholder="Nome de usuario ou E-mail"
+                        required
+                     />
+                  </div>
+
+                  <div class="form__group ma-bt-md">
+                     <!-- <label for="password" class="form__label">Palavra-passe</label> -->
+                     <input
+                        type="password"
+                        name=""
+                        id="password"
+                        class="form__input"
+                        placeholder="Palavra-passe"
+                        required
+                        minlength="8"
+                     />
+                  </div>
+                  <div class="form__group">
+                     <button class="btn login__btn">ENTRAR</button>
+                  </div>
+               </form>
+            </div>
+         </main>
+
+         <!-- <div class="produto__container">
             <section class="produtos">
                <div class="produto">
                   <img
@@ -764,7 +812,7 @@
          <div class="produto">
             <img src="imagens/dev/produtos/produto109.jpg" alt="" class="produto__img" />
             <svg class="produto__like">
-               <use xlink:href="imagens/dev/sprite2.svg#icon-heart-outlined-outlined"></use>
+               <use xlink:href="imagens/dev/sprite2.svg#icon-heart-outlined"></use>
             </svg>
             <h5 class="produto__nome">Pasta escama</h5>
            <div class="produto__preco">
@@ -932,7 +980,7 @@
                </svg>
             </button>
          </section>
-         </div>
+         </div> -->
 
          <!--              -->
 

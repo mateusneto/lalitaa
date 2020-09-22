@@ -30,6 +30,11 @@ const storeSchema = new mongoose.Schema(
          required: [true, 'Loja deve ter um numero de telemovel'],
          unique: true
       },
+      verificado: {
+         type: Boolean,
+         default: false,
+         required: true
+      },
       //Parent referencing
       storeOwner: {
          type: mongoose.Schema.ObjectId,

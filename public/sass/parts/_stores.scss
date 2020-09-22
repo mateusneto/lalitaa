@@ -30,15 +30,6 @@
       z-index: 1;
    }
 
-   &__img--min {
-      border-top: 2px solid $color-primary-strong;
-      width: 20rem;
-
-      @media only screen and (max-width: $bp-seven) {
-         width: 9rem;
-      }
-   }
-
    &__like {
       grid-row: 1 / 2;
       grid-column: 2 / 3;
@@ -78,7 +69,7 @@
          font-family: $font-lato;
          font-size: 1.6rem;
          text-align: center;
-         background-color: $color-primary-strong;
+         background-color: $color-primary-strong-2;
          color: $color-white;
          font-weight: 400;
          //transform: translateY(50%);

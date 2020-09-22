@@ -5,7 +5,7 @@ COLORS
 foto: #f9b3b6
 
 Primary: #ffc0cb
-Primary light: #fcdce4
+Primary light: #fcdce4 
 Primary dark: #c99ca5
 Primary white: #fcf0f2
 Primary strong: #84646c
@@ -25,6 +25,9 @@ grey 2: #989c94
    --color-primary-dark: #d6a5ae;
    --color-primary-white: #fcf0f2;
    --color-primary-strong: #9e747e;
+   --color-primary-strong-2: #8b676f;
+
+   --color-login: #ff91a3;
 
    --color-white: rgb(255, 255, 255);
    --color-white-grey: rgb(236, 236, 236);
@@ -50,6 +53,9 @@ $color-primary-light: #fcdce4;
 $color-primary-dark: #d6a5ae;
 $color-primary-white: #fcf0f2;
 $color-primary-strong: #9e747e;
+$color-primary-strong-2: #6e5359;
+
+$color-login: #ff6f87;
 
 $color-white: rgb(255, 255, 255);
 $color-white-grey: rgb(236, 236, 236);
@@ -60,7 +66,7 @@ $color-green-light: rgb(103, 226, 103);
 
 $color-black: rgb(0, 0, 0);
 
-$color-main-back: rgb(212, 177, 177);
+$color-main-back: #8d8f8d;
 
 $shadow-color: 0px 0px 0.3px 0.8px $color-primary;
 $shadow-color-light: #9f7d84;

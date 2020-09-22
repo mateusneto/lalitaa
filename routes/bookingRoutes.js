@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.use(authController.protect);
 
-//router.get('/checkout-session/:storeId/:servicoId', bookingController.getCheckoutSession);
+//router.get('/checkout-session/:storeId/:produtoId', bookingController.getCheckoutSession);
 
 router.use(authController.restrictTo('administrador', 'moderador'));
 
