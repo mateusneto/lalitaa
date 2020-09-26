@@ -38,11 +38,20 @@
       if (url === '/me')
         button.side-nav__compras
           svg.side-nav__icon
-            use(xlink:href='imagens/dev/sprite.svg#icon-shopping-bag')
+            use(xlink:href='/imagens/dev/sprite.svg#icon-shopping-bag')
           span COMPRAS
-        button.side-nav__logoutbtn
+        button#userLogout.side-nav__logoutbtn
           svg.side-nav__icon
-            use(xlink:href='imagens/dev/sprite.svg#icon-log-out')
+            use(xlink:href='/imagens/dev/sprite.svg#icon-log-out')
+          span Sair
+      if (url === '/donoloja/me')
+        button.side-nav__compras
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-shopping-bag')
+          span VENDAS
+        button#storeOwnerLogout.side-nav__storeOwnerLogoutbtn
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-log-out')
           span Sair
 
 

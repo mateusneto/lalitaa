@@ -222,4 +222,33 @@
    &__user-name {
       color: var(--color-primary-strong);
    }
+
+   &__donolojaLoginbtn {
+      color: $color-white;
+      background-color: $color-blue;
+      border: none;
+      font-size: 1.7rem;
+      border-radius: 2px;
+      box-shadow: $shadow-2;
+
+      height: 5rem;
+      max-width: 15rem;
+      z-index: 2;
+      justify-self: end;
+      margin: 1rem;
+      cursor: pointer;
+
+      &:hover {
+         background-color: $color-blue-light;
+      }
+      &:active {
+         background-color: $color-blue-strong;
+      }
+
+      svg {
+         fill: $color-primary-strong;
+         height: 2rem;
+         width: 2rem;
+      }
+   }
 }

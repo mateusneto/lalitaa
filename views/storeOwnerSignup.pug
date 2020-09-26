@@ -1,0 +1,27 @@
+extends base
+block content
+    main.main
+        .donoLojaSignup__form
+            img.login__form__header(src='imagens/Lalitaa/Lalitaa_logo_transparent.png' alt='')
+            form.form.form--login(action='#')
+                .form__group
+                input#storeOwnerNome.form__input(type='text' name='' placeholder='Nome' required='')
+                .form__group
+                input#storeOwnerNomeUsuario.form__input(type='text' name='' placeholder='Nome de usuario' required='')
+                .form__group
+                input#storeOwnerEmail.form__input(type='email' name='' placeholder='E-mail')
+                .form__group
+                input#storeOwnerNumeroTelemovel.form__input(type='tel' name='')
+                .form__group.ma-bt-md
+                input#storeOwnerPassword.form__input(type='password' name='' placeholder='Palavra-passe' required='' minlength='8')
+                .form__group.ma-bt-md
+                input#storeOwnerPassword-confirm.form__input(type='password' name='' placeholder='Confirmar palavra-passe' required='' minlength='8')
+                .form__group
+                button.btn.login__btn Criar conta
+    script.
+        var input = document.querySelector('#storeOwnerNumeroTelemovel');
+        intlTelInput(input, {
+        onlyCountries: ['AO'],
+        initialCountry: 'AO',
+        utilsScript: 'intl-tel-input-master/build/js/utils.js'
+        });

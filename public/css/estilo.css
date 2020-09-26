@@ -350,6 +350,27 @@ a {
     margin-right: 1rem; }
   .user-nav__user-name {
     color: var(--color-primary-strong); }
+  .user-nav__donolojaLoginbtn {
+    color: white;
+    background-color: deepskyblue;
+    border: none;
+    font-size: 1.7rem;
+    border-radius: 2px;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103);
+    height: 5rem;
+    max-width: 15rem;
+    z-index: 2;
+    justify-self: end;
+    margin: 1rem;
+    cursor: pointer; }
+    .user-nav__donolojaLoginbtn:hover {
+      background-color: #66d9ff; }
+    .user-nav__donolojaLoginbtn:active {
+      background-color: #0895c4; }
+    .user-nav__donolojaLoginbtn svg {
+      fill: #9e747e;
+      height: 2rem;
+      width: 2rem; }
 
 .sidebar {
   z-index: 10;
@@ -673,6 +694,37 @@ a {
         width: 9rem; }
         .side-nav__logoutbtn span {
           display: none; } }
+  .side-nav__storeOwnerLogoutbtn {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ff5959;
+    color: white;
+    border: none;
+    border-radius: o;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__storeOwnerLogoutbtn svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__storeOwnerLogoutbtn:hover {
+      background-color: #ff5959; }
+    .side-nav__storeOwnerLogoutbtn:active {
+      background-color: #ad0000; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__storeOwnerLogoutbtn {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__storeOwnerLogoutbtn span {
+          display: none; } }
 
 .stores {
   grid-column: sidebar-end/center-end;
@@ -957,6 +1009,17 @@ a {
     background-color: #c0a300; }
 
 .signup__form {
+  margin: 6rem auto;
+  max-width: 55rem;
+  background-color: white;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103);
+  padding: 5rem 7rem;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.donoLojaSignup__form {
   margin: 6rem auto;
   max-width: 55rem;
   background-color: white;

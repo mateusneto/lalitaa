@@ -5,36 +5,36 @@ block content
         section.storeOwnerDashboard
             .storeOwnerDashboard__item
                 form.form.item__form
-                    img.form__storeOwnerimg(src='imagens/dev/usuarios/anneide.jpg' alt='')
+                    img.form__storeOwnerimg(src=`/imagens/dev/usuarios/${storeOwner.fotografia}` alt='')
                     input#photo.btn.form__upload(type='file' accept='image/*' name='photoo')
                     label(for='photo') Alterar foto
                     button.btn.form__update Actualizar
             .storeOwnerDashboard__item
-                form.form.form--login(action='#')
+                form.form.form--donoLojadetails(action='#')
                     .form__group
-                        label.form__label(for='nome') Nome
-                        input#nome.form__input(type='text' name='' placeholder='' required='')
+                        label.form__label(for='storeOwnerNome') Nome
+                        input#storeOwnerNome.form__input(type='text' name='' value=`${storeOwner.nome}` placeholder='' required='')
                     .form__group
-                        label.form__label(for='nomeUsuario') Nome usuario
-                        input#nomeUsuario.form__input(type='text' name='' placeholder='' required='')
+                        label.form__label(for='storeOwnerNomeUsuario') Nome usuario
+                        input#storeOwnerNomeUsuario.form__input(type='text' name='' value=`${storeOwner.nomeUsuario}`  placeholder='' required='')
                     .form__group
-                        label.form__label(for='email') E-mail
-                        input#email.form__input(type='email' name='' placeholder='')
+                        label.form__label(for='storeOwnerEmail') E-mail
+                        input#storeOwnerEmail.form__input(type='email' name='' placeholder='' value=`${storeOwner.email}` )
                     .form__group
-                        label.form__label(for='numeroTelemovel') Numero telemovel
-                        input#numeroTelemovel.form__input(type='tel' name='')
+                        label.form__label(for='storeOwnerNumeroTelemovel') Numero telemovel
+                        input#storeOwnerNumeroTelemovel.form__input(type='tel' name='' value=`${storeOwner.numeroTelemovel}` )
                     .form__group
-                        button.btn.login__btn Actualizar dados
+                        button.btn.storeOwnerSave-details__btn Actualizar dados
             .storeOwnerDashboard__item
-                form.form.form--login(action='#')
+                form.form.form--donoLojaPassword(action='#')
                     .form__group
-                        label.form__label(for='password-current') Password
-                        input#password-current.form__input(type='password' name='' placeholder='' required='')
+                        label.form__label(for='storeOwnerPassword-current') Password
+                        input#storeOwnerPassword-current.form__input(type='password' name='' placeholder='' required='')
                     .form__group
-                        label.form__label(for='password') Password nova
-                        input#password.form__input(type='password' name='' placeholder='' required='')
+                        label.form__label(for='storeOwnerPassword') Password nova
+                        input#storeOwnerPassword.form__input(type='password' name='' placeholder='' required='')
                     .form__group
-                        label.form__label(for='password-confirm') Confirmar password
-                        input#passwordConfirm.form__input(type='password' name='' placeholder='')
+                        label.form__label(for='storeOwnerPassword-confirm') Confirmar password
+                        input#storeOwnerPassword-confirm.form__input(type='password' name='' placeholder='')
                     .form__group
-                        button.btn.login__btn Actualizar password
+                        button.btn.storeOwnerSave-password__btn Actualizar password

@@ -49,12 +49,26 @@ exports.alerts = (req, res, next) => {
 
 exports.criarConta = catchAsync(async (req, res, next) => {
    res.status(200).render('userSignup', {
-      title: 'Cria a tua conta'
+      title: 'Cria a tua conta',
+      url: req.originalUrl
+   });
+});
+
+exports.storeOwnerCriarConta = catchAsync(async (req, res, next) => {
+   res.status(200).render('storeOwnerSignup', {
+      title: 'Crie a sua conta',
+      url: req.originalUrl
+   });
+});
+
+exports.donoLojaCriarConta = catchAsync(async (req, res, next) => {
+   res.status(200).render('storeOwnerSignup', {
+      title: 'Cria a tua conta',
+      url: req.originalUrl
    });
 });
 
 exports.mostrarContaUsuario = catchAsync(async (req, res, next) => {
-   console.log(req.originalUrl);
    res.status(200).render('userAccount', {
       title: 'Conta',
       url: req.originalUrl
@@ -63,7 +77,8 @@ exports.mostrarContaUsuario = catchAsync(async (req, res, next) => {
 
 exports.mostrarContaDonoloja = catchAsync(async (req, res, next) => {
    res.status(200).render('storeOwnerAccount', {
-      title: 'Conta'
+      title: 'Conta',
+      url: req.originalUrl
    });
 });
 
@@ -82,8 +97,6 @@ exports.mostrarContaDonoloja = catchAsync(async (req, res, next) => {
 });*/
 
 exports.mostrarLojas = catchAsync(async (req, res, next) => {
-   console.log(req.originalUrl);
-
    const lojas = await Loja.find();
    res.status(200).render('storeOverview', {
       title: 'Lojas',
@@ -99,6 +112,7 @@ exports.mostrarProdutos = catchAsync(async (req, res, next) => {
 
    res.status(200).render('storeProducts', {
       title: 'produtos',
+      url: req.originalUrl,
       loja,
       produtos
    });
@@ -106,25 +120,43 @@ exports.mostrarProdutos = catchAsync(async (req, res, next) => {
 
 exports.getLoginForm = (req, res) => {
    res.status(200).render('userLogin', {
-      title: 'Entre na sua conta'
+      title: 'Entre na sua conta',
+      url: req.originalUrl
+   });
+};
+
+exports.getStoreOwnerLoginForm = (req, res) => {
+   res.status(200).render('storeOwnerLogin', {
+      title: 'Entre na sua conta',
+      url: req.originalUrl
    });
 };
 
 exports.getSignupForm = (req, res) => {
    res.status(200).render('userSignup', {
-      title: 'Crie a sua conta'
+      title: 'Crie a sua conta',
+      url: req.originalUrl
+   });
+};
+
+exports.getStoreOwnerSignupForm = (req, res) => {
+   res.status(200).render('storeOwnerSignup', {
+      title: 'Crie a sua conta',
+      url: req.originalUrl
    });
 };
 
 exports.criarLoja = (req, res) => {
    res.status(200).render('newStore', {
-      title: 'Crie a sua loja'
+      title: 'Crie a sua loja',
+      url: req.originalUrl
    });
 };
 
 exports.criarProduto = (req, res) => {
    res.status(200).render('newProduct', {
-      title: 'Crie a sua loja'
+      title: 'Crie a sua loja',
+      url: req.originalUrl
    });
 };
 
@@ -142,8 +174,28 @@ exports.updateUserData = catchAsync(async (req, res, next) => {
       }
    );
 
-   res.status(200).render('account', {
+   res.status(200).render('userAccount', {
       title: 'Conta',
       usuario: usuarioActualizado
+   });
+});
+
+exports.updateStoreOwnerData = catchAsync(async (req, res, next) => {
+   const storeOwnerActualizado = await StoreOwner.findByIdAndUpdate(
+      req.storeOwner.id,
+      {
+         nome: req.body.nome,
+         nomeUsuario: req.body.nomeUsuario,
+         email: req.body.email
+      },
+      {
+         new: true,
+         runValidators: true
+      }
+   );
+
+   res.status(200).render('storeOwnerAccount', {
+      title: 'Conta',
+      usuario: storeOwnerActualizado
    });
 });
