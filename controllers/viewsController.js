@@ -1,6 +1,9 @@
 //My own modules
 //const Servico = require('../models/servicoModel');
 const Usuario = require('../models/usuarioModel');
+const StoreOwner = require('../models/storeOwnerModel');
+const Loja = require('../models/storeModel');
+const Produto = require('../models/produtoModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 //const Booking = require('../models/bookingModel');
@@ -44,8 +47,22 @@ exports.alerts = (req, res, next) => {
   });
 });*/
 
-exports.mostrarConta = catchAsync(async (req, res, next) => {
-   res.status(200).render('account', {
+exports.criarConta = catchAsync(async (req, res, next) => {
+   res.status(200).render('userSignup', {
+      title: 'Cria a tua conta'
+   });
+});
+
+exports.mostrarContaUsuario = catchAsync(async (req, res, next) => {
+   console.log(req.originalUrl);
+   res.status(200).render('userAccount', {
+      title: 'Conta',
+      url: req.originalUrl
+   });
+});
+
+exports.mostrarContaDonoloja = catchAsync(async (req, res, next) => {
+   res.status(200).render('storeOwnerAccount', {
       title: 'Conta'
    });
 });
@@ -64,9 +81,50 @@ exports.mostrarConta = catchAsync(async (req, res, next) => {
   });
 });*/
 
+exports.mostrarLojas = catchAsync(async (req, res, next) => {
+   console.log(req.originalUrl);
+
+   const lojas = await Loja.find();
+   res.status(200).render('storeOverview', {
+      title: 'Lojas',
+      url: req.originalUrl,
+      lojas
+   });
+});
+
+exports.mostrarProdutos = catchAsync(async (req, res, next) => {
+   let loja = await Loja.find({ _id: req.params.lojaId });
+   loja = loja[0];
+   const produtos = await Produto.find({ store: { $in: req.params.lojaId } });
+
+   res.status(200).render('storeProducts', {
+      title: 'produtos',
+      loja,
+      produtos
+   });
+});
+
 exports.getLoginForm = (req, res) => {
-   res.status(200).render('login', {
-      title: 'log into your page'
+   res.status(200).render('userLogin', {
+      title: 'Entre na sua conta'
+   });
+};
+
+exports.getSignupForm = (req, res) => {
+   res.status(200).render('userSignup', {
+      title: 'Crie a sua conta'
+   });
+};
+
+exports.criarLoja = (req, res) => {
+   res.status(200).render('newStore', {
+      title: 'Crie a sua loja'
+   });
+};
+
+exports.criarProduto = (req, res) => {
+   res.status(200).render('newProduct', {
+      title: 'Crie a sua loja'
    });
 };
 

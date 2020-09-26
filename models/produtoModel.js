@@ -23,10 +23,15 @@ const produtoSchema = new mongoose.Schema(
          minlength: [1, 'O nome do produto tem de ter 1 ou mais digitos']
          //validate: [validator.isAlpha, 'Apenas letras no nome']
       },
+      produtoReferencia: {
+         type: String,
+         trim: true,
+         unique: true
+      },
       tipo: {
          type: String,
          require: [true, 'Adicione um tipo'],
-         enum: ['Calçado', 'Calça', 'Saia', 'Bijouteria', 'Peruca', 'Camisa']
+         enum: ['Calçado', 'Calça', 'Saia', 'Bijouteria', 'Peruca', 'Camisa', 'Vestido', 'Pasta', 'Acessorio']
       },
       preco: {
          type: Number,
@@ -124,6 +129,12 @@ produtoSchema.index({ store: 1 }); //Not allowing a product to have more than 1 
 //Document Middleware: runs before the .save() and .create() *------* does not work for .insertMany()*------*
 produtoSchema.pre('save', function (next) {
    this.slug = slugify(this.nome, { lower: true });
+   next();
+});
+
+produtoSchema.pre('save', function (next) {
+   this.produtoReferencia = slugify(`${this.nome}-${this.store.id}-${Date.now()}`, { lower: true });
+   this.imagemDeCapa = `${this.produtoReferencia}.jpg`;
    next();
 });
 

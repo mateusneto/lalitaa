@@ -28,3 +28,9 @@ mixin navItem(link,text,icon,active)
             svg
                 use(xlink:href=`/imagens/dev/svgicons/icons.svg#icon-${icon}`)
             | #{text}
+mixin listItem(url,icon,nome)
+    li.side-nav__item.side-nav__item--active
+        a.side-nav__link(href=`/${url}`)
+            svg.side-nav__icon
+                use(xlink:href=`/imagens/dev/sprite.svg#icon-${icon}`)
+            span= nome

@@ -1,0 +1,14 @@
+extends base
+
+block content
+    main.main
+        .login__form
+            img.login__form__header(src='imagens/Lalitaa/Lalitaa_logo_transparent.png' alt='')
+            form.form.form--login
+                    .form__group
+                        input#userData.form__input(type='text' name='' placeholder='Nome de usuario ou E-mail' required='')
+                    .form__group.ma-bt-md
+                        input#password.form__input(type='password' name='' placeholder='Palavra-passe' required='' minlength='8')
+                    .form__group
+                        button.btn.login__btn ENTRAR
+            a.btn.signup__btn(href='/criarConta') Criar conta

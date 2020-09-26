@@ -1,14 +1,82 @@
 header.header
-    nav.nav.nav-tours
-        a.nav__el(href='/') Todos Serviços
-        .header__logo
-            img(src='/imagens/lalitaa/lalitaa.png' alt='Logo')
-    nav.nav.nav__user
-        if usuario
-            a.nav__el.nav__el--logout Sair
-            a.nav__el(href='me')
-                img.nav__user-img(src=`/imagens/dev/usuarios/${usuario.fotografia}` alt=`${usuario.nome}`)
-                span= usuario.nome.split(' ')[0]
-        else
-            a.nav__el(href='/login') Login
-            a.nav__el.nav__el--cta Criar conta
+  a(href="/lojas")
+    img.logo(src='/imagens/Lalitaa/Lalitaa_logo_transparent.png' alt='Lalitaa Logo')
+  form.search(action='#')
+    input.search__input(type='text' placeholder='')
+    button.search__button
+      svg.search__icon
+        use(xlink:href='/imagens/dev/sprite.svg#icon-search')
+  nav.user-nav
+      if usuario
+        .user-nav__icon-box
+          svg.user-nav__icon
+            use(xlink:href='/imagens/dev/sprite2.svg#icon-heart')
+        .user-nav__icon-box
+          svg.user-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-shopping-cart')
+          span.user-nav__notification 4
+        .user-nav__icon-box
+          svg.user-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-message-square')
+          span.user-nav__notification 7
+        .user-nav__user
+          a.user-nav__link(href='/me')
+            img.user-nav__user-photo(src=`/imagens/dev/usuarios/${usuario.fotografia}` alt='user photo')
+            span.user-nav__user-name= usuario.nome.split(' ')[0]
+      else
+        .user-nav__icon-box
+          svg.user-nav__icon
+            use(xlink:href='/imagens/dev/sprite2.svg#icon-heart')
+        .user-nav__icon-box
+          svg.user-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-shopping-cart')
+          span.user-nav__notification 4
+        a.user-nav__loginbtn(href='/entrar')
+            span ENTRAR
+
+
+
+
+
+
+
+
+//if usuario
+      .user-nav__icon-box
+        svg.user-nav__icon
+          use(xlink:href='/imagens/dev/sprite2.svg#icon-heart')
+      .user-nav__icon-box
+        svg.user-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-shopping-cart')
+        span.user-nav__notification 4
+      .user-nav__icon-box
+        svg.user-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-message-square')
+        span.user-nav__notification 7
+      .user-nav__user
+        img.user-nav__user-photo(src='/imagens/dev/usuarios/anneide.jpg' alt='user photo')
+        span.user-nav__user-name= usuario.nome
+    else
+      .user-nav__icon-box
+        svg.user-nav__icon
+          use(xlink:href='/imagens/dev/sprite2.svg#icon-heart')
+      .user-nav__icon-box
+        svg.user-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-shopping-cart')
+        span.user-nav__notification 4
+      a.user-nav__loginbtn(href='/entrar')
+          span ENTRAR
+
+
+
+
+
+    //- -------------------Only for logged in users--------------------
+    //- .user-nav__icon-box
+    //-   svg.user-nav__icon
+    //-     use(xlink:href='/imagens/dev/sprite.svg#icon-message-square')
+    //-   span.user-nav__notification 7
+    //- .user-nav__user
+    //-   img.user-nav__user-photo(src='/imagens/dev/usuarios/anneide.jpg' alt='user photo')
+    //-   span.user-nav__user-name Anneide
+    //- ----------------------------------------------------------------

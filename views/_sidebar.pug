@@ -1,0 +1,91 @@
+.content
+  nav.sidebar
+    ul.side-nav
+      li.side-nav__item.side-nav__item--active
+        a.side-nav__link(href='/lojas')
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite2.svg#icon-shop')
+          span Lojas
+      li.side-nav__item
+        a.side-nav__link(href='/galeria')
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-image')
+          span Galeria
+      li.side-nav__item
+        a.side-nav__link(href='#')
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-tag')
+          span Categorias
+      if (url === '/lojas')
+        button.side-nav__generobtn--homem
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite2.svg#icon-man')
+          span Homem
+      if produtos
+        img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+        button.side-nav__sharebtn
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite2.svg#icon-share')
+          span PARTILHAR
+        button.side-nav__chatbtn
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite2.svg#icon-message')
+          span CHAT
+        button.side-nav__callbtn
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-phone')
+          span= `${loja.numeroTelemovel}`
+      if (url === '/me')
+        button.side-nav__compras
+          svg.side-nav__icon
+            use(xlink:href='imagens/dev/sprite.svg#icon-shopping-bag')
+          span COMPRAS
+        button.side-nav__logoutbtn
+          svg.side-nav__icon
+            use(xlink:href='imagens/dev/sprite.svg#icon-log-out')
+          span Sair
+
+
+
+
+
+    // ---------CODE BELLOW ONLY FOR SPECIFIC STORE PAGE------------
+    //
+      <img src="/imagens/dev/lojas/boutiqueragazza.jpg" alt="" class="side-nav__store__img" />
+      <button class="side-nav__chatbtn">
+      <svg class="side-nav__icon">
+      <use xlink:href="/imagens/dev/sprite2.svg#icon-message"></use>
+      </svg>
+      <span>CHAT</span>
+      </button>
+      <button class="side-nav__callbtn">
+      <svg class="side-nav__icon">
+      <use xlink:href="/imagens/dev/sprite.svg#icon-phone"></use>
+      </svg>
+      <span>Ligar</span>
+      </button>
+    // ---------------------------------------------------------------
+    // ---------CODE BELLOW ONLY FOR USER SETTINGS PAGE------------
+    //
+      <button class="side-nav__compras">
+      <svg class="side-nav__icon">
+      <use xlink:href="/imagens/dev/sprite.svg#icon-shopping-bag"></use>
+      </svg>
+      <span>COMPRAS</span>
+      </button>
+    // ---------------------------------------------------------------
+    // ---------CODE BELLOW ONLY FOR STORE OWNER SETTINGS PAGE------------
+    //
+      <a href="#" class="side-nav__lojas">
+      <svg class="side-nav__icon">
+      <use xlink:href="/imagens/dev/sprite.svg#icon-home"></use>
+      </svg>
+      <span>LOJAS</span>
+      </a>
+      <a href="#" class="side-nav__criarLoja">
+      <svg class="side-nav__icon">
+      <use xlink:href="/imagens/dev/sprite.svg#icon-home"></use>
+      </svg>
+      <span>CRIAR LOJA</span>
+      </a>
+    // ---------------------------------------------------------------

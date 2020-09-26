@@ -137,6 +137,11 @@
    //    background-color: var(--color-primary-light);
    // }
 
+   &__link {
+      display: flex;
+      align-items: center;
+   }
+
    &__icon-box {
       position: relative;
       &:hover {
@@ -198,6 +203,8 @@
    }
 
    &__user {
+      box-shadow: $shadow-2;
+      background-color: $color-white;
       @media only screen and (max-width: $bp-five) {
          span {
             display: none;

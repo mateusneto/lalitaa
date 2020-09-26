@@ -1,0 +1,40 @@
+extends base
+
+block content
+    .storeOwnerDashboard__container
+        section.storeOwnerDashboard
+            .storeOwnerDashboard__item
+                form.form.item__form
+                    img.form__storeOwnerimg(src='imagens/dev/usuarios/anneide.jpg' alt='')
+                    input#photo.btn.form__upload(type='file' accept='image/*' name='photoo')
+                    label(for='photo') Alterar foto
+                    button.btn.form__update Actualizar
+            .storeOwnerDashboard__item
+                form.form.form--login(action='#')
+                    .form__group
+                        label.form__label(for='nome') Nome
+                        input#nome.form__input(type='text' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='nomeUsuario') Nome usuario
+                        input#nomeUsuario.form__input(type='text' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='email') E-mail
+                        input#email.form__input(type='email' name='' placeholder='')
+                    .form__group
+                        label.form__label(for='numeroTelemovel') Numero telemovel
+                        input#numeroTelemovel.form__input(type='tel' name='')
+                    .form__group
+                        button.btn.login__btn Actualizar dados
+            .storeOwnerDashboard__item
+                form.form.form--login(action='#')
+                    .form__group
+                        label.form__label(for='password-current') Password
+                        input#password-current.form__input(type='password' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='password') Password nova
+                        input#password.form__input(type='password' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='password-confirm') Confirmar password
+                        input#passwordConfirm.form__input(type='password' name='' placeholder='')
+                    .form__group
+                        button.btn.login__btn Actualizar password

@@ -1,0 +1,39 @@
+extends base
+block content
+    .userDashboard__container
+        section.userDashboard
+            .userDashboard__item
+                form.form.item__form
+                    img.form__userimg(src=`imagens/dev/usuarios/${usuario.fotografia}` alt='')
+                    input#photo.btn.form__upload(type='file' accept='image/*' name='photoo')
+                    label(for='photo') Alterar foto
+                    button.btn.form__update Actualizar
+            .userDashboard__item
+                form.form.form--userdetails(action='#')
+                    .form__group
+                        label.form__label(for='nome') Nome
+                        input#nome.form__input(type='text' name='' value=`${usuario.nome}` placeholder='' required='')
+                    .form__group
+                        label.form__label(for='nomeUsuario') Nome usuario
+                        input#nomeUsuario.form__input(type='text' name='' value=`${usuario.nomeUsuario}` placeholder='' required='')
+                    .form__group
+                        label.form__label(for='email') E-mail
+                        input#email.form__input(type='email' value=`${usuario.email}` name='' placeholder='')
+                    .form__group
+                        label.form__label(for='numeroTelemovel') Numero telemovel
+                        input#numeroTelemovel.form__input(type='tel' name='' value=`${usuario.numeroTelemovel}`)
+                    .form__group
+                    button.btn.save-details__btn Actualizar dados
+            .userDashboard__item
+                form.form.form--userPassword(action='#')
+                    .form__group
+                        label.form__label(for='password-current') Password
+                        input#password-current.form__input(type='password' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='password') Password nova
+                        input#password.form__input(type='password' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='password-confirm') Confirmar password
+                        input#password-confirm.form__input(type='password' name='' placeholder='')
+                    .form__group
+                    button.btn.save-password__btn Actualizar password

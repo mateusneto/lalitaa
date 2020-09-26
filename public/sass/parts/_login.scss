@@ -29,6 +29,36 @@
    margin-bottom: 2rem;*/
 }
 
+.save-password__btn {
+   background-color: var(--color-primary-strong);
+   color: var(--color-white);
+   justify-items: end;
+   box-shadow: $shadow-2;
+   border-radius: 2px;
+
+   &:hover {
+      background-color: $color-primary-dark;
+   }
+   &:active {
+      background-color: $color-primary-strong;
+   }
+}
+
+.save-details__btn {
+   background-color: var(--color-primary-strong);
+   color: var(--color-white);
+   justify-items: end;
+   box-shadow: $shadow-2;
+   border-radius: 2px;
+
+   &:hover {
+      background-color: $color-primary-dark;
+   }
+   &:active {
+      background-color: $color-primary-strong;
+   }
+}
+
 .login__btn {
    background-color: var(--color-primary-strong);
    color: var(--color-white);

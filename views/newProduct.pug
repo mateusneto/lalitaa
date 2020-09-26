@@ -1,0 +1,36 @@
+extends base
+
+block content
+    .produtoDashboard__container
+        section.produtoDashboard
+            .produtoDashboard__item
+                form.form.form--login(action='#')
+                    .form__group
+                        label.form__label(for='nome') Nome do produto
+                        input#nome.form__input(type='text' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='nomeLoja') Tipo do produto
+                        input#nomeLoja.form__input(type='text' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='nomeLoja') Pre&ccedil;o do produto
+                        input#nomeLoja.form__input(type='text' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='nomeLoja') Tamanho do produto
+                        input#nomeLoja.form__input(type='text' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='nomeLoja') Cor do produto
+                        input#nomeLoja.form__input(type='text' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='nomeLoja') Marca do produto
+                        input#nomeLoja.form__input(type='text' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='nomeLoja') Genero do produto
+                        input#nomeLoja.form__input(type='text' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='nomeLoja') Descri&ccedil;&atilde;o do produto
+                        input#nomeLoja.form__input(type='text' name='' placeholder='' required='')
+                    img.form__userimg(src='imagens/dev/lojas/storebasicimg.png' alt='')
+                    input#photo.btn.form__upload(type='file' accept='image/*' name='photoo')
+                    label(for='photo') Adicionar foto
+                    .form__group
+                        button.btn.login__btn Criar produto

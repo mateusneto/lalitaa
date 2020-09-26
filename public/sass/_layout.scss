@@ -142,10 +142,13 @@
 }
 
 .main {
-   background-color: $color-main-back;
-   padding: 8rem 6rem;
-
+   display: flex;
    position: relative;
+   padding-top: 5rem;
+
+   @media only screen and (max-width: $bp-seven) {
+      padding-right: 9rem;
+   }
 }
 
 .form {

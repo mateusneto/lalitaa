@@ -33,6 +33,14 @@ grey 2: #989c94
    --color-gold-light: rgb(255, 230, 89);
    --color-gold-strong: rgb(192, 163, 0);
 
+   --color-orange: rgb(255, 166, 0);
+   --color-orange-light: rgb(248, 188, 76);
+   --color-orange-strong: rgb(173, 113, 0);
+
+   --color-red: rgb(255, 0, 0);
+   --color-red-light: rgb(255, 89, 89);
+   --color-red-strong: rgb(173, 0, 0);
+
    --color-blue: rgb(0, 191, 255);
    --color-blue-light: rgb(102, 217, 255);
    --color-blue-strong: rgb(8, 149, 196);
@@ -68,6 +76,14 @@ $color-login: #ff6f87;
 $color-gold: rgb(255, 215, 0);
 $color-gold-light: rgb(255, 230, 89);
 $color-gold-strong: rgb(192, 163, 0);
+
+$color-orange: rgb(255, 166, 0);
+$color-orange-light: rgb(248, 188, 76);
+$color-orange-strong: rgb(173, 113, 0);
+
+$color-red: rgb(255, 0, 0);
+$color-red-light: rgb(255, 89, 89);
+$color-red-strong: rgb(173, 0, 0);
 
 $color-blue: rgb(0, 191, 255);
 $color-blue-light: rgb(102, 217, 255);
@@ -136,4 +152,8 @@ body {
    background-color: var(--color-main-back);
    background-size: cover;
    background-repeat: no-repeat;
+}
+
+a {
+   text-decoration: none;
 }

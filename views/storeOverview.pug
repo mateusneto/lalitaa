@@ -1,0 +1,28 @@
+extends base
+block content
+        .store__container
+            section.stores
+                each loja in lojas
+                    .store
+                        img.store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt=`${loja.nome}`)
+                        h5.store__nome= loja.nome
+                        .store__status
+                            svg
+                                use(xlink:href='/imagens/dev/sprite.svg#icon-circle')
+                            p= loja.estado
+                        .store__rating
+                            svg
+                                use(xlink:href='/imagens/dev/sprite.svg#icon-thumbs-up')
+                            p= loja.mediaDeAvaliacoes
+                        .store__delivery
+                            svg
+                                use(xlink:href='/imagens/dev/sprite.svg#icon-truck')
+                            p= loja.entregas
+                        .store__location
+                            svg
+                                use(xlink:href='/imagens/dev/sprite.svg#icon-map-pin')
+                            p= loja.storeLocation
+                        a.btn.store__btn(href=`/loja/${loja.id}/produtos`)
+                            span Entrar
+                            svg.side-nav__icon
+                                use(xlink:href='/imagens/dev/sprite.svg#icon-log-in')

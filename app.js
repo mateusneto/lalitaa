@@ -36,6 +36,9 @@ app.enable('trust proxy');
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
+//serving static files
+app.use(express.static(path.join(__dirname, 'public')));
+
 /* ---------------------------- CORS ------------------------------ */
 //Global Middlewares
 //Implement CORS
@@ -48,9 +51,6 @@ app.use(cors());
 app.options('*', cors());
 // app.options('/api/v1/servicos/:id', cors());
 /* ----------------------------------------------------------------- */
-
-//serving static files
-app.use(express.static(path.join(__dirname, 'public')));
 
 //Setting secure http headers
 app.use(helmet());
@@ -97,6 +97,7 @@ app.use(xss()); //Ver Aula
 //test middleware
 app.use((req, res, next) => {
    req.requestTime = new Date().toISOString();
+   console.log(req.cookies);
    next();
 });
 

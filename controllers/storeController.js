@@ -57,7 +57,7 @@ exports.setStoreId = factory.setStoreId(Store);
 
 /* ----------------------Controllers for Store------------------------- */
 exports.mostrarStores = factory.getAll(Store);
-exports.mostrarStore = factory.getOne(Store /*, { path: 'reviews' }*/);
+exports.mostrarStore = factory.getOne(Store, { path: 'storeProducts' });
 exports.criarStore = factory.createOne(Store);
 exports.verifyOwner = factory.verifyOwner(Store);
 exports.verifyStore = factory.verifyStore(Store);

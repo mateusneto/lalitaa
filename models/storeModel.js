@@ -4,6 +4,7 @@ const slugify = require('slugify');
 //My OWN MODULES
 const Usuario = require('./usuarioModel'); //Not needed for Child referencing @"moderadores"
 const StoreOwner = require('./storeOwnerModel');
+const Produto = require('./produtoModel');
 //Third-party modules
 const validator = require('validator');
 
@@ -12,7 +13,7 @@ const storeSchema = new mongoose.Schema(
       nome: {
          type: String,
          required: [true, 'Nome em falta'],
-         maxlength: [30, 'O nome da loja tem de ter 40 digitos ou menos'],
+         maxlength: [30, 'O nome da loja tem de ter 30 digitos ou menos'],
          minlength: [3, 'O nome da loja tem de ter 3 ou mais digitos']
          //validate: [validator.isAlpha, 'Apenas letras no nome'],
       },
@@ -21,9 +22,9 @@ const storeSchema = new mongoose.Schema(
          required: [true, 'Por favor adicione um nome unico para a loja'],
          unique: true,
          trim: true,
-         maxlength: [15, 'O nome da loja tem de ter 15 digitos ou menos'],
+         maxlength: [25, 'O nome da loja tem de ter 25 digitos ou menos'],
          minlength: [3, 'O nome da loja tem de ter 3 ou mais digitos'],
-         validate: [validator.isAlpha, 'Apenas letras no nome']
+         lowercase: true
       },
       numeroTelemovel: {
          type: String,
@@ -57,6 +58,10 @@ const storeSchema = new mongoose.Schema(
          type: String,
          enum: ['Sim', 'Não'],
          default: 'Sim'
+      },
+      storeLocation: {
+         type: String,
+         default: 'Luanda'
       },
       lojaFisica: {
          type: String,

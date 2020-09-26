@@ -29,7 +29,7 @@
    <body>
       <div class="container">
          <header class="header">
-            <img src="imagens/Lalitaa/Lalitaa_logo.png" alt="Lalitaa Logo" class="logo" />
+            <img src="imagens/Lalitaa/Lalitaa_logo_transparent.png" alt="Lalitaa Logo" class="logo" />
 
             <form action="#" class="search">
                <input type="text" class="search__input" placeholder="" />
@@ -68,8 +68,10 @@
                </div>
 
                <div class="user-nav__user">
-                  <img src="imagens/dev/usuarios/anneide.jpg" alt="user photo" class="user-nav__user-photo" />
-                  <span class="user-nav__user-name">Anneide</span>
+                  <a href="/me" class="user-nav__link">
+                     <img src="imagens/dev/usuarios/anneide.jpg" alt="user photo" class="user-nav__user-photo" />
+                     <span class="user-nav__user-name">Anneidee</span>
+                  </a>
                </div>
                <!-------------------------------------------------------------------->
             </nav>
@@ -106,7 +108,7 @@
                   </li>
                </ul>
                <!-----------CODE BELLOW ONLY FOR SPECIFIC STORE PAGE-------------->
-               <!-- <img src="imagens/dev/lojas/boutiqueragazza.jpg" alt="" class="side-nav__store__img" />
+               <img src="imagens/dev/lojas/boutiqueragazza.jpg" alt="" class="side-nav__store__img" />
                <button class="side-nav__chatbtn">
                   <svg class="side-nav__icon">
                      <use xlink:href="imagens/dev/sprite2.svg#icon-message"></use>
@@ -118,7 +120,14 @@
                      <use xlink:href="imagens/dev/sprite.svg#icon-phone"></use>
                   </svg>
                   <span>Ligar</span>
-               </button> -->
+               </button>
+
+               <button class="side-nav__logoutbtn">
+                  <svg class="side-nav__icon">
+                     <use xlink:href="imagens/dev/sprite.svg#icon-log-out"></use>
+                  </svg>
+                  <span>Sair</span>
+               </button>
                <!------------------------------------------------------------------->
 
                <!-----------CODE BELLOW ONLY FOR USER SETTINGS PAGE-------------->
@@ -150,9 +159,9 @@
             </nav>
          </div>
 
-         <!-- <main class="main">
+         <main class="main">
             <!------------------Login for users-------------------------------->
-         <!-- <div class="login__form">
+            <div class="login__form">
                <img src="imagens/Lalitaa/Lalitaa_logo_transparent.png" alt="" class="login__form__header" />
                <form class="form form--login" action="#">
                   <div class="form__group">
@@ -181,11 +190,12 @@
                      <button class="btn login__btn">ENTRAR</button>
                   </div>
                </form>
-            </div> -->
-         <!------------------------------------------------------------------->
+               <a class="btn signup__btn">Criar conta</a>
+            </div>
+            <!------------------------------------------------------------------->
 
-         <!------------------------Sign Up-------------------------->
-         <!-- <div class="login__form">
+            <!------------------------Sign Up-------------------------->
+            <!-- <div class="login__form">
                <img src="imagens/Lalitaa/Lalitaa_logo_transparent.png" alt="" class="login__form__header" />
                <form class="form form--login" action="#">
                   <div class="form__group">
@@ -239,11 +249,12 @@
                   </div>
                </form>
             </div> -->
-         <!------------------------------------------------------------------->
-         <!--</main>-->
+            <!------------------------------------------------------------------->
+         </main>
+         -->
 
          <!-------------------------User settings Dasboard-------------------->
-         <!-- <div class="userDashboard__container">
+         <!--<div class="userDashboard__container">
             <section class="userDashboard">
                <div class="userDashboard__item">
                   <form class="form item__form">

@@ -1,0 +1,26 @@
+.signup__btn {
+   margin-top: 1rem;
+   background-color: $color-gold-strong;
+   border-radius: 2px;
+   color: $color-white;
+
+   &:hover {
+      background-color: $color-gold;
+   }
+
+   &:active {
+      background-color: $color-gold-strong;
+   }
+}
+
+.signup__form {
+   margin: 6rem auto;
+   max-width: 55rem;
+   background-color: rgb(255, 255, 255);
+   box-shadow: $shadow-2;
+   padding: 5rem 7rem;
+   border-radius: 2px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}

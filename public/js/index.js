@@ -2,7 +2,8 @@
 
 import '@babel/polyfill';
 //import { displayMap } from './mapbox';
-import { login, logOut } from './login';
+import { login, logOut } from './userLogin';
+import { signup } from './userSignup';
 import { updateSettings } from './updateSettings';
 //import { comprarServico } from './stripe';
 import { showAlert } from './alerts';
@@ -10,9 +11,10 @@ import { showAlert } from './alerts';
 //DOM Elements
 //const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
-const logOutBtn = document.querySelector('.nav__el--logout');
-const userDataForm = document.querySelector('.form-user-data');
-const userPasswordForm = document.querySelector('.form-user-password');
+const logOutBtn = document.querySelector('.side-nav__logoutbtn');
+const userDataForm = document.querySelector('.form--userdetails');
+const userPasswordForm = document.querySelector('.form--userPassword');
+const userSignupForm = document.querySelector('.signup__form');
 const bookBtn = document.getElementById('comprar-servico');
 
 //Delegation
@@ -38,31 +40,45 @@ if (userDataForm)
       e.preventDefault();
 
       const form = new FormData();
-      form.append('nome', document.getElementById('name').value);
-      form.append('nomeUsuario', document.getElementById('username').value);
+      form.append('nome', document.getElementById('nome').value);
+      form.append('nomeUsuario', document.getElementById('nomeUsuario').value);
       form.append('email', document.getElementById('email').value);
       form.append('numeroTelemovel', document.getElementById('numeroTelemovel').value);
-      form.append('fotografia', document.getElementById('photo').files[0]);
+      //form.append('fotografia', document.getElementById('photo').files[0]);
 
       updateSettings(form, 'dados');
+   });
+
+if (userSignupForm)
+   userSignupForm.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value;
+      const nomeUsuario = document.getElementById('nomeUsuario').value;
+      const email = document.getElementById('email').value;
+      const numeroTelemovel = document.getElementById('numeroTelemovel').value;
+      const password = document.getElementById('password').value;
+      const passwordConfirmacao = document.getElementById('password-confirm').value;
+
+      signup(nome, nomeUsuario, email, numeroTelemovel, password, passwordConfirmacao);
    });
 
 if (userPasswordForm)
    userPasswordForm.addEventListener('submit', async e => {
       e.preventDefault();
-      document.querySelector('.btn--save-password').textContent = 'Actualizando...';
+      document.querySelector('.save-password__btn').textContent = 'Actualizando...';
 
       const passwordCurrent = document.getElementById('password-current').value;
       const password = document.getElementById('password').value;
-      const passwordConfirmacao = document.getElementById('password-confirmacao').value;
+      const passwordConfirmacao = document.getElementById('password-confirm').value;
 
       await updateSettings({ passwordCurrent, password, passwordConfirmacao }, 'password');
 
-      document.querySelector('.btn--save-password').textContent = 'Save Password';
+      document.querySelector('.save-password__btn').textContent = 'Actualizar Palavra-passe';
 
       document.getElementById('password-current').value = '';
       document.getElementById('password').value = '';
-      document.getElementById('password-confirmacao').value = '';
+      document.getElementById('password-confirm').value = '';
    });
 
 /*if (bookBtn)

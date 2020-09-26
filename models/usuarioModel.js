@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const slugify = require('slugify');
 
 const usuarioSchema = new mongoose.Schema({
    nome: {
@@ -14,7 +15,10 @@ const usuarioSchema = new mongoose.Schema({
       unique: true,
       minlength: 3,
       maxlength: 20,
-      trim: true
+      lowercase: true,
+      trim: true,
+
+      validate: [validator.isAlphanumeric, 'Apenas letras e números no nome de usuario']
    },
    email: {
       type: String,
@@ -81,6 +85,12 @@ usuarioSchema.pre('save', function (next) {
    if (!this.isModified('password') || this.isNew) return next();
 
    this.passwordChangedAt = Date.now() - 1000;
+
+   next();
+});
+
+usuarioSchema.pre('save', function (next) {
+   this.fotografia = slugify(this.nome.split(' ')[0] + '.jpg', { lower: true });
 
    next();
 });
