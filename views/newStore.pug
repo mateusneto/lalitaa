@@ -1,18 +1,21 @@
 extends base
-
 block content
+    include _sidebar
     .newStoreDashboard__container
         section.newStoreDashboard
             .newStoreDashboard__item
-                form.form.form--login(action='#')
+                form.form.form--createStore(action='#')
                     .form__group
                         label.form__label(for='nome') Nome da loja
                         input#nome.form__input(type='text' name='' placeholder='' required='')
                     .form__group
                         label.form__label(for='nomeLoja') Nome unico da loja
                         input#nomeLoja.form__input(type='text' name='' placeholder='' required='')
+                    .form__group
+                        label.form__label(for='numeroTelemovelLoja') Numero de telemovel
+                        input#numeroTelemovelLoja.form__input(type='text' name='' placeholder='' required='')
                     img.form__userimg(src='imagens/dev/lojas/storebasicimg.png' alt='')
                     input#photo.btn.form__upload(type='file' accept='image/*' name='photoo')
                     label(for='photo') Adicionar foto
                     .form__group
-                        button.btn.login__btn Criar loja
+                        button.btn.criarLoja__btn Criar loja

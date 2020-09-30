@@ -93,6 +93,12 @@ exports.criarProduto = factory.createOne(Produto);
 exports.actualizarProduto = factory.updateOne(Produto);
 exports.removerProduto = factory.deleteOne(Produto);
 /* ------------------------------------------------------------------------*/
+exports.nothing = (req, res, next) => {
+   res.status(500).json({
+      status: 'error',
+      message: 'This route is not Implemented, please use SignUp'
+   });
+};
 
 /* -----------------------------IMPLEMENTAR------------------------------- */
 /*

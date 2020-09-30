@@ -14,6 +14,10 @@ const filterObj = (obj, ...allowedFields) => {
 exports.verifyOwner = Model =>
    catchAsync(async (req, res, next) => {
       const loja = await Model.findById(req.params.id);
+      console.log(req.params.id);
+      console.log(req.params.produtoId);
+      console.log(loja);
+      console.log('aqui-----------');
 
       if (!loja) {
          return next(new AppError('Nenhuma loja encontrado com este ID', 404));
@@ -52,8 +56,8 @@ exports.verifyStore = Model =>
       if (!loja) {
          return next(new AppError('Nenhum documento encontrado com este ID', 404));
       }
-      console.log(req.usuario);
-      if (req.usuario.role === 'administrador') {
+      console.log(req.storeOwner);
+      if (req.storeOwner.role === 'administrador') {
          res.locals.store = loja;
          next();
       }
@@ -85,7 +89,7 @@ exports.createOne = Model =>
       const doc = await Model.create(req.body);
 
       res.status(201).json({
-         status: 'Success',
+         status: 'success',
          data: {
             data: doc
          }
@@ -145,7 +149,7 @@ exports.updateOne = Model =>
       }
 
       res.status(200).json({
-         status: 'Success',
+         status: 'success',
          data: {
             doc
          }
@@ -281,7 +285,7 @@ exports.updateOneProduct = Model =>
       }*/
 
       res.status(200).json({
-         status: 'Success',
+         status: 'success',
          data: {
             produto
          }

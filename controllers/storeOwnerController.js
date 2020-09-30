@@ -1,5 +1,6 @@
 //My own modules
 const StoreOwner = require('../models/storeOwnerModel');
+const Store = require('../models/storeModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const factory = require('./storeOwnerHandlerFactory');
@@ -52,11 +53,30 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
    next();
 });
 
+//nothing
+
+exports.nothing = (req, res, next) => {
+   res.status(500).json({
+      status: 'error',
+      message: 'This route is not Implemented, please use SignUp'
+   });
+};
+
 //Controller for usuarios
 exports.mostrarOwners = factory.getAll(StoreOwner);
 exports.mostrarOwner = factory.getOne(StoreOwner);
 exports.actualizarOwner = factory.updateOne(StoreOwner); // Do not update password with this
 exports.removerOwner = factory.deleteOne(StoreOwner);
+
+exports.mostrarMinhasLojas = catchAsync(async (req, res, next) => {
+   console.log(res.locals.storeOwner.id);
+   const lojas = await Store.find({ storeOwner: { $in: res.locals.storeOwner.id } });
+
+   res.status(200).json({
+      status: 'success',
+      lojas
+   });
+});
 
 exports.getMe = (req, res, next) => {
    req.params.id = req.storeOwner.id;

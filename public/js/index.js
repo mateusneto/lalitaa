@@ -1,16 +1,23 @@
 /* eslint-disable */
 
+/*---------------------------Usuario------------------------------*/
 import '@babel/polyfill';
 //import { displayMap } from './mapbox';
 import { login, logOut } from './userLogin';
 import { signup } from './userSignup';
 import { updateSettings } from './updateSettings';
 
+/*----------------------------Store Owners--------------------------*/
 import { storeOwnerLogin, storeOwnerLogOut } from './donoLojaLogin';
 import { storeOwnerSignup } from './donoLojaSignup';
 import { storeOwnerUpdateSettings } from './donoLojaUpdateSettings';
+import { storeOwnerCreatestore } from './donoLojaCriarloja';
+import { storeOwnerRemovestore } from './donoLojaRemoverloja';
+import { storeOwnerCreateproduct } from './donoLojaCriarproduto';
+import { storeOwnerRemoveproduct } from './donoLojaRemoverproduto';
 //import { comprarServico } from './stripe';
 import { showAlert } from './alerts';
+/*------------------------------------------------------------------*/
 
 //DOM Elements
 //const mapBox = document.getElementById('map');
@@ -29,6 +36,7 @@ const logOutBtn = document.getElementById('userLogout');
 */
 if (loginForm)
    loginForm.addEventListener('submit', e => {
+      console.log('Entrou login');
       e.preventDefault(); //This prevents the form from loading any other page
 
       const userData = document.getElementById('userData').value;
@@ -101,6 +109,12 @@ const storeOwnerLogOutBtn = document.getElementById('storeOwnerLogout');
 const storeOwnerDataForm = document.querySelector('.form--donoLojadetails');
 const storeOwnerPasswordForm = document.querySelector('.form--donoLojaPassword');
 const storeOwnerSignupForm = document.querySelector('.donoLojaSignup__form');
+
+const storeOwnerCreatestorebtn = document.querySelector('.form--createStore');
+const storeOwnerRemovestorebtn = document.querySelector('.side-nav__storeremovebtn');
+const storeOwnerCriarprodutobtn = document.querySelector('.form--createProduct');
+const storeOwnerRemoveproductbtn = document.querySelector('.side-nav__productremovebtn');
+
 //const bookBtn = document.getElementById('comprar-servico');
 
 //Delegation
@@ -167,6 +181,42 @@ if (storeOwnerPasswordForm)
       document.getElementById('storeOwnerPassword-confirm').value = '';
    });
 
+if (storeOwnerCreatestorebtn)
+   storeOwnerCreatestorebtn.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value;
+      const nomeLoja = document.getElementById('nomeLoja').value;
+      const numeroTelemovel = document.getElementById('numeroTelemovelLoja').value;
+
+      storeOwnerCreatestore(nome, nomeLoja, numeroTelemovel);
+   });
+
+if (storeOwnerCriarprodutobtn)
+   storeOwnerCriarprodutobtn.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value;
+      const tipo = document.getElementById('tipo').value;
+      const preco = document.getElementById('preco').value;
+      const tamanho = document.getElementById('tamanho').value;
+      const cor = document.getElementById('cor').value;
+      const marca = document.getElementById('marca').value;
+      const genero = document.getElementById('genero').value;
+      const descricao = document.getElementById('descricao').value;
+      const storeId = document.getElementById('storeId').value;
+      //const imagemDeCapa = document.getElementById('productimg').value;
+
+      console.log(nome, tipo, preco, tamanho, cor, marca, genero, descricao);
+
+      storeOwnerCreateproduct(storeId, nome, tipo, preco, tamanho, cor, marca, genero, descricao);
+   });
+
+if (storeOwnerRemovestorebtn) storeOwnerRemovestorebtn.addEventListener('click', storeOwnerRemovestore);
+if (storeOwnerRemoveproductbtn) {
+   console.log('tried');
+   storeOwnerRemoveproductbtn.addEventListener('click', storeOwnerRemoveproduct);
+}
 /* ---------------------------Alerts handler---------------------- */
 
 const alertMessage = document.querySelector('body').dataset.alert;

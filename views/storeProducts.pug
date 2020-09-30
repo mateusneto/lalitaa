@@ -1,10 +1,12 @@
 extends base
 block content
+    include sidebarLoja
     .produto__container
         section.produtos
             each produto in produtos
                 .produto
-                    img.produto__img(src=`/imagens/dev/produtos/${produto.imagemDeCapa}` alt='')
+                    a.produto__link(href=`/loja/${loja.id}/produto/${produto.id}`)
+                        img.produto__img(src=`/imagens/dev/produtos/${produto.imagemDeCapa}` alt='')
                     svg.produto__like
                         use(xlink:href='/imagens/dev/sprite2.svg#icon-heart')
                     h5.produto__nome= produto.nome

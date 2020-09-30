@@ -31,7 +31,8 @@ const produtoSchema = new mongoose.Schema(
       tipo: {
          type: String,
          require: [true, 'Adicione um tipo'],
-         enum: ['Calçado', 'Calça', 'Saia', 'Bijouteria', 'Peruca', 'Camisa', 'Vestido', 'Pasta', 'Acessorio']
+         lowercase: true,
+         enum: ['calçado', 'calça', 'calca', 'saia', 'bijouteria', 'peruca', 'camisa', 'vestido', 'pasta', 'acessorio']
       },
       preco: {
          type: Number,
@@ -49,7 +50,8 @@ const produtoSchema = new mongoose.Schema(
       },
       tamanho: {
          type: String,
-         required: [true, 'Adicione um tamanho']
+         required: [true, 'Adicione um tamanho'],
+         uppercase: true
       },
       estado: {
          type: String,
@@ -74,11 +76,11 @@ const produtoSchema = new mongoose.Schema(
       },
       genero: {
          type: String,
-         default: 'Jovem',
-         enum: {
+         default: 'Jovem'
+         /*enum: {
             values: ['Bebê', 'Criança', 'Jovem', 'Jovem adulta', 'Adulta'],
             message: 'Por favor adicione um genero'
-         }
+         }*/
       },
       textura: { type: String },
       tecido: { type: String },

@@ -8,6 +8,25 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 //const Booking = require('../models/bookingModel');
 
+const shuffle = function (arra1) {
+   var ctr = arra1.length,
+      temp,
+      index;
+
+   // While there are elements in the array
+   while (ctr > 0) {
+      // Pick a random index
+      index = Math.floor(Math.random() * ctr);
+      // Decrease ctr by 1
+      ctr--;
+      // And swap the last element with it
+      temp = arra1[ctr];
+      arra1[ctr] = arra1[index];
+      arra1[index] = temp;
+   }
+   return arra1;
+};
+
 exports.alerts = (req, res, next) => {
    const { alert } = req.query;
 
@@ -98,8 +117,19 @@ exports.mostrarContaDonoloja = catchAsync(async (req, res, next) => {
 
 exports.mostrarLojas = catchAsync(async (req, res, next) => {
    const lojas = await Loja.find();
+   shuffle(lojas);
    res.status(200).render('storeOverview', {
       title: 'Lojas',
+      url: req.originalUrl,
+      lojas
+   });
+});
+
+exports.minhasLojas = catchAsync(async (req, res, next) => {
+   const lojas = await Loja.find({ storeOwner: { $in: res.locals.storeOwner.id } });
+
+   res.status(200).render('storeOwnerStores', {
+      title: 'Minhas lojas',
       url: req.originalUrl,
       lojas
    });
@@ -115,6 +145,20 @@ exports.mostrarProdutos = catchAsync(async (req, res, next) => {
       url: req.originalUrl,
       loja,
       produtos
+   });
+});
+
+exports.mostrarProduto = catchAsync(async (req, res, next) => {
+   let loja = await Loja.find({ _id: req.params.lojaId });
+   loja = loja[0];
+   let produto = await Produto.find({ _id: req.params.produtoId });
+   produto = produto[0];
+
+   res.status(200).render('productPage', {
+      title: 'produtos',
+      url: req.originalUrl,
+      loja,
+      produto
    });
 });
 
@@ -149,16 +193,23 @@ exports.getStoreOwnerSignupForm = (req, res) => {
 exports.criarLoja = (req, res) => {
    res.status(200).render('newStore', {
       title: 'Crie a sua loja',
-      url: req.originalUrl
+      url: req.originalUrl,
+      previousURL: req.headers.referer
    });
 };
 
-exports.criarProduto = (req, res) => {
+exports.criarProduto = catchAsync(async (req, res) => {
+   const storeId = req.headers.referer.split('/')[4];
+
+   const loja = await Loja.findById(storeId);
+
    res.status(200).render('newProduct', {
       title: 'Crie a sua loja',
-      url: req.originalUrl
+      url: req.originalUrl,
+      storeId: req.headers.referer.split('/')[4],
+      loja
    });
-};
+});
 
 exports.updateUserData = catchAsync(async (req, res, next) => {
    const usuarioActualizado = await Usuario.findByIdAndUpdate(

@@ -1,0 +1,98 @@
+.content
+  nav.sidebar
+    ul.side-nav
+      li.side-nav__item.side-nav__item--active
+        a.side-nav__link(href='/lojas')
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite2.svg#icon-shop')
+          span Lojas
+      li.side-nav__item
+        a.side-nav__link(href='/galeria')
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-image')
+          span Galeria
+      li.side-nav__item
+        a.side-nav__link(href='/categorias')
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-tag')
+          span Categorias
+      //- if (produto)&& !storeOwner
+      //-   a.img__link(href=`/loja/${loja.id}/produtos`)
+      //-     img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+      //- if (produto)&& (storeOwner.id === loja.storeOwner.id) 
+      //-   a.img__link(href=`/loja/${loja.id}/produtos`)
+      //-     img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+      //-   button.side-nav__editarLoja
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite.svg#icon-tool')
+      //-     span Editar detalhes
+      //-   button.side-nav__storeremovebtn
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite.svg#icon-trash-2')
+      //-     span Remover produto 
+      //- if (lojas)
+      //-   button.side-nav__generobtn--homem
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite2.svg#icon-man')
+      //-     span Homem
+      //- if loja && !storeOwner
+      //-   a.img__link(href=`/loja/${loja.id}/produtos`)
+      //-     img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+      //-   button.side-nav__sharebtn
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite2.svg#icon-share')
+      //-     span PARTILHAR
+      //-   button.side-nav__chatbtn
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite2.svg#icon-message')
+      //-     span CHAT
+      //-   button.side-nav__callbtn
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite.svg#icon-phone')
+      //-     span= `${loja.numeroTelemovel}` 
+      //- if produtos && storeOwner
+      //- if loja && storeOwner && (storeOwner.id === loja.storeOwner.id) && (url !== '/criarproduto') && !produto
+      //-   a.img__link(href=`/loja/${loja.id}/produtos`)
+      //-     img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+      //-   a.side-nav__adicionarProduto(href='/criarproduto')
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite.svg#icon-plus')
+      //-     span Adicionar produto
+      //-   button.side-nav__editarLoja
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite.svg#icon-tool')
+      //-     span Editar detalhes
+      //-   button.side-nav__storeremovebtn
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite.svg#icon-trash-2')
+      //-     span Remover loja 
+      //- if loja && storeOwner && (storeOwner.id === loja.storeOwner.id) && (url === '/criarproduto')
+      //-   a.img__link(href=`/loja/${loja.id}/produtos`)
+      //-     img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+      //- if (url === '/me')
+      //-   button.side-nav__compras
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite.svg#icon-shopping-bag')
+      //-     span COMPRAS
+      //-   button#userLogout.side-nav__logoutbtn
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite.svg#icon-log-out')
+      //-     span Sair
+      //- if (url === '/donoloja/me')
+      //-   button.side-nav__compras
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite.svg#icon-shopping-bag')
+      //-     span VENDAS
+      //-   a.side-nav__minhaslojas(href='/minhaslojas')
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite.svg#icon-home')
+      //-     span Minhas lojas
+      //-   a.side-nav__criarLoja(href='/criarLoja')
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite.svg#icon-plus-square')
+      //-     span Criar Loja
+      //-   button#storeOwnerLogout.side-nav__storeOwnerLogoutbtn
+      //-     svg.side-nav__icon
+      //-       use(xlink:href='/imagens/dev/sprite.svg#icon-log-out')
+      //-     span Sair
+

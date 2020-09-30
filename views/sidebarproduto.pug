@@ -1,0 +1,38 @@
+.content
+  nav.sidebar
+    ul.side-nav
+      li.side-nav__item.side-nav__item--active
+        a.side-nav__link(href='/lojas')
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite2.svg#icon-shop')
+          span Lojas
+      li.side-nav__item
+        a.side-nav__link(href='/galeria')
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-image')
+          span Galeria
+      li.side-nav__item
+        a.side-nav__link(href='/categorias')
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-tag')
+          span Categorias      
+      if produto && !usuario && !storeOwner
+        a.img__link(href=`/loja/${loja.id}/produtos`)
+          img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+      else if produto && usuario && !storeOwner
+        a.img__link(href=`/loja/${loja.id}/produtos`)
+          img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+      else if produto && !usuario && (storeOwner.id !== loja.storeOwner.id)
+        a.img__link(href=`/loja/${loja.id}/produtos`)
+          img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+      else if produto && !usuario && (storeOwner.id === loja.storeOwner.id)
+        a.img__link(href=`/loja/${loja.id}/produtos`)
+          img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+        button.side-nav__editarLoja
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-tool')
+          span Editar detalhes
+        button.side-nav__productremovebtn
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-trash-2')
+          span Remover produto

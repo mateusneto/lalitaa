@@ -47,30 +47,7 @@ router.route('/distances/:latlng/unit/:unit').get(servicoController.getDistances
 
 router.route('/').get(produtoController.mostrarProdutos);
 
-router
-   .route('/:id')
-   .post(
-      authController.protect,
-      authController.restrictTo('administrador'),
-      produtoController.verifyProductStore,
-      produtoController.criarProduto
-   );
-
-router
-   .route('/:id')
-   .get(produtoController.mostrarProduto)
-   .patch(
-      authController.protect,
-      authController.restrictTo('moderador', 'administrador'),
-      produtoController.uploadProdutoImages,
-      produtoController.resizeProdutoImages,
-      produtoController.actualizarProduto
-   )
-   .delete(
-      authController.protect,
-      authController.restrictTo('moderador', 'administrador'),
-      produtoController.removerProduto
-   );
+router.route('/:id').get(produtoController.mostrarProduto);
 
 //exporting router for produtos
 module.exports = router;

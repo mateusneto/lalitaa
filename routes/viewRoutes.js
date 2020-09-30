@@ -23,6 +23,8 @@ router.get('/lojas', viewsController.mostrarLojas);
 
 /* --------------------------------------Routes for Produto----------------------------------------- */
 router.get('/loja/:lojaId/produtos', viewsController.mostrarProdutos);
+/* --------------------------------------Routes for specific Produto----------------------------------------- */
+router.get('/loja/:lojaId/produto/:produtoId', viewsController.mostrarProduto);
 
 /* --------------------------------------Routes for Usuarios----------------------------------------- */
 router.get('/entrar', /*authController.isLoggedIn,*/ viewsController.getLoginForm);
@@ -48,6 +50,8 @@ router.post(
 
 router.get('/criarloja', /*authController.isLoggedIn,*/ viewsController.criarLoja);
 router.get('/criarproduto', /*authController.isLoggedIn,*/ viewsController.criarProduto);
+
+router.get('/minhaslojas', viewsController.minhasLojas);
 
 //router.get('/usuario', /*authController.protect,*/ viewsController.mostrarContaUsuario);
 

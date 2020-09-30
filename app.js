@@ -5,6 +5,7 @@ const path = require('path');
 //My own modules
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
+const adminRouter = require('./routes/adminRoutes');
 const usuariosRouter = require('./routes/usuariosRoutes');
 const storeOwnerRouter = require('./routes/storeOwnerRoutes');
 const viewRouter = require('./routes/viewRoutes');
@@ -103,11 +104,13 @@ app.use((req, res, next) => {
 
 //ROUTES
 app.use('/', viewRouter);
+app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/usuarios', usuariosRouter); //Route for usuarios
 app.use('/api/v1/donosdeloja', storeOwnerRouter); //Route for store Owners
 app.use('/api/v1/lojas', storeRouter); //Route for stores
-app.use('/api/v1/lojas/:id/produtos', storeRouter); //Route for estore owners deal with products on their stores
+//app.use('/api/v1/lojas/:id/produtos', storeRouter); //Route for estore owners deal with products on their stores
 app.use('/api/v1/produtos', produtoRouter); //Route for admin dealing with products
+
 app.use('/api/v1/storereviews', storeReviewsRouter); //Route for reviews
 app.use('/api/v1/produtoreviews', produtoReviewsRouter); //Route for reviews
 app.use('/api/v1/bookings', bookingRouter); //Route for bookings

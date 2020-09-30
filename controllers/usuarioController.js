@@ -52,6 +52,13 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
    next();
 });
 
+exports.nothing = (req, res, next) => {
+   res.status(500).json({
+      status: 'error',
+      message: 'This route is not Implemented, please use SignUp'
+   });
+};
+
 //Controller for usuarios
 exports.mostrarUsuarios = factory.getAll(Usuario);
 exports.mostrarUsuario = factory.getOne(Usuario);

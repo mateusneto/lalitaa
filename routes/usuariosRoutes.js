@@ -24,25 +24,12 @@ router.patch('/updatePassword', authController.updatePassword);
 router.get('/me', usuarioController.getMe, usuarioController.mostrarUsuario);
 
 router.patch(
-  '/updateMe',
-  usuarioController.uploadUserPhoto,
-  usuarioController.resizeUserPhoto,
-  usuarioController.updateMe
+   '/updateMe',
+   usuarioController.uploadUserPhoto,
+   usuarioController.resizeUserPhoto,
+   usuarioController.updateMe
 );
 router.delete('/deleteMe', usuarioController.deleteMe);
-
-router.use(authController.restrictTo('administrador'));
-
-router
-  .route('/')
-  .get(usuarioController.mostrarUsuarios)
-  .post(usuarioController.criarUsuario);
-
-router
-  .route('/:id')
-  .get(usuarioController.mostrarUsuario)
-  .patch(usuarioController.actualizarUsuario)
-  .delete(usuarioController.removerUsuario);
 
 //exporting router for usuarios
 module.exports = router;

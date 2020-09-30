@@ -80,6 +80,13 @@ exports.webhookCheckout = (req, res, next) => {
    });
 };
 
+exports.nothing = (req, res, next) => {
+   res.status(500).json({
+      status: 'error',
+      message: 'This route is not Implemented, please use SignUp'
+   });
+};
+
 exports.createBooking = factory.createOne(Booking);
 exports.getBooking = factory.getOne(Booking);
 exports.getAllBookings = factory.getAll(Booking);

@@ -31,7 +31,7 @@ exports.uploadStoreImages = upload.fields([{ name: 'imagemDeCapa', maxCount: 1 }
 // upload.array('imagens',5) => req.files
 
 exports.resizeStoreImages = catchAsync(async (req, res, next) => {
-   //if (!req.files.imagemDeCapa || !req.files.imagens) return next(); -->> for production
+   //if (!req.files.imagemDeCapa || !req.files.imagens) return next(); //-->> for production
    if (!req.body.imagemDeCapa) return next(); //for development
 
    //Process imagem de capa
@@ -41,7 +41,7 @@ exports.resizeStoreImages = catchAsync(async (req, res, next) => {
       .resize(2000, 1333)
       .toFormat('jpeg')
       .jpeg({ quality: 90 })
-      .toFile(`public/imagens/servicos/${req.body.imagemDeCapa}`);
+      .toFile(`public/imagens/lojas/${req.body.imagemDeCapa}`);
    next();
 });
 
@@ -54,6 +54,13 @@ exports.setStoreOwnerId = (req, res, next) => {
 };
 
 exports.setStoreId = factory.setStoreId(Store);
+
+exports.nothing = (req, res, next) => {
+   res.status(500).json({
+      status: 'error',
+      message: 'This route is not Implemented, please use SignUp'
+   });
+};
 
 /* ----------------------Controllers for Store------------------------- */
 exports.mostrarStores = factory.getAll(Store);
@@ -104,10 +111,6 @@ exports.verificarProduto = (req, res, next) => {
    }
 
    next();
-};
-
-exports.ya = (req, res, next) => {
-   console.log('Olá');
 };
 
 /*exports.aliasTopServicos = (req, res, next) => {

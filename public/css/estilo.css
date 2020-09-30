@@ -41,7 +41,7 @@ grey 2: #989c94
   --color-white: rgb(255, 255, 255);
   --color-white-grey: rgb(236, 236, 236);
   --color-black: rgb(0, 0, 0);
-  --color-main-back: #8d8f8d;
+  --color-main-back: #7f8a8b;
   --shadow-color: 0px 0px 0.3px 0.8px var(--color-primary);
   --shadow-color-light: #9f7d84;
   --shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.103);
@@ -390,6 +390,7 @@ a {
   margin-top: 3.5rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   text-transform: uppercase; }
   @media only screen and (max-width: 43.75rem) {
     .side-nav {
@@ -509,6 +510,161 @@ a {
         padding-right: 2rem;
         width: 9rem; }
         .side-nav__lojas span {
+          display: none; } }
+  .side-nav__editarLoja {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #f8bc4c;
+    color: white;
+    border: none;
+    border-radius: o;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__editarLoja svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__editarLoja:hover {
+      background-color: #f8bc4c; }
+    .side-nav__editarLoja:active {
+      background-color: #ad7100; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__editarLoja {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__editarLoja span {
+          display: none; } }
+  .side-nav__storeremovebtn {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ff5959;
+    color: white;
+    border: none;
+    border-radius: o;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__storeremovebtn svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__storeremovebtn:hover {
+      background-color: #ff5959; }
+    .side-nav__storeremovebtn:active {
+      background-color: #ad0000; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__storeremovebtn {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__storeremovebtn span {
+          display: none; } }
+  .side-nav__productremovebtn {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ff5959;
+    color: white;
+    border: none;
+    border-radius: o;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__productremovebtn svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__productremovebtn:hover {
+      background-color: #ff5959; }
+    .side-nav__productremovebtn:active {
+      background-color: #ad0000; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__productremovebtn {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__productremovebtn span {
+          display: none; } }
+  .side-nav__minhaslojas {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-decoration: none;
+    background-color: deepskyblue;
+    color: white;
+    border: none;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__minhaslojas svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__minhaslojas:hover {
+      background-color: #66d9ff; }
+    .side-nav__minhaslojas:active {
+      background-color: #0895c4; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__minhaslojas {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__minhaslojas span {
+          display: none; } }
+  .side-nav__adicionarProduto {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-decoration: none;
+    background-color: #51cc51;
+    color: white;
+    border: none;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__adicionarProduto svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__adicionarProduto:hover {
+      background-color: #67e267; }
+    .side-nav__adicionarProduto:active {
+      background-color: #0a8d0a; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__adicionarProduto {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__adicionarProduto span {
           display: none; } }
   .side-nav__criarLoja {
     width: 20rem;
@@ -843,13 +999,17 @@ a {
   padding-top: 10rem;
   color: var(--color-white); }
 
+.produto__solo {
+  display: grid;
+  grid-template-columns: 1 / 3; }
+
 .produto {
   background-color: var(--color-primary-strong);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-row-gap: 1rem;
   box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103);
-  max-width: 34rem;
+  max-width: 30rem;
+  max-height: 82vh;
   /*
     &__btn--2 {
        display: flex;
@@ -875,10 +1035,13 @@ a {
     }*/ }
   .produto:active .produto__nome {
     background-color: #d6a5ae; }
+  .produto__link {
+    grid-row: 1 / 2;
+    grid-column: 1 / -1; }
   .produto__img {
-    width: 100%;
     grid-row: 1 / 2;
     grid-column: 1 / -1;
+    width: 100%;
     z-index: 1;
     max-width: 34rem;
     cursor: pointer; }
@@ -895,7 +1058,7 @@ a {
     margin: 1rem;
     cursor: pointer; }
   .produto__nome {
-    grid-row: 1 / 2;
+    grid-row: 2 / 3;
     grid-column: 1 / -1;
     justify-self: center;
     align-self: end;
@@ -908,13 +1071,15 @@ a {
     background-color: #9e747e;
     color: white;
     font-weight: 400;
-    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103);
+    transform: translateY(-40%); }
   .produto__status, .produto__preco, .produto__tamanho, .produto__cor, .produto__tipo, .produto__detail {
     font-size: 1.6rem;
     margin-left: 2rem;
     display: flex;
     align-items: center;
-    justify-content: stretch; }
+    justify-content: stretch;
+    padding-bottom: 0.5rem; }
     .produto__status svg, .produto__preco svg, .produto__tamanho svg, .produto__cor svg, .produto__tipo svg, .produto__detail svg {
       fill: white;
       height: 2rem;
@@ -1259,7 +1424,7 @@ a {
   box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103);
   border-radius: 2px;
   width: 30rem;
-  height: 45rem;
+  min-height: 60rem;
   /*
       &__btn--2 {
          display: flex;

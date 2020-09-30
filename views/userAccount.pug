@@ -1,11 +1,12 @@
 extends base
 block content
+    include sidebarme
     .userDashboard__container
         section.userDashboard
             .userDashboard__item
                 form.form.item__form
                     img.form__userimg(src=`imagens/dev/usuarios/${usuario.fotografia}` alt='')
-                    input#photo.btn.form__upload(type='file' accept='image/*' name='photoo')
+                    input#photo.btn.form__upload(type='file' accept='image/*' name='photo')
                     label(for='photo') Alterar foto
                     button.btn.form__update Actualizar
             .userDashboard__item

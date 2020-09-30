@@ -1,0 +1,30 @@
+extends base
+block content
+        include sidebarProduto
+        .produto__container
+            section.produtos
+                    .produto
+                        img.produto__img(src=`/imagens/dev/produtos/${produto.imagemDeCapa}` alt='')
+                        svg.produto__like
+                            use(xlink:href='/imagens/dev/sprite2.svg#icon-heart')
+                        h5.produto__nome= produto.nome
+                        .produto__preco
+                            svg
+                                use(xlink:href='/imagens/dev/sprite.svg#icon-dollar-sign')
+                            p= produto.preco + ' AOA'
+                        .produto__tamanho
+                            svg
+                                use(xlink:href='/imagens/dev/sprite.svg#icon-maximize')
+                            p= produto.tamanho
+                        .produto__cor
+                            svg
+                                use(xlink:href='/imagens/dev/sprite2.svg#icon-palette')
+                            p= produto.cor
+                        .produto__tipo
+                            svg
+                                use(xlink:href='/imagens/dev/sprite2.svg#icon-bookmark')
+                            p= produto.tipo
+                        button.btn.produto__btn
+                            span Comprar
+                            svg.side-nav__icon
+                                use(xlink:href='/imagens/dev/sprite.svg#icon-shopping-bag')
