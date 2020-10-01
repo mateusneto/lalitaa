@@ -76,11 +76,12 @@ const produtoSchema = new mongoose.Schema(
       },
       genero: {
          type: String,
-         default: 'Jovem'
-         /*enum: {
-            values: ['Bebê', 'Criança', 'Jovem', 'Jovem adulta', 'Adulta'],
+         lowercase: true,
+         enum: {
+            values: ['homem', 'mulher', 'menino', 'menina'],
             message: 'Por favor adicione um genero'
-         }*/
+         },
+         required: true
       },
       textura: { type: String },
       tecido: { type: String },

@@ -1,0 +1,43 @@
+extends base
+
+block content
+    include _sidebar
+    .produtoDashboard__container
+        section.produtoDashboard
+            .produtoDashboard__item
+                form.form.form--updateProduct(action='#')
+                    .form__group
+                        label.form__label(for='nome') Loja
+                        input#storeId.form__input(type='text' value=`${storeId}` name='' readonly='readonly' required='')
+                    .form__group
+                        label.form__label(for='nome') Produto
+                        input#produtoId.form__input(type='text' value=`${produtoId}` name='' readonly='readonly' required='')
+                    .form__group
+                        label.form__label(for='nome') Nome do produto
+                        input#nome.form__input(type='text' name='' placeholder='' value=`${produto.nome}`)
+                    .form__group
+                        label.form__label(for='tipo') Tipo do produto
+                        input#tipo.form__input(type='text' name='' placeholder='' value=`${produto.tipo}`)
+                    .form__group
+                        label.form__label(for='preco') Pre&ccedil;o do produto
+                        input#preco.form__input(type='text' name='' placeholder='' value=`${produto.preco}`)
+                    .form__group
+                        label.form__label(for='tamanho') Tamanho do produto
+                        input#tamanho.form__input(type='text' name='' placeholder='' value=`${produto.tamanho}`)
+                    .form__group
+                        label.form__label(for='cor') Cor do produto
+                        input#cor.form__input(type='text' name='' placeholder='' value=`${produto.cor}`)
+                    .form__group
+                        label.form__label(for='marca') Marca do produto
+                        input#marca.form__input(type='text' name='' placeholder='' value=`${produto.marca}`)
+                    .form__group
+                        label.form__label(for='genero') Genero do produto
+                        input#genero.form__input(type='text' name='' placeholder='' value=`${produto.genero}`)
+                    .form__group
+                        label.form__label(for='descricao') Descri&ccedil;&atilde;o do produto
+                        input#descricao.form__input(type='text' name='' placeholder='' value=`${produto.descricao}`)
+                        img.form__userimg(src='/imagens/dev/lojas/store.jpg' alt='')
+                    input#productimg.btn.form__upload(type='file' accept='image/*' name='photoo')
+                    label(for='productimg') Adicionar foto
+                    .form__group
+                        button.btn.updateProduct__btn Actualizar produto

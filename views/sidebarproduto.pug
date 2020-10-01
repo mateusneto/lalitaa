@@ -28,7 +28,7 @@
       else if produto && !usuario && (storeOwner.id === loja.storeOwner.id)
         a.img__link(href=`/loja/${loja.id}/produtos`)
           img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
-        button.side-nav__editarLoja
+        a.side-nav__editarProduto(href=`/loja/${loja.id}/produto/${produto.id}/editarproduto`)
           svg.side-nav__icon
             use(xlink:href='/imagens/dev/sprite.svg#icon-tool')
           span Editar detalhes

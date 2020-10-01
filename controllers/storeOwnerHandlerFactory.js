@@ -14,10 +14,10 @@ const filterObj = (obj, ...allowedFields) => {
 exports.verifyOwner = Model =>
    catchAsync(async (req, res, next) => {
       const loja = await Model.findById(req.params.id);
-      console.log(req.params.id);
-      console.log(req.params.produtoId);
-      console.log(loja);
-      console.log('aqui-----------');
+      // console.log(req.params.id);
+      // console.log(req.params.produtoId);
+      // console.log(loja);
+      // console.log('aqui-----------');
 
       if (!loja) {
          return next(new AppError('Nenhuma loja encontrado com este ID', 404));
@@ -39,11 +39,10 @@ exports.verifyStoreProduct = Model =>
       }
 
       if (produto.store.id !== req.params.id) {
-         console.log(produto.store.id);
-         console.log(req.params.id);
+         // console.log(produto.store.id);
+         // console.log(req.params.id);
          return next(new AppError('Este produto não existe nesta loja', 404));
       }
-
       next();
    });
 
@@ -56,7 +55,7 @@ exports.verifyStore = Model =>
       if (!loja) {
          return next(new AppError('Nenhum documento encontrado com este ID', 404));
       }
-      console.log(req.storeOwner);
+      // console.log(req.storeOwner);
       if (req.storeOwner.role === 'administrador') {
          res.locals.store = loja;
          next();
@@ -66,7 +65,7 @@ exports.verifyStore = Model =>
          return next(new AppError('Esta loja não lhe pertence', 404));
       }
 
-      console.log(loja);
+      // console.log(loja);
 
       res.locals.store = loja;
 
@@ -102,7 +101,7 @@ exports.getAll = Model =>
       let filter = {};
       if (req.params.servicoId) filter = { servico: req.params.servicoId };
 
-      console.log(filter);
+      // console.log(filter);
 
       //Execute query
       const features = new APIFeatures(Model.find(filter), req.query).filter().sort().limitFields().paginate();
@@ -219,14 +218,14 @@ exports.getAllProducts = Model =>
       //Execute query
       const features = new APIFeatures(Model.find(filter), req.query).filter().sort().limitFields().paginate();*/
 
-      console.log(req.params);
+      // console.log(req.params);
 
       const doc = await Model.find({
          store: { $in: req.params.id }
       }); //.explain();
 
-      console.log('-------------------');
-      console.log(doc);
+      // console.log('-------------------');
+      // console.log(doc);
 
       //SEND RESPONSE
       res.status(200).json({
@@ -267,6 +266,8 @@ exports.updateOneProduct = Model =>
          new: true,
          runValidators: true
       });
+
+      console.log(req.params);
 
       if (!produto) {
          return next(new AppError('Nenhum produto encontrado com este ID', 404));

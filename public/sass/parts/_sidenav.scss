@@ -20,7 +20,7 @@
 .side-nav {
    font-size: 1.7rem;
    list-style: none;
-   margin-top: 3.5rem;
+   margin-top: 1.5rem;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
@@ -113,6 +113,48 @@
       }
    }
 
+   &__aviso {
+      width: 20rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      background-color: $color-orange;
+      color: $color-white;
+
+      border: none;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-orange-light;
+      }
+
+      &:active {
+         background-color: $color-orange-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
+
    &__compras {
       width: 20rem;
       display: flex;
@@ -199,6 +241,49 @@
    }
 
    &__editarLoja {
+      width: 20rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      background-color: $color-orange-light;
+      color: $color-white;
+      border: none;
+      border-radius: o;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-orange-light;
+      }
+
+      &:active {
+         background-color: $color-orange-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
+
+   &__editarProduto {
       width: 20rem;
 
       display: flex;
@@ -455,7 +540,48 @@
          width: 9rem;
       }
    }
+   &__generobtn--mulher {
+      width: 20rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      text-decoration: none;
 
+      background-color: $color-salmon;
+      color: $color-white;
+
+      border: none;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2.5rem;
+         width: 2.5rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-salmon-light;
+      }
+
+      &:active {
+         background-color: $color-salmon-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
    &__generobtn--homem {
       width: 20rem;
       display: flex;
@@ -477,8 +603,8 @@
       box-shadow: $shadow-2;
 
       svg {
-         height: 2rem;
-         width: 2rem;
+         height: 2.5rem;
+         width: 2.5rem;
          margin-right: 1rem;
       }
 

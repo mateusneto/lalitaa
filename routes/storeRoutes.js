@@ -9,7 +9,7 @@ const authController = require('./../controllers/storeOwnerAuthController');
 const express = require('express');
 
 //routes for 'servicos'
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 //router.param('id', storeController.checkID);
 
@@ -51,6 +51,7 @@ router
       authController.storeOwnerProtect,
       authController.restrictTo('donoLoja', 'administrador'),
       storeController.setStoreOwnerId,
+      storeController.checkStoreNumber,
       storeController.criarStore
    );
 

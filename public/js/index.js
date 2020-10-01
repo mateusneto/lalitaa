@@ -12,8 +12,10 @@ import { storeOwnerLogin, storeOwnerLogOut } from './donoLojaLogin';
 import { storeOwnerSignup } from './donoLojaSignup';
 import { storeOwnerUpdateSettings } from './donoLojaUpdateSettings';
 import { storeOwnerCreatestore } from './donoLojaCriarloja';
+import { storeOwnerUpdatestore } from './donoLojaUpdatestore';
 import { storeOwnerRemovestore } from './donoLojaRemoverloja';
 import { storeOwnerCreateproduct } from './donoLojaCriarproduto';
+import { storeOwnerUpdateproduct } from './donoLojaUpdateproduct';
 import { storeOwnerRemoveproduct } from './donoLojaRemoverproduto';
 //import { comprarServico } from './stripe';
 import { showAlert } from './alerts';
@@ -36,7 +38,6 @@ const logOutBtn = document.getElementById('userLogout');
 */
 if (loginForm)
    loginForm.addEventListener('submit', e => {
-      console.log('Entrou login');
       e.preventDefault(); //This prevents the form from loading any other page
 
       const userData = document.getElementById('userData').value;
@@ -111,8 +112,10 @@ const storeOwnerPasswordForm = document.querySelector('.form--donoLojaPassword')
 const storeOwnerSignupForm = document.querySelector('.donoLojaSignup__form');
 
 const storeOwnerCreatestorebtn = document.querySelector('.form--createStore');
+const storeOwnerUpdatestorebtn = document.querySelector('.form--updateStore');
 const storeOwnerRemovestorebtn = document.querySelector('.side-nav__storeremovebtn');
 const storeOwnerCriarprodutobtn = document.querySelector('.form--createProduct');
+const storeOwnerUpdateproductbtn = document.querySelector('.form--updateProduct');
 const storeOwnerRemoveproductbtn = document.querySelector('.side-nav__productremovebtn');
 
 //const bookBtn = document.getElementById('comprar-servico');
@@ -191,6 +194,17 @@ if (storeOwnerCreatestorebtn)
 
       storeOwnerCreatestore(nome, nomeLoja, numeroTelemovel);
    });
+if (storeOwnerUpdatestorebtn)
+   storeOwnerUpdatestorebtn.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value;
+      const nomeLoja = document.getElementById('nomeLoja').value;
+      const numeroTelemovel = document.getElementById('numeroTelemovelLoja').value;
+      const lojaId = document.getElementById('lojaId').value;
+
+      storeOwnerUpdatestore(lojaId, nome, nomeLoja, numeroTelemovel);
+   });
 
 if (storeOwnerCriarprodutobtn)
    storeOwnerCriarprodutobtn.addEventListener('submit', e => {
@@ -207,14 +221,30 @@ if (storeOwnerCriarprodutobtn)
       const storeId = document.getElementById('storeId').value;
       //const imagemDeCapa = document.getElementById('productimg').value;
 
-      console.log(nome, tipo, preco, tamanho, cor, marca, genero, descricao);
-
       storeOwnerCreateproduct(storeId, nome, tipo, preco, tamanho, cor, marca, genero, descricao);
+   });
+if (storeOwnerUpdateproductbtn)
+   storeOwnerUpdateproductbtn.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value;
+      const tipo = document.getElementById('tipo').value;
+      const preco = document.getElementById('preco').value;
+      const tamanho = document.getElementById('tamanho').value;
+      const cor = document.getElementById('cor').value;
+      const marca = document.getElementById('marca').value;
+      const genero = document.getElementById('genero').value;
+      const descricao = document.getElementById('descricao').value;
+      //const imagemDeCapa = document.getElementById('productimg').value;
+      const storeId = document.getElementById('storeId').value;
+
+      const produtoId = document.getElementById('produtoId').value;
+
+      storeOwnerUpdateproduct(storeId, produtoId, nome, tipo, preco, tamanho, cor, marca, genero, descricao);
    });
 
 if (storeOwnerRemovestorebtn) storeOwnerRemovestorebtn.addEventListener('click', storeOwnerRemovestore);
 if (storeOwnerRemoveproductbtn) {
-   console.log('tried');
    storeOwnerRemoveproductbtn.addEventListener('click', storeOwnerRemoveproduct);
 }
 /* ---------------------------Alerts handler---------------------- */

@@ -9,7 +9,7 @@ const produtoController = require('../controllers/produtoController');
 //Third-party modules
 const express = require('express');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 router.use(viewsController.alerts);
 router.use(authController.isLoggedIn);
@@ -49,7 +49,9 @@ router.post(
 );
 
 router.get('/criarloja', /*authController.isLoggedIn,*/ viewsController.criarLoja);
+router.get('/editarloja', viewsController.editarLoja);
 router.get('/criarproduto', /*authController.isLoggedIn,*/ viewsController.criarProduto);
+router.get('/loja/:id/produto/:produtoId/editarproduto', viewsController.editarProduto);
 
 router.get('/minhaslojas', viewsController.minhasLojas);
 

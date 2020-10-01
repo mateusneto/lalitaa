@@ -1,11 +1,12 @@
 extends base
 block content
-        include _sidebar
+        include sidebardonolojalojas
         .store__container
             section.stores
                 each loja in lojas
                     .store
-                        img.store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt=`${loja.nome}`)
+                        a.produto__link(href=`/loja/${loja.id}/produtos`)
+                            img.store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt=`${loja.nome}`)
                         h5.store__nome= loja.nome
                         .store__status
                             svg

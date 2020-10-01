@@ -128,10 +128,13 @@ exports.mostrarLojas = catchAsync(async (req, res, next) => {
 exports.minhasLojas = catchAsync(async (req, res, next) => {
    const lojas = await Loja.find({ storeOwner: { $in: res.locals.storeOwner.id } });
 
+   const numLojas = lojas.length;
+
    res.status(200).render('storeOwnerStores', {
       title: 'Minhas lojas',
       url: req.originalUrl,
-      lojas
+      lojas,
+      numLojas
    });
 });
 
@@ -198,6 +201,19 @@ exports.criarLoja = (req, res) => {
    });
 };
 
+exports.editarLoja = catchAsync(async (req, res) => {
+   const storeId = req.headers.referer.split('/')[4];
+
+   const loja = await Loja.findById(storeId);
+
+   res.status(200).render('storeOwnerUpdatestore', {
+      title: 'Crie a sua loja',
+      url: req.originalUrl,
+      storeId: req.headers.referer.split('/')[4],
+      loja
+   });
+});
+
 exports.criarProduto = catchAsync(async (req, res) => {
    const storeId = req.headers.referer.split('/')[4];
 
@@ -211,6 +227,21 @@ exports.criarProduto = catchAsync(async (req, res) => {
    });
 });
 
+exports.editarProduto = catchAsync(async (req, res) => {
+   const storeId = req.headers.referer.split('/')[4];
+   const produtoId = req.headers.referer.split('/')[6];
+
+   const produto = await Produto.findById(produtoId);
+   res.status(200).render('storeOwnerUpdateproduct', {
+      title: 'Crie a sua loja',
+      url: req.originalUrl,
+      storeId: req.headers.referer.split('/')[4],
+      produtoId: req.headers.referer.split('/')[6],
+      produto
+   });
+});
+
+// Should do this on the backend
 exports.updateUserData = catchAsync(async (req, res, next) => {
    const usuarioActualizado = await Usuario.findByIdAndUpdate(
       req.usuario.id,

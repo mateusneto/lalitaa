@@ -1,0 +1,24 @@
+extends base
+block content
+    include _sidebar
+    .newStoreDashboard__container
+        section.newStoreDashboard
+            .newStoreDashboard__item
+                form.form.form--updateStore(action='#')
+                    .form__group
+                        label.form__label(for='nome') Loja
+                        input#lojaId.form__input(type='text' name='' value=`${loja.id}` readonly='readonly' placeholder='')
+                    .form__group
+                        label.form__label(for='nome') Nome da loja
+                        input#nome.form__input(type='text' name='' value=`${loja.nome}` placeholder='')
+                    .form__group
+                        label.form__label(for='nomeLoja') Nome unico da loja
+                        input#nomeLoja.form__input(type='text' name='' value=`${loja.nomeLoja}` placeholder='' )
+                    .form__group
+                        label.form__label(for='numeroTelemovelLoja') Numero de telemovel
+                        input#numeroTelemovelLoja.form__input(type='text' name='' value=`${loja.numeroTelemovel}` placeholder='' )
+                    img.form__userimg(src='imagens/dev/lojas/storebasicimg.png' alt='')
+                    input#photo.btn.form__upload(type='file' accept='image/*' name='photoo')
+                    label(for='photo') Adicionar foto
+                    .form__group
+                        button.btn.updateLoja__btn Actualizar loja

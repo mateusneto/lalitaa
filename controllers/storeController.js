@@ -25,6 +25,16 @@ const upload = multer({
    fileFilter: multerFilter
 });
 
+exports.checkStoreNumber = catchAsync(async (req, res, next) => {
+   const lojas = await Store.find({ storeOwner: res.locals.storeOwner.id || req.body.storeOwner.id });
+
+   if (lojas.length >= 3) {
+      return next(new AppError('Atingiu o limite de 3 Lojas', 401));
+   }
+
+   next();
+});
+
 exports.uploadStoreImages = upload.fields([{ name: 'imagemDeCapa', maxCount: 1 }]);
 
 // upload.single('imagem') => req.file
@@ -85,16 +95,16 @@ exports.verificarProduto = (req, res, next) => {
    //console.log(req.params);
 
    //if (req.body.storeOwner)
-   console.log(req.body);
+   // console.log(req.body);
 
-   console.log('-----Produto-----');
-   console.log(produto);
-   console.log('-----req.params');
-   console.log(req.params);
-   console.log('-----res.Locals.store---');
-   console.log(res.locals.store);
-   console.log('-----req.body---');
-   console.log(res.locals.store);
+   // console.log('-----Produto-----');
+   // console.log(produto);
+   // console.log('-----req.params');
+   // console.log(req.params);
+   // console.log('-----res.Locals.store---');
+   // console.log(res.locals.store);
+   // console.log('-----req.body---');
+   // console.log(res.locals.store);
 
    if (produto.store.id !== req.params.id) {
       //console.log(produto.store.id);
