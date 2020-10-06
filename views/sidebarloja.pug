@@ -19,6 +19,10 @@
       if loja && !usuario && !storeOwner
         a.img__link(href=`/loja/${loja.id}/produtos`)
           img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+        a.side-nav__storeReviewsbtn(href=`/loja/${loja.id}/avaliacoes`)
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-thumbs-up')
+          span Avaliações
         button.side-nav__sharebtn
           svg.side-nav__icon
             use(xlink:href='/imagens/dev/sprite2.svg#icon-share')
@@ -34,6 +38,10 @@
       else if loja && usuario && !storeOwner
         a.img__link(href=`/loja/${loja.id}/produtos`)
           img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+        a.side-nav__storeReviewsbtn(href=`/loja/${loja.id}/avaliacoes`)
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-thumbs-up')
+          span Avaliações
         button.side-nav__sharebtn
           svg.side-nav__icon
             use(xlink:href='/imagens/dev/sprite2.svg#icon-share')

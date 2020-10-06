@@ -16,23 +16,31 @@
           svg.side-nav__icon
             use(xlink:href='/imagens/dev/sprite.svg#icon-tag')
           span Categorias      
-      if produto && !usuario && !storeOwner
-        a.img__link(href=`/loja/${loja.id}/produtos`)
-          img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
-      else if produto && usuario && !storeOwner
-        a.img__link(href=`/loja/${loja.id}/produtos`)
-          img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
-      else if produto && !usuario && (storeOwner.id !== loja.storeOwner.id)
-        a.img__link(href=`/loja/${loja.id}/produtos`)
-          img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
-      else if produto && !usuario && (storeOwner.id === loja.storeOwner.id)
-        a.img__link(href=`/loja/${loja.id}/produtos`)
-          img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
-        a.side-nav__editarProduto(href=`/loja/${loja.id}/produto/${produto.id}/editarproduto`)
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite.svg#icon-tool')
-          span Editar detalhes
-        button.side-nav__productremovebtn
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite.svg#icon-trash-2')
-          span Remover produto
+    if produto && !usuario && !storeOwner
+      a.img__link(href=`/loja/${produto.store.id}/produtos`)
+        img.side-nav__store__img(src=`/imagens/dev/lojas/${produto.store.imagemDeCapa}` alt='')
+      a.side-nav__productReviewsbtn(href=`/loja/${produto.store.id}/produto/${produto.id}/avaliacoes`)
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-thumbs-up')
+        span Avaliações
+    else if produto && usuario && !storeOwner
+      a.img__link(href=`/loja/${produto.store.id}/produtos`)
+        img.side-nav__store__img(src=`/imagens/dev/lojas/${produto.store.imagemDeCapa}` alt='')
+      a.side-nav__productReviewsbtn(href=`/loja/${produto.store.id}/produto/${produto.id}/avaliacoes`)
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-thumbs-up')
+        span Avaliações
+    else if produto && !usuario && (storeOwner.id !== produto.store.storeOwner.id)
+      a.img__link(href=`/loja/${produto.store.id}/produtos`)
+        img.side-nav__store__img(src=`/imagens/dev/lojas/${produto.store.imagemDeCapa}` alt='')
+    else if produto && !usuario && (storeOwner.id === produto.store.storeOwner.id)
+      a.img__link(href=`/loja/${produto.store.id}/produtos`)
+        img.side-nav__store__img(src=`/imagens/dev/lojas/${produto.store.imagemDeCapa}` alt='')
+      a.side-nav__editarProduto(href=`/loja/${produto.store.id}/produto/${produto.id}/editarproduto`)
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-tool')
+        span Editar produto
+      button.side-nav__productremovebtn
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-trash-2')
+        span Remover produto

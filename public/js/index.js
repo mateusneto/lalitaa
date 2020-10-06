@@ -6,6 +6,12 @@ import '@babel/polyfill';
 import { login, logOut } from './userLogin';
 import { signup } from './userSignup';
 import { updateSettings } from './updateSettings';
+import { avaliarLoja } from './avaliarLoja';
+import { editarStoreReview } from './editarStoreReview';
+import { removerStoreReview } from './removerStoreReview';
+import { avaliarProduto } from './avaliarProduto';
+import { editarProdutoReview } from './editarProdutoReview';
+import { removerProdutoReview } from './removerProdutoReview';
 
 /*----------------------------Store Owners--------------------------*/
 import { storeOwnerLogin, storeOwnerLogOut } from './donoLojaLogin';
@@ -19,14 +25,20 @@ import { storeOwnerUpdateproduct } from './donoLojaUpdateproduct';
 import { storeOwnerRemoveproduct } from './donoLojaRemoverproduto';
 //import { comprarServico } from './stripe';
 import { showAlert } from './alerts';
-/*------------------------------------------------------------------*/
 
+/*------------------------------------------------------------------*/
 //DOM Elements
 //const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
 const userDataForm = document.querySelector('.form--userdetails');
 const userPasswordForm = document.querySelector('.form--userPassword');
 const userSignupForm = document.querySelector('.signup__form');
+const avaliarLojaBtn = document.querySelector('.form--reviewStore');
+const editarStoreReviewBtn = document.querySelector('.form--editarStoreReview');
+const removerStoreReviewBtn = document.querySelector('.side-nav__removeStoreReviewbtn');
+const avaliarProdutoBtn = document.querySelector('.form--reviewProduct');
+const editarProdutoReviewBtn = document.querySelector('.form--editarProdutoReview');
+const removerProdutoReviewBtn = document.querySelector('.side-nav__removeProdutoReviewbtn');
 const logOutBtn = document.getElementById('userLogout');
 //const bookBtn = document.getElementById('comprar-servico');
 
@@ -94,6 +106,76 @@ if (userPasswordForm)
       document.getElementById('password-confirm').value = '';
    });
 
+if (avaliarLojaBtn)
+   avaliarLojaBtn.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const store = document.getElementById('lojaId').value;
+      const usuario = document.getElementById('nomeUsuario').value;
+      const rating = document.getElementById('rating').value;
+      const review = document.getElementById('avaliacao').value;
+
+      avaliarLoja(store, usuario, rating, review);
+   });
+
+if (editarStoreReviewBtn)
+   editarStoreReviewBtn.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const store = document.getElementById('lojaId').value;
+      const reviewId = document.getElementById('reviewId').value;
+      const rating = document.getElementById('rating').value;
+      const review = document.getElementById('avaliacao').value;
+
+      editarStoreReview(store, reviewId, rating, review);
+   });
+
+if (removerStoreReviewBtn)
+   removerStoreReviewBtn.addEventListener('click', e => {
+      e.preventDefault();
+
+      const reviewId = document.getElementById('reviewId').value;
+
+      removerStoreReview(reviewId);
+   });
+
+if (avaliarProdutoBtn)
+   avaliarProdutoBtn.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const storeId = document.getElementById('storeId').value;
+
+      const produto = document.getElementById('produtoId').value;
+      const usuario = document.getElementById('nomeUsuario').value;
+      const rating = document.getElementById('rating').value;
+      const review = document.getElementById('avaliacao').value;
+
+      console.log(storeId, produto, usuario, rating, review);
+      avaliarProduto(storeId, produto, usuario, rating, review);
+   });
+
+if (editarProdutoReviewBtn)
+   editarProdutoReviewBtn.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const storeId = document.getElementById('storeId').value;
+
+      const reviewId = document.getElementById('reviewId').value;
+      const produtoId = document.getElementById('produtoId').value;
+      const rating = document.getElementById('rating').value;
+      const review = document.getElementById('avaliacao').value;
+
+      editarProdutoReview(storeId, reviewId, produtoId, rating, review);
+   });
+
+if (removerProdutoReviewBtn)
+   removerProdutoReviewBtn.addEventListener('click', e => {
+      e.preventDefault();
+
+      const reviewId = document.getElementById('reviewId').value;
+
+      removerProdutoReview(reviewId);
+   });
 /*if (bookBtn)
    bookBtn.addEventListener('click', e => {
       e.target.textContent = 'Processing...';

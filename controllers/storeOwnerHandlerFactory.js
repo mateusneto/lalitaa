@@ -268,6 +268,7 @@ exports.updateOneProduct = Model =>
       });
 
       console.log(req.params);
+      console.log(produto);
 
       if (!produto) {
          return next(new AppError('Nenhum produto encontrado com este ID', 404));

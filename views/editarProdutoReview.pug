@@ -1,0 +1,24 @@
+extends base
+block content
+    include sidebarEditarprodutoreview
+    .newStoreDashboard__container
+        section.newStoreDashboard
+            .newStoreDashboard__item
+                form.form.form--editarProdutoReview(action='#')
+                    .form__group
+                        label.form__label(for='reviewId') ID avaliação
+                        input#reviewId.form__input(type='text' name='' value=`${review.id}` readonly='readonly' placeholder='')
+                    .form__group
+                        label.form__label(for='nome') Produto
+                        input#produtoId.form__input(type='text' name='' value=`${produto.id}` readonly='readonly' placeholder='')
+                    .form__group
+                        label.form__label(for='nomeUsuario') Usuario
+                        input#nomeUsuario.form__input(type='text' name='' value=`${usuario.id}` readonly='readonly' placeholder='')
+                    .form__group
+                        label.form__label(for='rating') Rating
+                        input#rating.form__input(type='text' name='' value=`${review.rating}` placeholder='' )
+                    .form__group
+                        label.form__label(for='avaliacao') Avaliação
+                        input#avaliacao.form__input(type='text' name='' value=`${review.review}` placeholder='' )
+                    .form__group
+                        button.btn.updateLoja__btn Avaliar loja

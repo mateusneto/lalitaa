@@ -38,11 +38,11 @@ storeReviewSchema.pre(/^find/, function (next) {
    //.pre 'find' query middleware to populate documents with referenced data
    this.populate({
       path: 'store', //This means that the 'store' property in our model is the field to be populated based on model
-      select: 'nome'
+      select: 'nome imagemDeCapa'
    });
    this.populate({
       path: 'usuario',
-      select: 'nomeUsuario nome fotografia'
+      select: 'id nomeUsuario nome fotografia'
    });
 
    next();

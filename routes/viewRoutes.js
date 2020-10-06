@@ -18,13 +18,20 @@ router.get('/', (req, res) => {
    res.status(200).render('base');
 });
 
-/* --------------------------------------Routes for Store----------------------------------------- */
+/* --------------------------------------Routes for Stores----------------------------------------- */
 router.get('/lojas', viewsController.mostrarLojas);
 
 /* --------------------------------------Routes for Produto----------------------------------------- */
 router.get('/loja/:lojaId/produtos', viewsController.mostrarProdutos);
+router.get('/loja/:lojaId/avaliacoes', viewsController.mostrarLojaReviews);
+router.get('/loja/:lojaId/avaliar', viewsController.avaliarLoja);
+router.get('/loja/:lojaId/editarStoreReview/:reviewId', viewsController.editarStoreReview);
+
 /* --------------------------------------Routes for specific Produto----------------------------------------- */
 router.get('/loja/:lojaId/produto/:produtoId', viewsController.mostrarProduto);
+router.get('/loja/:lojaId/produto/:produtoId/avaliacoes', viewsController.mostrarProdutoReviews);
+router.get('/loja/:lojaId/produto/:produtoId/avaliar', viewsController.avaliarProduto);
+router.get('/loja/:lojaId/produto/:produtoId/editarProdutoReview/:reviewId', viewsController.editarProdutoReview);
 
 /* --------------------------------------Routes for Usuarios----------------------------------------- */
 router.get('/entrar', /*authController.isLoggedIn,*/ viewsController.getLoginForm);

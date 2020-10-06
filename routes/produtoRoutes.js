@@ -49,5 +49,7 @@ router.route('/').get(produtoController.mostrarProdutos);
 
 router.route('/:id').get(produtoController.mostrarProduto);
 
+router.route('/:id/avaliacoes').get(produtoController.mostrarProdutoAvaliacoes);
+
 //exporting router for produtos
 module.exports = router;

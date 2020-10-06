@@ -1,6 +1,7 @@
 //My own modules
 const Produto = require('./../models/produtoModel');
 const Store = require('../models/storeModel');
+const ProdutoReview = require('../models/produtoReviewModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const factory = require('./storeOwnerHandlerFactory');
@@ -86,12 +87,16 @@ exports.verifyProductStore = catchAsync(async (req, res, next) => {
    next();
 });
 
-/* ----------------------Controllers for servicos------------------------- */
+/* ----------------------Controllers for Produtos------------------------- */
 exports.mostrarProdutos = factory.getAll(Produto);
 exports.mostrarProduto = factory.getOne(Produto, { path: 'reviews' });
 exports.criarProduto = factory.createOne(Produto);
 exports.actualizarProduto = factory.updateOne(Produto);
 exports.removerProduto = factory.deleteOne(Produto);
+
+/* ----------------------Controllers for Produto avaliações------------------------- */
+
+exports.mostrarProdutoAvaliacoes = factory.getAll(ProdutoReview);
 /* ------------------------------------------------------------------------*/
 exports.nothing = (req, res, next) => {
    res.status(500).json({

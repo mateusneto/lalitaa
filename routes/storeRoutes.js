@@ -112,5 +112,8 @@ router
       storeController.removerProduto
    );
 
+/*--------------------------Avaliações----------------------------*/
+router.route('/:id/avaliacoes').get(storeController.mostrarLojaAvaliacoes);
+
 //exporting router for stores
 module.exports = router;

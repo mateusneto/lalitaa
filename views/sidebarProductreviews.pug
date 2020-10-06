@@ -1,0 +1,35 @@
+.content
+  nav.sidebar
+    ul.side-nav
+      li.side-nav__item.side-nav__item--active
+        a.side-nav__link(href='/lojas')
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite2.svg#icon-shop')
+          span Lojas
+      li.side-nav__item
+        a.side-nav__link(href='/galeria')
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-image')
+          span Galeria
+      li.side-nav__item
+        a.side-nav__link(href='/categorias')
+          svg.side-nav__icon
+            use(xlink:href='/imagens/dev/sprite.svg#icon-tag')
+          span Categorias
+    a.img__link(href=`/loja/${produto.store.id}/produto/${produto.id}`)
+      img.side-nav__store__img(src=`/imagens/dev/produtos/${produto.imagemDeCapa}` alt='')
+    if usuario && !userReview
+      a.side-nav__productWriteReviewsbtn(href=`/loja/${produto.store.id}/produto/${produto.id}/avaliar`)
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-edit')
+        span Avaliar
+    if usuario && userReview
+      input#reviewId(style='display: none;' value=`${userReview.id}` readonly='readonly')
+      a.side-nav__editarProdutoReview(href=`/loja/${storeId}/produto/${produto.id}/editarProdutoReview/${userReview._id.toString()}`)
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-tool')
+        span Editar avaliação
+      button.side-nav__removeProdutoReviewbtn
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-trash-2')
+        span Remover avaliação 

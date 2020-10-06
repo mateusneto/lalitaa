@@ -153,7 +153,7 @@ produtoSchema.pre(/^find/, function (next) {
    //query middleware to populate documents with referenced data
    this.populate({
       path: 'store',
-      select: 'nomeLoja'
+      select: 'nomeLoja imagemDeCapa numeroTelemovel'
    });
    next();
 });

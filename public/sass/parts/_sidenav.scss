@@ -75,7 +75,7 @@
    }
 
    &__item:active::before {
-      background-color: var(--color-primary);
+      background-color: var(--color-white);
    }
 
    &__link:link,
@@ -240,6 +240,346 @@
       }
    }
 
+   &__storeReviewsbtn {
+      width: 20rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      background-color: $color-green;
+      color: $color-white;
+      border: none;
+      border-radius: o;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-green-light;
+      }
+
+      &:active {
+         background-color: $color-green-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
+
+   &__storeWriteReviewsbtn {
+      width: 20rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      background-color: $color-orange;
+      color: $color-white;
+
+      border: none;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-orange-light;
+      }
+
+      &:active {
+         background-color: $color-orange-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
+
+   &__editarStoreReview {
+      width: 20rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      background-color: $color-orange;
+      color: $color-white;
+
+      border: none;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-orange-light;
+      }
+
+      &:active {
+         background-color: $color-orange-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
+
+   &__editarProdutoReview {
+      width: 20rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      background-color: $color-orange;
+      color: $color-white;
+
+      border: none;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-orange-light;
+      }
+
+      &:active {
+         background-color: $color-orange-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
+
+   &__removeStoreReviewbtn {
+      width: 20rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      background-color: $color-red-light;
+      color: $color-white;
+      border: none;
+      border-radius: o;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-red-light;
+      }
+
+      &:active {
+         background-color: $color-red-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
+
+   &__productReviewsbtn {
+      width: 20rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      background-color: $color-green;
+      color: $color-white;
+      border: none;
+      border-radius: o;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-green-light;
+      }
+
+      &:active {
+         background-color: $color-green-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
+
+   &__removeProdutoReviewbtn {
+      width: 20rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      background-color: $color-red-light;
+      color: $color-white;
+      border: none;
+      border-radius: o;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-red-light;
+      }
+
+      &:active {
+         background-color: $color-red-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
+
+   &__productWriteReviewsbtn {
+      width: 20rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      background-color: $color-orange;
+      color: $color-white;
+
+      border: none;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-orange-light;
+      }
+
+      &:active {
+         background-color: $color-orange-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
+         width: 9rem;
+      }
+   }
+
    &__editarLoja {
       width: 20rem;
 
@@ -247,7 +587,7 @@
       align-items: center;
       justify-content: space-around;
 
-      background-color: $color-orange-light;
+      background-color: $color-orange;
       color: $color-white;
       border: none;
       border-radius: o;
@@ -290,7 +630,7 @@
       align-items: center;
       justify-content: space-around;
 
-      background-color: $color-orange-light;
+      background-color: $color-orange;
       color: $color-white;
       border: none;
       border-radius: o;

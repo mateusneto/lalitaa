@@ -19,7 +19,7 @@ export const storeOwnerCreatestore = async (nome, nomeLoja, numeroTelemovel) => 
          console.log('sucesso');
          showAlert('success', 'Loja criada com sucesso');
          window.setTimeout(() => {
-            location.assign('/donoloja/me');
+            location.assign('/minhaslojas');
          }, 0);
       }
    } catch (err) {

@@ -16,13 +16,6 @@
           svg.side-nav__icon
             use(xlink:href='/imagens/dev/sprite.svg#icon-tag')
           span Categorias
-    if (url === '/minhaslojas') && numLojas < 3
-      a.side-nav__criarLoja(href='/criarLoja')
-        svg.side-nav__icon
-          use(xlink:href='/imagens/dev/sprite.svg#icon-plus-square')
-        span Criar Loja
-    else
-      button.side-nav__aviso
-        svg.side-nav__icon
-          use(xlink:href='/imagens/dev/sprite.svg#icon-info')
-        span limite 3 lojas
+    a.img__link(href=`/loja/${storeId}/produto/${produtoId}/avaliacoes`)
+        img.side-nav__store__img(src=`/imagens/dev/produtos/${produto.imagemDeCapa}` alt='')
+    input#storeId(style='display: none;' value=`${storeId}` readonly='readonly')

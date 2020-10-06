@@ -16,30 +16,30 @@
           svg.side-nav__icon
             use(xlink:href='/imagens/dev/sprite.svg#icon-tag')
           span Categorias
-      if lojas && !usuario && !storeOwner
-        button.side-nav__generobtn--mulher
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite3.svg#icon-woman')
-          span Mulher
-        button.side-nav__generobtn--homem
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite2.svg#icon-man')
-          span Homem
-      else if lojas && usuario && !storeOwner
-        button.side-nav__generobtn--mulher
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite3.svg#icon-woman')
-          span Mulher
-        button.side-nav__generobtn--homem
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite2.svg#icon-man')
-          span Homem
-      else if lojas && !usuario && storeOwner
-        button.side-nav__generobtn--mulher
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite3.svg#icon-woman')
-          span Mulher
-        button.side-nav__generobtn--homem
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite2.svg#icon-man')
-          span Homem
+    if lojas && !usuario && !storeOwner
+      button.side-nav__generobtn--mulher
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite3.svg#icon-woman')
+        span Mulher
+      button.side-nav__generobtn--homem
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite2.svg#icon-man')
+        span Homem
+    else if lojas && usuario && !storeOwner
+      button.side-nav__generobtn--mulher
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite3.svg#icon-woman')
+        span Mulher
+      button.side-nav__generobtn--homem
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite2.svg#icon-man')
+        span Homem
+    else if lojas && !usuario && storeOwner
+      button.side-nav__generobtn--mulher
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite3.svg#icon-woman')
+        span Mulher
+      button.side-nav__generobtn--homem
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite2.svg#icon-man')
+        span Homem

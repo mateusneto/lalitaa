@@ -17,14 +17,25 @@ router
    .post(
       authController.restrictTo('usuario', 'administrador'),
       reviewController.setStoreAndUsuarioIds,
+      reviewController.checkUser,
       reviewController.createReview
    );
 
 router
    .route('/:id')
    .get(reviewController.getReview)
-   .patch(authController.restrictTo('usuario', 'administrador'), reviewController.updateReview)
-   .delete(authController.restrictTo('usuario', 'administrador'), reviewController.deleteReview);
+   .patch(
+      authController.restrictTo('usuario', 'administrador'),
+      authController.isLoggedIn,
+      reviewController.checkReviewOwner,
+      reviewController.updateReview
+   )
+   .delete(
+      authController.restrictTo('usuario', 'administrador'),
+      authController.isLoggedIn,
+      reviewController.checkReviewOwner,
+      reviewController.deleteReview
+   );
 
 //exporting router for reviews
 module.exports = router;

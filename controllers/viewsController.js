@@ -4,6 +4,8 @@ const Usuario = require('../models/usuarioModel');
 const StoreOwner = require('../models/storeOwnerModel');
 const Loja = require('../models/storeModel');
 const Produto = require('../models/produtoModel');
+const StoreReview = require('../models/storeReviewModel');
+const ProductReview = require('../models/produtoReviewModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 //const Booking = require('../models/bookingModel');
@@ -151,17 +153,166 @@ exports.mostrarProdutos = catchAsync(async (req, res, next) => {
    });
 });
 
-exports.mostrarProduto = catchAsync(async (req, res, next) => {
+exports.avaliarLoja = catchAsync(async (req, res, next) => {
    let loja = await Loja.find({ _id: req.params.lojaId });
    loja = loja[0];
+   res.status(200).render('avaliarLoja', {
+      title: 'Avaliar Loja',
+      loja,
+      url: req.originalUrl,
+      previousURL: req.headers.referer
+   });
+});
+
+exports.editarStoreReview = catchAsync(async (req, res, next) => {
+   let loja = await Loja.find({ _id: req.params.lojaId });
+   loja = loja[0];
+
+   reviewId = req.originalUrl.split('/')[4];
+   const review = await StoreReview.findById(reviewId);
+   console.log(review);
+
+   res.status(200).render('editarStoreReview', {
+      title: 'Avaliar Loja',
+      loja,
+      url: req.originalUrl,
+      previousURL: req.headers.referer,
+      review
+   });
+});
+
+exports.mostrarLojaReviews = catchAsync(async (req, res, next) => {
+   let loja = await Loja.find({ _id: req.params.lojaId });
+   loja = loja[0];
+
+   const reviews = await StoreReview.find({ store: req.params.lojaId });
+
+   if (res.locals.usuario) {
+      const userReviewFind = reviews.filter(el => el.usuario._id.toString() === res.locals.usuario._id.toString());
+
+      if (userReviewFind.length === 0) {
+         return res.status(200).render('storeReviews', {
+            title: 'Avaliações',
+            url: req.originalUrl,
+            loja,
+            reviews
+         });
+      }
+
+      const userReview = userReviewFind[0];
+
+      const userReviewPosition = reviews.indexOf(userReview);
+
+      reviews.splice(userReviewPosition, 1);
+      reviews.unshift(userReview);
+
+      return res.status(200).render('storeReviews', {
+         title: 'Avaliações',
+         url: req.originalUrl,
+         loja,
+         reviews,
+         userReview
+      });
+   }
+
+   res.status(200).render('storeReviews', {
+      title: 'Avaliações',
+      url: req.originalUrl,
+      loja,
+      reviews
+   });
+});
+
+exports.mostrarProduto = catchAsync(async (req, res, next) => {
    let produto = await Produto.find({ _id: req.params.produtoId });
    produto = produto[0];
 
    res.status(200).render('productPage', {
       title: 'produtos',
       url: req.originalUrl,
-      loja,
       produto
+   });
+});
+
+exports.mostrarProdutoReviews = catchAsync(async (req, res, next) => {
+   let produto = await Produto.find({ _id: req.params.produtoId });
+   produto = produto[0];
+
+   const storeId = req.originalUrl.split('/')[2];
+   console.log(storeId);
+
+   const reviews = await ProductReview.find({ produto: req.params.produtoId });
+
+   if (res.locals.usuario) {
+      const userReviewFind = reviews.filter(el => el.usuario._id.toString() === res.locals.usuario._id.toString());
+
+      if (userReviewFind.length === 0) {
+         return res.status(200).render('productReviews', {
+            title: 'Avaliações',
+            url: req.originalUrl,
+            storeId,
+            produto,
+            reviews
+         });
+      }
+
+      const userReview = userReviewFind[0];
+
+      const userReviewPosition = reviews.indexOf(userReview);
+
+      reviews.splice(userReviewPosition, 1);
+      reviews.unshift(userReview);
+
+      return res.status(200).render('productReviews', {
+         title: 'Avaliações',
+         url: req.originalUrl,
+         storeId,
+         produto,
+         reviews,
+         userReview
+      });
+   }
+
+   res.status(200).render('productReviews', {
+      title: 'Avaliações',
+      url: req.originalUrl,
+      storeId,
+      produto,
+      reviews
+   });
+});
+
+exports.editarProdutoReview = catchAsync(async (req, res, next) => {
+   let produto = await Produto.find({ _id: req.params.produtoId });
+   produto = produto[0];
+
+   const storeId = req.originalUrl.split('/')[2];
+
+   reviewId = req.originalUrl.split('/')[6];
+   console.log(reviewId);
+   const review = await ProductReview.findById(reviewId);
+   console.log(review);
+
+   res.status(200).render('editarProdutoReview', {
+      title: 'Avaliar Produto',
+      storeId,
+      produto,
+      url: req.originalUrl,
+      previousURL: req.headers.referer,
+      review
+   });
+});
+
+exports.avaliarProduto = catchAsync(async (req, res, next) => {
+   let produto = await Produto.find({ _id: req.params.produtoId });
+   produto = produto[0];
+   const storeId = req.originalUrl.split('/')[2];
+   res.status(200).render('avaliarProduto', {
+      title: 'Avaliar Produto',
+      storeId,
+      produto,
+      url: req.originalUrl,
+      previousURL: req.headers.referer
    });
 });
 

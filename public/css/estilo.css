@@ -29,6 +29,7 @@ grey 2: #989c94
   --color-gold: rgb(255, 215, 0);
   --color-gold-light: rgb(255, 230, 89);
   --color-gold-strong: rgb(192, 163, 0);
+  --color-tick: rgb(83, 216, 83);
   --color-salmon: salmon;
   --color-salmon-light: rgb(255, 164, 154);
   --color-salmon-strong: rgb(218, 93, 79);
@@ -97,6 +98,14 @@ a {
   grid-template-columns: [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(22rem, 1fr) [full-end]; }
   @media only screen and (max-width: 43.75rem) {
     .produto__container {
+      grid-template-columns: [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(11rem, 1fr) [full-end]; } }
+
+.reviews__container {
+  background-color: var(--color-main-back);
+  display: grid;
+  grid-template-columns: [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(22rem, 1fr) [full-end]; }
+  @media only screen and (max-width: 43.75rem) {
+    .reviews__container {
       grid-template-columns: [sidebar-start] 2rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(11rem, 1fr) [full-end]; } }
 
 .userDashboard__container {
@@ -429,7 +438,7 @@ a {
         transform: scaleX(2);
         width: 3%; } }
   .side-nav__item:active::before {
-    background-color: var(--color-primary); }
+    background-color: var(--color-white); }
   .side-nav__link:link, .side-nav__link:visited {
     color: var(--color-white);
     text-decoration: none;
@@ -544,12 +553,256 @@ a {
         width: 9rem; }
         .side-nav__lojas span {
           display: none; } }
+  .side-nav__storeReviewsbtn {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #51cc51;
+    color: white;
+    border: none;
+    border-radius: o;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__storeReviewsbtn svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__storeReviewsbtn:hover {
+      background-color: #67e267; }
+    .side-nav__storeReviewsbtn:active {
+      background-color: #0a8d0a; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__storeReviewsbtn {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__storeReviewsbtn span {
+          display: none; } }
+  .side-nav__storeWriteReviewsbtn {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ffa600;
+    color: white;
+    border: none;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__storeWriteReviewsbtn svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__storeWriteReviewsbtn:hover {
+      background-color: #f8bc4c; }
+    .side-nav__storeWriteReviewsbtn:active {
+      background-color: #ad7100; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__storeWriteReviewsbtn {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__storeWriteReviewsbtn span {
+          display: none; } }
+  .side-nav__editarStoreReview {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ffa600;
+    color: white;
+    border: none;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__editarStoreReview svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__editarStoreReview:hover {
+      background-color: #f8bc4c; }
+    .side-nav__editarStoreReview:active {
+      background-color: #ad7100; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__editarStoreReview {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__editarStoreReview span {
+          display: none; } }
+  .side-nav__editarProdutoReview {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ffa600;
+    color: white;
+    border: none;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__editarProdutoReview svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__editarProdutoReview:hover {
+      background-color: #f8bc4c; }
+    .side-nav__editarProdutoReview:active {
+      background-color: #ad7100; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__editarProdutoReview {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__editarProdutoReview span {
+          display: none; } }
+  .side-nav__removeStoreReviewbtn {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ff5959;
+    color: white;
+    border: none;
+    border-radius: o;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__removeStoreReviewbtn svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__removeStoreReviewbtn:hover {
+      background-color: #ff5959; }
+    .side-nav__removeStoreReviewbtn:active {
+      background-color: #ad0000; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__removeStoreReviewbtn {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__removeStoreReviewbtn span {
+          display: none; } }
+  .side-nav__productReviewsbtn {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #51cc51;
+    color: white;
+    border: none;
+    border-radius: o;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__productReviewsbtn svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__productReviewsbtn:hover {
+      background-color: #67e267; }
+    .side-nav__productReviewsbtn:active {
+      background-color: #0a8d0a; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__productReviewsbtn {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__productReviewsbtn span {
+          display: none; } }
+  .side-nav__removeProdutoReviewbtn {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ff5959;
+    color: white;
+    border: none;
+    border-radius: o;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__removeProdutoReviewbtn svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__removeProdutoReviewbtn:hover {
+      background-color: #ff5959; }
+    .side-nav__removeProdutoReviewbtn:active {
+      background-color: #ad0000; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__removeProdutoReviewbtn {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__removeProdutoReviewbtn span {
+          display: none; } }
+  .side-nav__productWriteReviewsbtn {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ffa600;
+    color: white;
+    border: none;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
+    .side-nav__productWriteReviewsbtn svg {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+    .side-nav__productWriteReviewsbtn:hover {
+      background-color: #f8bc4c; }
+    .side-nav__productWriteReviewsbtn:active {
+      background-color: #ad7100; }
+    @media only screen and (max-width: 43.75rem) {
+      .side-nav__productWriteReviewsbtn {
+        padding-right: 2rem;
+        width: 9rem; }
+        .side-nav__productWriteReviewsbtn span {
+          display: none; } }
   .side-nav__editarLoja {
     width: 20rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: #f8bc4c;
+    background-color: #ffa600;
     color: white;
     border: none;
     border-radius: o;
@@ -580,7 +833,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: #f8bc4c;
+    background-color: #ffa600;
     color: white;
     border: none;
     border-radius: o;
@@ -1710,3 +1963,105 @@ a {
       background-color: #c6cac2; }
     .form__btn:active {
       background-color: #818380; }
+
+.user-reviews {
+  grid-column: sidebar-end/center-end;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1rem, 50rem));
+  justify-content: center;
+  background-color: var(--color-main-back);
+  padding-top: 5rem;
+  color: var(--color-primary-strong); }
+
+.review {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 3px;
+  background-color: var(--color-white);
+  padding: 3rem;
+  margin: 3.5rem;
+  overflow: hidden;
+  height: auto; }
+  @media only screen and (max-width: 43.75rem) {
+    .review {
+      padding: 2rem;
+      margin-bottom: 3rem; } }
+  .review__text {
+    margin-bottom: 2rem;
+    z-index: 10;
+    height: auto;
+    position: relative; }
+  .review__user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem; }
+  .review__photo {
+    height: 4.5rem;
+    width: 4.5rem;
+    border-radius: 50%;
+    margin-right: 1.5rem; }
+  .review__user-box {
+    margin-right: auto; }
+  .review__user-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem; }
+  .review__user-date {
+    font-size: 0.9rem;
+    color: var(--color-grey-light); }
+  .review__rating {
+    font-size: 2rem;
+    color: var(--color-tick); }
+
+.user-reviews {
+  grid-column: sidebar-end/center-end;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1rem, 50rem));
+  justify-content: center;
+  background-color: var(--color-main-back);
+  padding-top: 5rem;
+  color: var(--color-primary-strong); }
+
+.review {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 3px;
+  background-color: var(--color-white);
+  padding: 3rem;
+  margin: 3.5rem;
+  overflow: hidden;
+  height: auto; }
+  @media only screen and (max-width: 43.75rem) {
+    .review {
+      padding: 2rem;
+      margin-bottom: 3rem; } }
+  .review__text {
+    margin-bottom: 2rem;
+    z-index: 10;
+    height: auto;
+    position: relative; }
+  .review__user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem; }
+  .review__photo {
+    height: 4.5rem;
+    width: 4.5rem;
+    border-radius: 50%;
+    margin-right: 1.5rem; }
+  .review__user-box {
+    margin-right: auto; }
+  .review__user-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem; }
+  .review__user-date {
+    font-size: 0.9rem;
+    color: var(--color-grey-light); }
+  .review__rating {
+    font-size: 2rem;
+    color: var(--color-tick); }

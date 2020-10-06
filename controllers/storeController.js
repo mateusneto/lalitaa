@@ -1,6 +1,7 @@
 //My own modules
 const Store = require('./../models/storeModel');
 const Produto = require('../models/produtoModel');
+const StoreReview = require('../models/storeReviewModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const factory = require('./storeOwnerHandlerFactory');
@@ -87,6 +88,10 @@ exports.mostrarProdutos = factory.getAllProducts(Produto);
 exports.mostrarProduto = factory.getOneProduct(Produto);
 exports.actualizarProduto = factory.updateOneProduct(Produto);
 exports.removerProduto = factory.deleteProduct(Produto);
+
+/* ----------------------Controllers for Store Avaliações------------------------- */
+exports.mostrarLojaAvaliacoes = factory.getAllProducts(StoreReview);
+
 /* ------------------------------------------------------------------------*/
 exports.verifyStoreProduct = factory.verifyStoreProduct(Produto);
 
