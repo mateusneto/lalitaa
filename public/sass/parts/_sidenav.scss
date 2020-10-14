@@ -12,6 +12,8 @@
    align-items: flex-end;
    position: fixed;
    box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.103);
+   //max-height: 100vh;
+   //display: none;
 }
 
 ////////////////////////////////////////
@@ -109,6 +111,48 @@
       width: 20rem;
 
       @media only screen and (max-width: $bp-seven) {
+         width: 9rem;
+      }
+   }
+
+   &__chat--apagar {
+      width: 20rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      background-color: $color-red-strong;
+      color: $color-white;
+
+      border: none;
+      font-family: inherit;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 1.8rem 3rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: $shadow-2;
+
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+      }
+
+      &:hover {
+         background-color: $color-red-light;
+      }
+
+      &:active {
+         background-color: $color-red-strong;
+      }
+
+      @media only screen and (max-width: $bp-seven) {
+         span {
+            display: none;
+         }
+         padding-right: 2rem;
          width: 9rem;
       }
    }

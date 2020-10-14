@@ -1,0 +1,30 @@
+extends base
+block content
+    include sidebarChat
+    .private__chat__container
+        .messages
+            ul.messages__list
+            li.messages__list--info Conversando com Mateus
+            li.messages__list--sent Ol&aacute; como estas ?
+            li.messages__list--received Estou bem e tu ?
+            li.messages__list--received Onde estas ?
+            li.messages__list--sent Em casa
+            li.messages__list--sent Ol&aacute; como estas ?
+            li.messages__list--received Estou bem e tu ?
+            li.messages__list--received Onde estas ?
+            li.messages__list--sent Em casa
+            li.messages__list--sent Ol&aacute; como estas ?
+            li.messages__list--received Estou bem e tu ?
+            li.messages__list--received Onde estas ?
+            li.messages__list--sent Em casa
+            li.messages__list--sent Ol&aacute; como estas ?
+            li.messages__list--received Estou bem e tu ?
+            li.messages__list--received Onde estas ?
+            li.messages__list--sent Em casa
+            li.messages__list--info Mateus saiu da conversa
+        .message__input
+            input.message__input--box(type='text')
+            button.message__input__sendBtn
+                span Enviar
+                svg.message__input__sendBtn--icon
+                    use(xlink:href='/imagens/dev/sprite.svg#icon-send')

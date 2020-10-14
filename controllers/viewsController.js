@@ -117,6 +117,14 @@ exports.mostrarContaDonoloja = catchAsync(async (req, res, next) => {
   });
 });*/
 
+exports.mostrarChat = catchAsync(async (req, res, next) => {
+   res.status(200).render('chat', {});
+});
+
+exports.mostrarPrivateChat = catchAsync(async (req, res, next) => {
+   res.status(200).render('privateChat', {});
+});
+
 exports.mostrarLojas = catchAsync(async (req, res, next) => {
    const lojas = await Loja.find();
    shuffle(lojas);
@@ -379,7 +387,7 @@ exports.criarProduto = catchAsync(async (req, res) => {
 });
 
 exports.editarProduto = catchAsync(async (req, res) => {
-   const storeId = req.headers.referer.split('/')[4];
+   //const storeId = req.headers.referer.split('/')[4];
    const produtoId = req.headers.referer.split('/')[6];
 
    const produto = await Produto.findById(produtoId);

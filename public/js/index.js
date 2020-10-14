@@ -56,6 +56,7 @@ if (loginForm)
       const password = document.getElementById('password').value;
 
       login(userData, password);
+      console.log(userdata);
    });
 
 if (logOutBtn) logOutBtn.addEventListener('click', logOut);

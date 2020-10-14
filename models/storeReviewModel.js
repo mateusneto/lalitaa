@@ -6,7 +6,7 @@ const Usuario = require('./usuarioModel');
 const storeReviewSchema = new mongoose.Schema(
    {
       review: { type: String, required: [true, 'Review cannot be empty'] },
-      rating: { type: Number, min: 1, max: 10 },
+      rating: { type: Number, min: 1, max: 100 },
       createdAt: { type: Date, default: Date.now },
       store:
          //Parent referencing
@@ -33,6 +33,12 @@ const storeReviewSchema = new mongoose.Schema(
 //   Regular expression for all querys that start with 'find':    /^find/
 
 storeReviewSchema.index({ store: 1, usuario: 1 }, { unique: true }); //Not allowing a user to write more than 1 review for a servico
+
+storeReviewSchema.pre('save', function (next) {
+   this.createdAt = Date.now();
+
+   next();
+});
 
 storeReviewSchema.pre(/^find/, function (next) {
    //.pre 'find' query middleware to populate documents with referenced data

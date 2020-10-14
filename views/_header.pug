@@ -16,9 +16,10 @@ header.header
             use(xlink:href='/imagens/dev/sprite.svg#icon-shopping-cart')
           span.user-nav__notification 4
         .user-nav__icon-box
-          svg.user-nav__icon
-            use(xlink:href='/imagens/dev/sprite.svg#icon-message-square')
-          span.user-nav__notification 7
+          a.user-nav__link(href='/chat')
+            svg.user-nav__icon
+              use(xlink:href='/imagens/dev/sprite.svg#icon-message-square')
+            span.user-nav__notification 7
         .user-nav__user
           a.user-nav__link(href='/me')
             img.user-nav__user-photo(src=`/imagens/dev/usuarios/${usuario.fotografia}` alt='user photo')

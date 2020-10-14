@@ -18,6 +18,10 @@ router.get('/', (req, res) => {
    res.status(200).render('base');
 });
 
+/* --------------------------------------Routes for Chat----------------------------------------- */
+router.get('/chat', viewsController.mostrarChat);
+router.get('/chat/private', viewsController.mostrarPrivateChat);
+
 /* --------------------------------------Routes for Stores----------------------------------------- */
 router.get('/lojas', viewsController.mostrarLojas);
 

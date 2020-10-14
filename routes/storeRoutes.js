@@ -87,7 +87,7 @@ router.route('/:id/produtos').get(storeController.mostrarProdutos).post(
 );
 
 router
-   .route('/:id/produtos/:produtoId', 'administrador')
+   .route('/:id/produtos/:produtoId')
    .get(storeController.mostrarProduto)
    .patch(
       authController.storeOwnerProtect,

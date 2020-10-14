@@ -267,12 +267,14 @@ exports.updateOneProduct = Model =>
          runValidators: true
       });
 
-      console.log(req.params);
+      console.log(req.params.produtoId);
       console.log(produto);
 
       if (!produto) {
          return next(new AppError('Nenhum produto encontrado com este ID', 404));
       }
+
+      console.log(req.params);
 
       if (produto.store.id !== req.params.id) {
          return next(new AppError('Este produto nao pertence a sua loja', 404));

@@ -1,0 +1,122 @@
+.private__chat__container {
+   padding-top: 7rem;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   //height: auto;
+   width: 100vw;
+   background-color: salmon;
+}
+
+.messages {
+   height: 90vh;
+   width: 100vw;
+
+   &__list {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      width: 100%;
+      color: $color-primary-strong;
+      font-size: 22rem;
+      background-color: salmon;
+      margin-bottom: 4.5rem;
+      padding-right: 20rem;
+      padding-bottom: 1rem;
+      list-style-type: none;
+      margin-top: 1rem;
+
+      @media only screen and (max-width: $bp-seven) {
+         padding-right: 9rem;
+      }
+
+      &--info {
+         height: 3rem;
+         width: 30rem;
+         align-self: center;
+         background-color: $color-salmon-strong;
+         font-size: 1.5rem;
+         color: $color-white;
+         border-radius: 3px;
+         box-shadow: $shadow-2;
+
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      }
+
+      &--sent {
+         margin: 2rem;
+         //margin-right: 9rem;
+         padding: 1rem;
+         max-height: 100%;
+         max-width: 30rem;
+         align-self: end;
+         background-color: $color-white;
+         border-radius: 3px;
+         box-shadow: $shadow-2;
+      }
+
+      &--received {
+         margin: 2rem;
+         padding: 1rem;
+         max-height: 100%;
+         max-width: 30rem;
+         align-self: start;
+         color: $color-white;
+         background-color: $color-primary-dark;
+         border-radius: 3px;
+
+         box-shadow: $shadow-2;
+      }
+   }
+}
+
+.message__input {
+   display: flex;
+   flex-direction: row;
+   position: fixed;
+   bottom: 0;
+
+   height: 7vh;
+   width: 100vw;
+
+   justify-items: stretch;
+
+   &--box {
+      font-size: 2rem;
+      width: 80vw;
+   }
+
+   &__sendBtn {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 20vw;
+      background-color: $color-primary-strong;
+      color: $color-white;
+      border: none;
+      //   &--icon {
+      //      height: 3rem;
+      //      width: 3rem;
+      //   }
+
+      span {
+         font-size: 2rem;
+      }
+      svg {
+         height: 2rem;
+         width: 2rem;
+         margin-right: 1rem;
+         fill: $color-white;
+      }
+
+      &:hover {
+         background-color: $color-primary-dark;
+      }
+      &:active {
+         background-color: $color-primary-strong;
+      }
+   }
+}

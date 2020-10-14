@@ -9,6 +9,7 @@ html(lang='en')
             link(rel='stylesheet' href='/css/estilo.css')
             link(rel='stylesheet' href='/intl-tel-input-master/build/css/intlTelInput.css')
             script(src='/intl-tel-input-master/build/js/intlTelInput.js')
+            script(src='/socket.io/socket.io.js')
             link(rel='shortcut icon' href='/imagens/Lalitaa/favicons/favicon.ico' type='image/x-icon')
         if loja
             title #{loja.nome}
@@ -26,6 +27,7 @@ html(lang='en')
         //Footer
         //include _footer 
         script(src='/js/bundle.js')
+        script(src="/js/chatClient.js")
 
 
         //- script(src='/js/userLogin.js')
