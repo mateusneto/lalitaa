@@ -1,7 +1,7 @@
 /* eslint-disable */
 import axios from 'axios';
 
-import { showAlert } from './alerts';
+import { showAlert } from '../alerts';
 
 export const storeOwnerCreateproduct = async (storeId, nome, tipo, preco, tamanho, cor, marca, genero, descricao) => {
    try {
@@ -20,7 +20,13 @@ export const storeOwnerCreateproduct = async (storeId, nome, tipo, preco, tamanh
          }
       });
 
-      if ((res.data.status = 'success')) location.assign(`/loja/${storeId}/produtos`); //.reload(true); //forces reload from the server and not from the nrowser cache
+      if (res.data.status === 'success') {
+         console.log('sucesso');
+         showAlert('success', 'Loja criada com sucesso');
+         window.setTimeout(() => {
+            location.assign(`/loja/${storeId}/produtos`);
+         }, 0);
+      } //.reload(true); //forces reload from the server and not from the nrowser cache
    } catch (err) {
       console.log(err.response);
       showAlert(error, 'Error creating product! please try again');

@@ -19,7 +19,7 @@
       height: auto;
       width: 100%;
       color: $color-primary-strong;
-      font-size: 22rem;
+      font-size: 2rem;
       background-color: salmon;
       margin-bottom: 4.5rem;
       padding-right: 20rem;
@@ -32,8 +32,10 @@
       }
 
       &--info {
-         height: 3rem;
-         width: 30rem;
+         height: auto;
+         min-width: 5rem;
+         max-width: 80vh;
+         padding: 1rem;
          align-self: center;
          background-color: $color-salmon-strong;
          font-size: 1.5rem;
@@ -52,7 +54,7 @@
          padding: 1rem;
          max-height: 100%;
          max-width: 30rem;
-         align-self: end;
+         align-self: flex-end;
          background-color: $color-white;
          border-radius: 3px;
          box-shadow: $shadow-2;
@@ -63,7 +65,7 @@
          padding: 1rem;
          max-height: 100%;
          max-width: 30rem;
-         align-self: start;
+         align-self: flex-start;
          color: $color-white;
          background-color: $color-primary-dark;
          border-radius: 3px;

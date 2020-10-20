@@ -4,6 +4,9 @@ const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory');
 
+const Usuario_UsuarioMensagens = require('../models/mensagemUsuario_UsuarioModel');
+const Usuario_StoreMensagens = require('../models/mensagemUsuario_StoreModel');
+
 //Third-party modules
 const multer = require('multer');
 const sharp = require('sharp');
@@ -80,3 +83,74 @@ exports.criarUsuario = (req, res, next) => {
       message: 'This route is not Implemented, please use SignUp'
    });
 };
+
+/* *************************************** Mensagens **************************************** */
+
+/* ---------------- usuario_usuario --------------------- */
+exports.mostrarMensagensUsuario_Usuario = catchAsync(async (req, res, next) => {
+   //req.params.senderId
+   //req.params.receiverId
+
+   const mensagens = await Usuario_UsuarioMensagens.find;
+
+   res.status(200).json({
+      status: 'success',
+      mensagens
+   });
+});
+
+exports.criarMensagensUsuario_Usuario = catchAsync(async (req, res, next) => {
+   //req.body.mensagem
+   //req.body.usuario_sender
+   //req.body.usuario_receiver
+
+   const mensagem = await Usuario_UsuarioMensagens.create(req.body);
+
+   res.status(201).json({
+      status: 'success',
+      data: {
+         data: mensagem
+      }
+   });
+});
+
+exports.removerMensagensUsuario_Usuario = catchAsync(async (req, res, next) => {
+   //req.params.mensagemId
+
+   res.status(500).json({
+      status: 'error',
+      message: 'This route is not Implemented, please use SignUp'
+   });
+});
+
+/* ---------------- usuario_store --------------------- */
+
+exports.mostrarMensagensUsuario_Store = catchAsync(async (req, res, next) => {
+   //req.params.usuarioId
+   //req.params.lojaId
+
+   res.status(500).json({
+      status: 'error',
+      message: 'This route is not Implemented, please use SignUp'
+   });
+});
+
+exports.criarMensagensUsuario_Store = catchAsync(async (req, res, next) => {
+   //req.body.mensagem
+   //req.body.usuario
+   //req.body.store
+
+   res.status(500).json({
+      status: 'error',
+      message: 'This route is not Implemented, please use SignUp'
+   });
+});
+
+exports.removerMensagensUsuario_Store = catchAsync(async (req, res, next) => {
+   //req.params.mensagemId
+
+   res.status(500).json({
+      status: 'error',
+      message: 'This route is not Implemented, please use SignUp'
+   });
+});

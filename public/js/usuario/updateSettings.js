@@ -1,13 +1,14 @@
 /* eslint-disable */
 
 import axios from 'axios';
-import { showAlert } from './alerts';
+import { showAlert } from '../alerts';
 
 //'type' is either 'password' or 'dados'
 
-export const storeOwnerUpdateSettings = async (data, type) => {
+export const updateSettings = async (data, type) => {
    try {
-      const url = type === 'password' ? '/api/v1/donosdeloja/updatePassword' : '/api/v1/donosdeloja/updateMe';
+      const url = type === 'password' ? '/api/v1/usuarios/updatePassword' : '/api/v1/usuarios/updateMe';
+
       const res = await axios({
          method: 'PATCH',
          url,

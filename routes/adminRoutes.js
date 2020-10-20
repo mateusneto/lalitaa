@@ -4,6 +4,7 @@ const storeOwnerController = require('../controllers/storeOwnerController');
 const storeController = require('./../controllers/storeController');
 const produtoController = require('../controllers/produtoController');
 const authController = require('./../controllers/authController');
+const mensagensController = require('../controllers/mensagensController');
 //const reviewRouter = require('./reviewsRoutes');
 //const reviewController = require('./../controllers/reviewController');
 
@@ -61,6 +62,26 @@ router
 
 /*
 
+/*************************************************** MENSAGENS *********************************************/
+
+/* ---------------- Routes for usuario-usuario mensagens -------------------- */
+router.get('/mensagens/usuario_usuario/:usuario1Id/:usuario2Id', mensagensController.mostrarMensagensUsuario_Usuario);
+router.post('/mensagens/usuario_usuario', mensagensController.criarMensagensUsuario_Usuario);
+router.delete('/mensagens/usuario_usuario/:mensagemId', mensagensController.removerMensagensUsuario_Usuario);
+
+/* ---------------- Routes for usuario-store mensagens -------------------- */
+router.get('/mensagens/usuario_store/:usuarioId/:storeId', mensagensController.mostrarMensagensUsuario_Store);
+router.post('/mensagens/usuario_store', mensagensController.criarMensagensUsuario_Store);
+router.delete('/mensagens/usuario_store/:mensagemId', mensagensController.removerMensagensUsuario_Store);
+
+/* ---------------- Routes for store-store mensagens -------------------- */
+router.get('/mensagens/store_store/:store1Id/:store2Id', mensagensController.mostrarMensagensStore_Store);
+router.post('/mensagens/store_store', mensagensController.criarMensagensStore_Store);
+router.delete('/mensagens/store_store/:mensagemId', mensagensController.removerMensagensStore_Store);
+
+/*************************************************** ------------ *********************************************/
+
+/*
 router.route('/:id/produtos').get(storeController.mostrarProdutos).post(
    authController.storeOwnerProtect,
    //res.locals.storeOwner = owner

@@ -18,9 +18,12 @@ router.get('/', (req, res) => {
    res.status(200).render('base');
 });
 
-/* --------------------------------------Routes for Chat----------------------------------------- */
+/* --------------------------------------Routes for User Chat----------------------------------------- */
 router.get('/chat', viewsController.mostrarChat);
 router.get('/chat/private', viewsController.mostrarPrivateChat);
+
+/* --------------------------------------Routes for StoreOwner Chat----------------------------------------- */
+router.get('/donoloja/chat', viewsController.mostrarDonolojaChat);
 
 /* --------------------------------------Routes for Stores----------------------------------------- */
 router.get('/lojas', viewsController.mostrarLojas);

@@ -125,6 +125,19 @@ exports.mostrarPrivateChat = catchAsync(async (req, res, next) => {
    res.status(200).render('privateChat', {});
 });
 
+exports.mostrarDonolojaChat = catchAsync(async (req, res, next) => {
+   const lojas = await Loja.find({ storeOwner: { $in: res.locals.storeOwner.id } });
+
+   const numLojas = lojas.length;
+
+   res.status(200).render('donoLojaChat', {
+      title: 'Chat',
+      url: req.originalUrl,
+      lojas,
+      numLojas
+   });
+});
+
 exports.mostrarLojas = catchAsync(async (req, res, next) => {
    const lojas = await Loja.find();
    shuffle(lojas);

@@ -27,7 +27,6 @@ mongoose
 
 //My own modules
 const app = require('./app');
-const socketio = require('socket.io');
 //console.log(process.env);
 
 const port = process.env.PORT || 3000;
@@ -54,5 +53,4 @@ process.on('SIGTERM', () => {
    });
 });
 
-const io = socketio(server);
-module.exports = io;
+module.exports = server;

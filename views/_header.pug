@@ -25,7 +25,7 @@ header.header
             img.user-nav__user-photo(src=`/imagens/dev/usuarios/${usuario.fotografia}` alt='user photo')
             span.user-nav__user-name= usuario.nome.split(' ')[0]
       if storeOwner
-        .user-nav__icon-box
+        a.user-nav__icon-box(href='/donoloja/chat')
           svg.user-nav__icon
             use(xlink:href='/imagens/dev/sprite.svg#icon-message-square')
           span.user-nav__notification 7

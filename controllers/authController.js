@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 
 //My own Modules
 const Usuario = require('../models/usuarioModel');
+const StoreOwner = require('../models/storeOwnerModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const Email = require('./../utils/email');
@@ -139,6 +140,55 @@ exports.protect = catchAsync(async (req, res, next) => {
    next();
 });
 
+exports.mensagensProtect = catchAsync(async (req, res, next) => {
+   // Get token and check if it exists
+   let token;
+   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+      token = req.headers.authorization.split(' ')[1];
+   } else if (req.cookies.jwt) {
+      token = req.cookies.jwt;
+   }
+
+   if (!token) {
+      return next(new AppError('You are not logged in, please log in to get access', 401));
+   }
+
+   // Verify token
+   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+   // Check if user still exists
+   const currentUser = await Usuario.findById(decoded.id);
+   const currentOwner = await StoreOwner.findById(decoded.id);
+
+   if (currentOwner && currentUser) {
+      return next(new AppError('IDs cannot be equal', 401));
+   }
+
+   if (!currentUser && !currentOwner) {
+      return next(new AppError('Token User no longer exists', 401));
+   }
+
+   if (currentUser && !currentOwner) {
+      if (currentUser.changedPasswordAfter(decoded.iat)) {
+         return next(new AppError('Password was chenged recently, Please log in again', 401));
+      }
+
+      req.usuario = currentUser;
+      res.locals.usuario = currentUser;
+      next();
+   }
+
+   if (!currentUser && currentOwner) {
+      if (currentOwner.changedPasswordAfter(decoded.iat)) {
+         return next(new AppError('Password was chenged recently, Please log in again', 401));
+      }
+
+      req.storeOwner = currentOwner;
+      res.locals.storeOwner = currentOwner;
+      next();
+   }
+});
+
 //Only for rendered pages, will produce no errors
 exports.isLoggedIn = async (req, res, next) => {
    // Get token and check if it exists
@@ -175,6 +225,25 @@ exports.restrictTo = (...roles) => {
          return next(new AppError('You do not have permission for this action', 403));
       }
       next();
+   };
+};
+
+exports.mensagensRestrictTo = (...roles) => {
+   //Function to restrict 'delete' Route to administrador e moderador
+   return (req, res, next) => {
+      if (req.usuario && !req.storeOwner) {
+         if (!roles.includes(req.usuario.role)) {
+            return next(new AppError('You do not have permission for this action', 403));
+         }
+         next();
+      }
+
+      if (req.storeOwner && !req.usuario) {
+         if (!roles.includes(req.storeOwner.role)) {
+            return next(new AppError('You do not have permission for this action', 403));
+         }
+         next();
+      }
    };
 };
 

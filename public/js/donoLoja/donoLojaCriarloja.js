@@ -1,7 +1,7 @@
 /* eslint-disable */
 import axios from 'axios';
 
-import { showAlert } from './alerts';
+import { showAlert } from '../alerts';
 
 export const storeOwnerCreatestore = async (nome, nomeLoja, numeroTelemovel) => {
    try {

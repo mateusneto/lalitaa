@@ -1,13 +1,13 @@
 /* eslint-disable */
 import axios from 'axios';
 
-import { showAlert } from './alerts';
+import { showAlert } from '../alerts';
 
-export const storeOwnerLogin = async (userData, password) => {
+export const login = async (userData, password) => {
    try {
       const res = await axios({
          method: 'POST',
-         url: 'http://127.0.0.1:3000/api/v1/donosdeloja/login', //'/api/v1/entrar' ----> change on production
+         url: 'http://127.0.0.1:3000/api/v1/usuarios/login', //'/api/v1/entrar' ----> change on production
          data: {
             userData,
             password
@@ -25,14 +25,14 @@ export const storeOwnerLogin = async (userData, password) => {
    }
 };
 
-export const storeOwnerLogOut = async () => {
+export const logOut = async () => {
    try {
       const res = await axios({
          method: 'GET',
-         url: 'http://127.0.0.1:3000/api/v1/donosdeloja/logout' //'/api/v1/sair' ----> change on production
+         url: 'http://127.0.0.1:3000/api/v1/usuarios/logout' //'/api/v1/sair' ----> change on production
       });
 
-      if ((res.data.status = 'success')) location.assign('/donolojaentrar'); //.reload(true); //forces reload from the server and not from the nrowser cache
+      if ((res.data.status = 'success')) location.assign('/lojas'); //.reload(true); //forces reload from the server and not from the nrowser cache
    } catch (err) {
       console.log(err.response);
       showAlert(error, 'Error logging out! please try again');

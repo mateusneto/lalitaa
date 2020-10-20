@@ -1,7 +1,7 @@
 /* eslint-disable */
 import axios from 'axios';
 
-import { showAlert } from './alerts';
+import { showAlert } from '../alerts';
 
 export const removerProdutoReview = async reviewId => {
    try {

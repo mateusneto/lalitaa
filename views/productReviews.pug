@@ -9,7 +9,7 @@ block content
                         figcaption.review__user
                             img.review__photo(src=`/imagens/dev/usuarios/${review.usuario.fotografia}` alt='')
                             .review__user-box
-                            p.review__user-name= review.usuario.nome.split(' ')[0]
-                            p.review__user-date= review.createdAt
+                                p.review__user-name= review.usuario.nome
+                                p.review__user-date= review.createdAt.toLocaleDateString()
                             .review__rating= review.rating
                         blockquote.review__text= review.review

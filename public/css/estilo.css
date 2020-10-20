@@ -72,7 +72,7 @@ body {
   font-weight: 400;
   line-height: 1.6;
   color: var(--grey-color);
-  background-color: var(--color-white);
+  background-color: var(--color-main-back);
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh; }
@@ -2157,7 +2157,7 @@ a {
     height: auto;
     width: 100%;
     color: #9e747e;
-    font-size: 22rem;
+    font-size: 2rem;
     background-color: salmon;
     margin-bottom: 4.5rem;
     padding-right: 20rem;
@@ -2168,8 +2168,10 @@ a {
       .messages__list {
         padding-right: 9rem; } }
     .messages__list--info {
-      height: 3rem;
-      width: 30rem;
+      height: auto;
+      min-width: 5rem;
+      max-width: 80vh;
+      padding: 1rem;
       align-self: center;
       background-color: #da5d4f;
       font-size: 1.5rem;
@@ -2184,7 +2186,7 @@ a {
       padding: 1rem;
       max-height: 100%;
       max-width: 30rem;
-      align-self: end;
+      align-self: flex-end;
       background-color: white;
       border-radius: 3px;
       box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
@@ -2193,7 +2195,7 @@ a {
       padding: 1rem;
       max-height: 100%;
       max-width: 30rem;
-      align-self: start;
+      align-self: flex-start;
       color: white;
       background-color: #d6a5ae;
       border-radius: 3px;

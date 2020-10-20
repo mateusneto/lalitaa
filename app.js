@@ -14,6 +14,7 @@ const produtoRouter = require('./routes/produtoRoutes');
 const storeReviewsRouter = require('./routes/storeReviewRoutes');
 const produtoReviewsRouter = require('./routes/produtoReviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
+const mensagensRouter = require('./routes/mensagensRoutes');
 
 //Third Party Modules
 const express = require('express');
@@ -114,6 +115,7 @@ app.use('/api/v1/produtos', produtoRouter); //Route for admin dealing with produ
 app.use('/api/v1/storereviews', storeReviewsRouter); //Route for store reviews
 app.use('/api/v1/produtoreviews', produtoReviewsRouter); //Route for product reviews
 app.use('/api/v1/bookings', bookingRouter); //Route for bookings
+app.use('/api/v1/mensagens', mensagensRouter);
 
 app.all('*', (req, res, next) => {
    next(new AppError(`can't find ${req.originalUrl} on this server`, 404));

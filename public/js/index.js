@@ -3,26 +3,26 @@
 /*---------------------------Usuario------------------------------*/
 import '@babel/polyfill';
 //import { displayMap } from './mapbox';
-import { login, logOut } from './userLogin';
-import { signup } from './userSignup';
-import { updateSettings } from './updateSettings';
-import { avaliarLoja } from './avaliarLoja';
-import { editarStoreReview } from './editarStoreReview';
-import { removerStoreReview } from './removerStoreReview';
-import { avaliarProduto } from './avaliarProduto';
-import { editarProdutoReview } from './editarProdutoReview';
-import { removerProdutoReview } from './removerProdutoReview';
+import { login, logOut } from './usuario/userLogin';
+import { signup } from './usuario/userSignup';
+import { updateSettings } from './usuario/updateSettings';
+import { avaliarLoja } from './usuario/avaliarLoja';
+import { editarStoreReview } from './usuario/editarStoreReview';
+import { removerStoreReview } from './usuario/removerStoreReview';
+import { avaliarProduto } from './usuario/avaliarProduto';
+import { editarProdutoReview } from './usuario/editarProdutoReview';
+import { removerProdutoReview } from './usuario/removerProdutoReview';
 
 /*----------------------------Store Owners--------------------------*/
-import { storeOwnerLogin, storeOwnerLogOut } from './donoLojaLogin';
-import { storeOwnerSignup } from './donoLojaSignup';
-import { storeOwnerUpdateSettings } from './donoLojaUpdateSettings';
-import { storeOwnerCreatestore } from './donoLojaCriarloja';
-import { storeOwnerUpdatestore } from './donoLojaUpdatestore';
-import { storeOwnerRemovestore } from './donoLojaRemoverloja';
-import { storeOwnerCreateproduct } from './donoLojaCriarproduto';
-import { storeOwnerUpdateproduct } from './donoLojaUpdateproduct';
-import { storeOwnerRemoveproduct } from './donoLojaRemoverproduto';
+import { storeOwnerLogin, storeOwnerLogOut } from './donoLoja/donoLojaLogin';
+import { storeOwnerSignup } from './donoLoja/donoLojaSignup';
+import { storeOwnerUpdateSettings } from './donoLoja/donoLojaUpdateSettings';
+import { storeOwnerCreatestore } from './donoLoja/donoLojaCriarloja';
+import { storeOwnerUpdatestore } from './donoLoja/donoLojaUpdatestore';
+import { storeOwnerRemovestore } from './donoLoja/donoLojaRemoverloja';
+import { storeOwnerCreateproduct } from './donoLoja/donoLojaCriarproduto';
+import { storeOwnerUpdateproduct } from './donoLoja/donoLojaUpdateproduct';
+import { storeOwnerRemoveproduct } from './donoLoja/donoLojaRemoverproduto';
 //import { comprarServico } from './stripe';
 import { showAlert } from './alerts';
 
