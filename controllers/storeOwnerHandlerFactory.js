@@ -27,6 +27,7 @@ exports.verifyOwner = Model =>
          return next(new AppError('Esta loja não lhe pertence', 404));
       }
 
+      req.loja = loja;
       next();
    });
 
@@ -138,14 +139,16 @@ exports.getOne = (Model, popOptions) =>
 
 exports.updateOne = Model =>
    catchAsync(async (req, res, next) => {
-      const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
-         new: true,
-         runValidators: true
-      });
+      const doc = await Model.findById(req.params.id);
 
       if (!doc) {
          return next(new AppError('Nenhum documento encontrado com este ID', 404));
       }
+
+      await Model.findByIdAndUpdate(req.params.id, req.body, {
+         new: true,
+         runValidators: true
+      });
 
       res.status(200).json({
          status: 'success',
@@ -207,6 +210,34 @@ exports.deleteMe = Model =>
       });
    });
 
+exports.updateStore = Model =>
+   catchAsync(async (req, res, next) => {
+      //Create error if user tries to update the password
+      if (req.body.password || req.body.passwordConfimacao) {
+         return next(new AppError('This route is not for password updates, please use *updatePassword*', 400));
+      }
+
+      //Filtering out unwanted fields that are not allowed to be updated
+      const filteredBody = filterObj(req.body, 'nome', 'nomeLoja', 'numeroTelemovel'); //can only update 'nome','nomeUsuario','email'
+      if (req.file) filteredBody.imagemDeCapa = req.file.filename;
+      //Update user document
+      const doc = await Model.findByIdAndUpdate(
+         req.loja._id, //changed from '_id' to 'id'
+         filteredBody,
+         {
+            new: true,
+            runValidators: true
+         }
+      );
+
+      res.status(200).json({
+         status: 'success',
+         data: {
+            loja: doc
+         }
+      });
+   });
+
 /* --------------------Produtos------------------------ */
 
 exports.getAllProducts = Model =>
@@ -262,21 +293,17 @@ exports.getOneProduct = (Model, popOptions) =>
 
 exports.updateOneProduct = Model =>
    catchAsync(async (req, res, next) => {
-      const produto = await Model.findByIdAndUpdate(req.params.produtoId, req.body, {
-         new: true,
-         runValidators: true
-      });
+      const produto = await Model.findById(req.params.produtoId);
 
-      console.log(req.params.produtoId);
-      console.log(produto);
+      console.log(produto.id);
+      console.log(produto.nome);
+      console.log(produto.id);
 
       if (!produto) {
          return next(new AppError('Nenhum produto encontrado com este ID', 404));
       }
 
-      console.log(req.params);
-
-      if (produto.store.id !== req.params.id) {
+      if (produto.store.id !== req.loja.id) {
          return next(new AppError('Este produto nao pertence a sua loja', 404));
       }
 
@@ -288,17 +315,44 @@ exports.updateOneProduct = Model =>
          return next(new AppError('Este produto nao pertence a sua loja', 404));
       }*/
 
+      if (req.body.password || req.body.passwordConfimacao) {
+         return next(new AppError('This route is not for password updates, please use *updatePassword*', 400));
+      }
+
+      //Filtering out unwanted fields that are not allowed to be updated
+      const filteredBody = filterObj(
+         req.body,
+         'nome',
+         'tipo',
+         'preco',
+         'tamanho',
+         'cor',
+         'marca',
+         'genero',
+         'descricao'
+      ); //can only update 'nome','nomeUsuario','email'
+      if (req.file) filteredBody.imagemDeCapa = req.file.filename;
+      //Update user document
+      const doc = await Model.findByIdAndUpdate(
+         produto._id, //changed from '_id' to 'id'
+         filteredBody,
+         {
+            new: true,
+            runValidators: true
+         }
+      );
+
       res.status(200).json({
          status: 'success',
          data: {
-            produto
+            produto: doc
          }
       });
    });
 
 exports.deleteProduct = Model =>
    catchAsync(async (req, res, next) => {
-      const produto = await Model.findByIdAndDelete(req.params.produtoId);
+      const produto = await Model.findById(req.params.produtoId);
 
       if (!produto) {
          return next(new AppError('No produto with this id', 404));
@@ -311,6 +365,8 @@ exports.deleteProduct = Model =>
       if (produto.store.storeOwner.id !== res.locals.storeOwner.id) {
          return next(new AppError('Este produto nao existe nesta loja', 404));
       }
+
+      await Model.findByIdAndDelete(req.params.produtoId);
 
       res.status(200).json({
          status: 'success',

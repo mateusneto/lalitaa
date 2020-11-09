@@ -16,8 +16,9 @@
           svg.side-nav__icon
             use(xlink:href='/imagens/dev/sprite.svg#icon-tag')
           span Categorias
-      img.side-nav__store__img(src='/imagens/dev/usuarios/mateus.jpg' alt='')
-      button.side-nav__chat--apagar
-          svg.side-nav__icon
-              use(xlink:href='/imagens/dev/sprite.svg#icon-trash-2')
-          span Apagar Conversa
+    a.img__link(href=`/loja/${loja.id}/produtos`)
+      img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+    button.side-nav__chat--apagar
+      svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-trash-2')
+      span Apagar Conversa

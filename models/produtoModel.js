@@ -95,8 +95,9 @@ const produtoSchema = new mongoose.Schema(
          //required: [true, 'Servico deve ter um resumo'],
       },
       imagemDeCapa: {
-         type: String
+         type: String,
          //required: [true, 'Imagem em falta'],
+         default: 'productDefault.jpeg'
       },
       imagens: [String],
       criadoEm: {
@@ -132,12 +133,7 @@ produtoSchema.index({ store: 1 }); //Not allowing a product to have more than 1 
 //Document Middleware: runs before the .save() and .create() *------* does not work for .insertMany()*------*
 produtoSchema.pre('save', function (next) {
    this.slug = slugify(this.nome, { lower: true });
-   next();
-});
-
-produtoSchema.pre('save', function (next) {
-   this.produtoReferencia = slugify(`${this.nome}-${this.store.id}-${Date.now()}`, { lower: true });
-   this.imagemDeCapa = `${this.produtoReferencia}.jpg`;
+   this.produtoReferencia = slugify(`${this.nome}-${this.store.id}}`, { lower: true });
    next();
 });
 

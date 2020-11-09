@@ -5,11 +5,12 @@ block content
     .storeOwnerDashboard__container
         section.storeOwnerDashboard
             .storeOwnerDashboard__item
-                form.form.item__form
-                    img.form__storeOwnerimg(src=`/imagens/dev/usuarios/${storeOwner.fotografia}` alt='')
+                form.form.donoLoja__photo
+                    img.form__storeOwnerimg(src=`/imagens/dev/donoLoja/${storeOwner.fotografia}` alt='')
                     input#photo.btn.form__upload(type='file' accept='image/*' name='photoo')
                     label(for='photo') Alterar foto
-                    button.btn.form__update Actualizar
+                    .form__group
+                        button.btn.form__update Actualizar
             .storeOwnerDashboard__item
                 form.form.form--donoLojadetails(action='#')
                     .form__group

@@ -25,6 +25,9 @@ mongoose
    })
    .then(() => console.log('Database connection successful'));
 
+//Local Database Connection
+//mongoose.connect(DB_LOCAL, () => console.log('Database connection successful'));
+
 //My own modules
 const app = require('./app');
 //console.log(process.env);

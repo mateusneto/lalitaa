@@ -17,7 +17,7 @@ block content
                     .form__group
                         label.form__label(for='numeroTelemovelLoja') Numero de telemovel
                         input#numeroTelemovelLoja.form__input(type='text' name='' value=`${loja.numeroTelemovel}` placeholder='' )
-                    img.form__userimg(src='imagens/dev/lojas/storebasicimg.png' alt='')
+                    img.form__userimg(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
                     input#photo.btn.form__upload(type='file' accept='image/*' name='photoo')
                     label(for='photo') Adicionar foto
                     .form__group

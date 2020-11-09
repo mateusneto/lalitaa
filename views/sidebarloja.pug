@@ -16,59 +16,59 @@
           svg.side-nav__icon
             use(xlink:href='/imagens/dev/sprite.svg#icon-tag')
           span Categorias
-      if loja && !usuario && !storeOwner
-        a.img__link(href=`/loja/${loja.id}/produtos`)
-          img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
-        a.side-nav__storeReviewsbtn(href=`/loja/${loja.id}/avaliacoes`)
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite.svg#icon-thumbs-up')
-          span Avaliações
-        button.side-nav__sharebtn
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite2.svg#icon-share')
-          span PARTILHAR
-        button.side-nav__chatbtn
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite2.svg#icon-message')
-          span CHAT
-        button.side-nav__callbtn
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite.svg#icon-phone')
-          span= `${loja.numeroTelemovel}` 
-      else if loja && usuario && !storeOwner
-        a.img__link(href=`/loja/${loja.id}/produtos`)
-          img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
-        a.side-nav__storeReviewsbtn(href=`/loja/${loja.id}/avaliacoes`)
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite.svg#icon-thumbs-up')
-          span Avaliações
-        button.side-nav__sharebtn
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite2.svg#icon-share')
-          span PARTILHAR
-        button.side-nav__chatbtn
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite2.svg#icon-message')
-          span CHAT
-        button.side-nav__callbtn
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite.svg#icon-phone')
-          span= `${loja.numeroTelemovel}`
-      else if loja && !usuario && (storeOwner.id !== loja.storeOwner.id)
-        a.img__link(href=`/loja/${loja.id}/produtos`)
-          img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
-      else if loja && !usuario && (storeOwner.id === loja.storeOwner.id)
-        a.img__link(href=`/loja/${loja.id}/produtos`)
-          img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
-        a.side-nav__adicionarProduto(href='/criarproduto')
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite.svg#icon-plus')
-          span Adicionar produto
-        a.side-nav__editarLoja(href='/editarloja')
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite.svg#icon-tool')
-          span Editar detalhes
-        button.side-nav__storeremovebtn
-          svg.side-nav__icon
-            use(xlink:href='/imagens/dev/sprite.svg#icon-trash-2')
-          span Remover loja 
+    if loja && !usuario && !storeOwner
+      a.img__link(href=`/loja/${loja.id}/produtos`)
+        img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+      a.side-nav__storeReviewsbtn(href=`/loja/${loja.id}/avaliacoes`)
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-thumbs-up')
+        span Avaliações
+      button.side-nav__sharebtn
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite2.svg#icon-share')
+        span PARTILHAR
+      button.side-nav__chatbtn
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite2.svg#icon-message')
+        span CHAT
+      button.side-nav__callbtn(onclick=`window.location.href='tel:${loja.numeroTelemovel}'`)
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-phone')
+        span= `${loja.numeroTelemovel}` 
+    else if loja && usuario && !storeOwner
+      a.img__link(href=`/loja/${loja.id}/produtos`)
+        img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+      a.side-nav__storeReviewsbtn(href=`/loja/${loja.id}/avaliacoes`)
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-thumbs-up')
+        span Avaliações
+      button.side-nav__sharebtn
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite2.svg#icon-share')
+        span PARTILHAR
+      a.side-nav__chatbtn(href=`/chat/private/${usuario.nomeUsuario}/${loja.nomeLoja}` lojaid=`${loja.id}` nomeloja=`${loja.nomeLoja}`  usuarioid=`${usuario.id}` nomeusuario=`${usuario.nomeUsuario}`)
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite2.svg#icon-message')
+        span CHAT
+      button.side-nav__callbtn(onclick=`window.location.href='tel:${loja.numeroTelemovel}'`)
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-phone')
+        span= `${loja.numeroTelemovel}`
+    else if loja && !usuario && (storeOwner.id !== loja.storeOwner.id)
+      a.img__link(href=`/loja/${loja.id}/produtos`)
+        img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+    else if loja && !usuario && (storeOwner.id === loja.storeOwner.id)
+      a.img__link(href=`/loja/${loja.id}/produtos`)
+        img.side-nav__store__img(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
+      a.side-nav__adicionarProduto(href='/criarproduto')
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-plus')
+        span Adicionar produto
+      a.side-nav__editarLoja(href=`/editarloja/${loja.id}`)
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-tool')
+        span Editar detalhes
+      button.side-nav__storeremovebtn
+        svg.side-nav__icon
+          use(xlink:href='/imagens/dev/sprite.svg#icon-trash-2')
+        span Remover loja 

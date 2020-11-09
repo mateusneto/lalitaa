@@ -61,9 +61,9 @@ router
    .patch(
       authController.storeOwnerProtect,
       authController.restrictTo('donoLoja', 'administrador'),
-      storeController.uploadStoreImages,
-      storeController.resizeStoreImages,
       storeController.verifyOwner,
+      storeController.uploadStoreImage,
+      storeController.resizeStoreImage,
       storeController.actualizarStore
    )
    .delete(
@@ -87,7 +87,7 @@ router.route('/:id/produtos').get(storeController.mostrarProdutos).post(
 );
 
 router
-   .route('/:id/produtos/:produtoId')
+   .route('/:id/produto/:produtoId')
    .get(storeController.mostrarProduto)
    .patch(
       authController.storeOwnerProtect,
@@ -98,6 +98,8 @@ router
       storeController.setStoreId,
       storeController.verifyStore,
       storeController.verifyStoreProduct,
+      storeController.uploadProductImage,
+      storeController.resizeProductImage,
       storeController.actualizarProduto
    )
    .delete(

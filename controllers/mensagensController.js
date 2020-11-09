@@ -13,7 +13,7 @@ const Store_StoreMensagens = require('../models/mensagemStore_StoreModel');
 
 exports.verifySender = catchAsync(async (req, res, next) => {
    if (req.usuario) {
-      if (req.usuario.id !== req.body.usuario) {
+      if (req.usuario.id !== req.body.usuario || req.usuario.id !== req.body.sender) {
          return next(new AppError('Não podes enviar mensages como outro usuario', 401));
       }
       next();
@@ -21,7 +21,7 @@ exports.verifySender = catchAsync(async (req, res, next) => {
 
    if (req.storeOwner) {
       const store = await Store.findById(req.body.store);
-      if (store.storeOwner.id !== req.storeOwner.id) {
+      if (store.storeOwner.id !== req.storeOwner.id || store.id !== req.body.sender || store.id !== req.body.store) {
          return next(new AppError('Não podes enviar mensages como outra loja', 401));
       }
       next();
@@ -119,8 +119,8 @@ exports.mostrarMensagensUsuario_Store = catchAsync(async (req, res, next) => {
    }
 
    if (req.usuario && mensagem) {
-      console.log(req.usuario.id);
-      console.log(mensagem.usuario.id);
+      //console.log(req.usuario.id);
+      //console.log(mensagem.usuario.id);
       if (req.usuario.id === mensagem.usuario.id) {
          res.status(200).json({
             status: 'success',
@@ -146,6 +146,8 @@ exports.criarMensagensUsuario_Store = catchAsync(async (req, res, next) => {
    //req.body.mensagem
    //req.body.usuario
    //req.body.store
+   //req.body.sender
+   //req.body.receiver
 
    const mensagem = await Usuario_StoreMensagens.create(req.body);
 
@@ -208,8 +210,8 @@ exports.mostrarMensagensStore_Store = catchAsync(async (req, res, next) => {
       });
    }
 
-   console.log(req.storeOwner.id);
-   console.log(mensagem.store_receiver.storeOwner.id);
+   //console.log(req.storeOwner.id);
+   //console.log(mensagem.store_receiver.storeOwner.id);
    if (
       req.storeOwner.id !== mensagem.store_sender.storeOwner.id &&
       req.storeOwner.id !== mensagem.store_receiver.storeOwner.id
@@ -229,7 +231,7 @@ exports.criarMensagensStore_Store = catchAsync(async (req, res, next) => {
    //req.body.usuario_receiver
 
    const store = await Store.findById(req.body.store_sender);
-   console.log(store);
+   //console.log(store);
 
    if (req.storeOwner.id !== store.storeOwner.id) {
       return next(new AppError('Não podes enviar mensages por uma loja que não lhe pertence', 401));
@@ -254,8 +256,8 @@ exports.removerMensagensStore_Store = catchAsync(async (req, res, next) => {
       return next(new AppError('No documents with this id', 404));
    }
 
-   console.log(req.storeOwner.id);
-   console.log(mensagem.store_sender.storeOwner.id);
+   //console.log(req.storeOwner.id);
+   //console.log(mensagem.store_sender.storeOwner.id);
 
    if (req.storeOwner.id !== mensagem.store_sender.storeOwner.id) {
       return next(new AppError('Não podes remover uma mensagem que nao enviastes', 403));

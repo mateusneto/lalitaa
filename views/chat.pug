@@ -2,24 +2,9 @@ extends base
 block content
     include _sidebar
     .chat__container
-        a.chat__container__link(href='/chat/private')
-            .chat__contact
-                img.chat__contact__photo.chat__contact__photo--online(src='./imagens/dev/usuarios/mateus.jpg' alt='')
-                span.chat__contact--name Mateus Neto
-        a.chat__container__link(href='/chat/private')
-            .chat__contact
-                img.chat__contact__photo.chat__contact__photo--offline(src='./imagens/dev/usuarios/Raquel.jpg' alt='')
-                span.chat__contact--name Raquel Neto
-        a.chat__container__link(href='/chat/private')
-            .chat__contact
-                img.chat__contact__photo.chat__contact__photo--online(src='./imagens/dev/usuarios/mariarosa1.jpeg' alt='')
-                span.chat__contact--name Maria Rosa
-        a.chat__container__link(href='/chat/private')
-            .chat__contact
-                img.chat__contact__photo.chat__contact__photo--online(src='./imagens/dev/lojas/boutiqueragazza.jpg' alt='')
-                span.chat__contact--name Boutique Ragazza
-        a.chat__container__link(href='/chat/private')
-            .chat__contact
-                img.chat__contact__photo.chat__contact__photo--online(src='./imagens/dev/usuarios/kayra.jpg' alt='')
-                span.chat__contact--name Kayra Rafaela
+        each mensagem in mensagens
+            a.chat__container__link(href=`/chat/private/${mensagem.usuario.nomeUsuario}/${mensagem.store.nomeLoja}` lojaid=`${mensagem.store.id}` usuarioid=`${mensagem.usuario.id}`)
+                .chat__contact
+                    img.chat__contact__photo.chat__contact__photo--online(src=`./imagens/dev/lojas/${mensagem.store.imagemDeCapa}` alt='')
+                    span.chat__contact--name= mensagem.store.nome
         .chat__group

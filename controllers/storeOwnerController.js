@@ -42,13 +42,13 @@ exports.uploadUserPhoto = upload.single('fotografia');
 exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
    if (!req.file) return next();
 
-   req.file.filename = `usuario-${req.storeOwner.id}-${Date.now()}.jpeg`;
+   req.file.filename = `usuario-${req.storeOwner.id}.jpeg`;
 
    await sharp(req.file.buffer)
       .resize(500, 500)
       .toFormat('jpeg')
       .jpeg({ quality: 90 })
-      .toFile(`public/imagens/usuarios/${req.file.filename}`);
+      .toFile(`public/imagens/dev/donoLoja/${req.file.filename}`);
 
    next();
 });

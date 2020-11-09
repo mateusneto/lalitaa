@@ -40,8 +40,8 @@ router
    .get(storeController.mostrarStore)
    .patch(
       authController.restrictTo('administrador'),
-      storeController.uploadStoreImages,
-      storeController.resizeStoreImages,
+      storeController.uploadStoreImage,
+      storeController.resizeStoreImage,
       storeController.actualizarStore
    )
    .delete(storeController.removerStore);

@@ -36,23 +36,44 @@ exports.checkStoreNumber = catchAsync(async (req, res, next) => {
    next();
 });
 
-exports.uploadStoreImages = upload.fields([{ name: 'imagemDeCapa', maxCount: 1 }]);
+exports.uploadStoreImage = upload.single('imagemDeCapa');
+exports.uploadProductImage = upload.single('imagemDeCapa');
 
 // upload.single('imagem') => req.file
 // upload.array('imagens',5) => req.files
 
-exports.resizeStoreImages = catchAsync(async (req, res, next) => {
-   //if (!req.files.imagemDeCapa || !req.files.imagens) return next(); //-->> for production
-   if (!req.body.imagemDeCapa) return next(); //for development
+exports.resizeStoreImage = catchAsync(async (req, res, next) => {
+   if (!req.file) return next(); //-->> for production
+   //if (!req.body.imagemDeCapa) return next(); //for development
 
    //Process imagem de capa
-   req.body.imagemDeCapa = `store-${req.params.id}-${Date.now()}-cover.jpeg`;
+   //req.body.imagemDeCapa = `store-${req.params.id}-cover.jpeg`;
+   req.file.filename = `store-${req.loja.id}.jpeg`;
 
-   await sharp(req.files.imagemDeCapa[0].buffer)
-      .resize(2000, 1333)
+   await sharp(req.file.buffer)
+      .resize(1024, 1024)
       .toFormat('jpeg')
       .jpeg({ quality: 90 })
-      .toFile(`public/imagens/lojas/${req.body.imagemDeCapa}`);
+      .toFile(`public/imagens/dev/lojas/${req.file.filename}`);
+   next();
+});
+
+exports.resizeProductImage = catchAsync(async (req, res, next) => {
+   console.log('procurando produto foto');
+   console.log(req.file);
+   if (!req.file) return next(); //-->> for production
+   //if (!req.body.imagemDeCapa) return next(); //for development
+
+   //Process imagem de capa
+   //req.body.imagemDeCapa = `store-${req.params.id}-cover.jpeg`;
+   req.file.filename = `produto-${req.params.produtoId}-loja${req.params.id}.jpeg`;
+   console.log('actualizando produto foto');
+
+   await sharp(req.file.buffer)
+      .resize(800, 1066)
+      .toFormat('jpeg')
+      .jpeg({ quality: 90 })
+      .toFile(`public/imagens/dev/produtos/${req.file.filename}`);
    next();
 });
 
@@ -79,7 +100,7 @@ exports.mostrarStore = factory.getOne(Store, { path: 'storeProducts' });
 exports.criarStore = factory.createOne(Store);
 exports.verifyOwner = factory.verifyOwner(Store);
 exports.verifyStore = factory.verifyStore(Store);
-exports.actualizarStore = factory.updateOne(Store);
+exports.actualizarStore = factory.updateStore(Store);
 exports.removerStore = factory.deleteOne(Store);
 
 /* ----------------------Controllers for Store Products------------------------- */

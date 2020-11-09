@@ -75,7 +75,8 @@ body {
   background-color: var(--color-main-back);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh; }
+  height: 100vh;
+  transition: all 0.3s ease; }
 
 a {
   text-decoration: none; }
@@ -208,7 +209,7 @@ a {
   transition: all 0.3s; }
 
 .header {
-  z-index: 100;
+  z-index: 999999;
   font-size: 1.4rem;
   height: 7rem;
   width: 100%;
@@ -217,7 +218,32 @@ a {
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  box-shadow: 1px 2px 1px 1px rgba(0, 0, 0, 0.103); }
+  box-shadow: 1px 2px 1px 1px rgba(0, 0, 0, 0.103);
+  transition: all 3s ease; }
+
+.alert {
+  position: fixed;
+  top: 8%;
+  left: 50%;
+  -webkit-transform: translateX(-70%);
+  transform: translateX(-70%);
+  z-index: 9999;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-align: center;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 1rem;
+  -webkit-box-shadow: var(--shadow);
+  box-shadow: var(--shadow);
+  transition: all 2s; }
+
+.alert--success {
+  background-color: var(--color-tick); }
+
+.alert--error {
+  background-color: var(--color-red-light); }
 
 .logo {
   height: 5.25rem;
@@ -245,7 +271,58 @@ a {
 .logo--try {
    width: 90%;
 }*/
+.warning {
+  display: none;
+  position: fixed;
+  top: 8%;
+  left: 50%;
+  -webkit-transform: translateX(-60%);
+  transform: translateX(-60%);
+  z-index: 999;
+  background-color: #818380;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-align: center;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 1rem;
+  -webkit-box-shadow: var(--shadow);
+  box-shadow: var(--shadow);
+  max-width: 40rem; }
+  .warning--yes {
+    background-color: #ad0000;
+    color: white;
+    border: none;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    width: 15rem;
+    margin: 0.5rem; }
+    .warning--yes:hover {
+      background-color: #ff5959; }
+    .warning--yes:active {
+      background-color: #ad0000; }
+  .warning--no {
+    background-color: #ffa600;
+    color: white;
+    border: none;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    width: 15rem;
+    margin: 0.5rem; }
+    .warning--no:hover {
+      background-color: #f8bc4c; }
+    .warning--no:active {
+      background-color: #ad7100; }
+
 .search {
+  display: none;
   flex: 0 0 20%;
   justify-self: center;
   display: flex;
@@ -293,7 +370,7 @@ a {
 
 .user-nav {
   background-color: var(--color-white);
-  align-self: stretch;
+  height: 100%;
   display: flex;
   align-items: center;
   box-shadow: var(--shadow); }
@@ -351,16 +428,19 @@ a {
       height: 2rem;
       width: 2rem; }
   .user-nav__user {
-    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103);
+    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.103);
     background-color: white; }
-    @media only screen and (max-width: 33.125rem) {
+    @media only screen and (max-width: 43.75rem) {
       .user-nav__user span {
-        display: none; } }
+        display: none;
+        width: 9rem; } }
   .user-nav__user-photo {
-    box-shadow: var(--shadow-2);
-    height: 3.75rem;
+    height: 4.5rem;
     border-radius: 4px;
     margin-right: 1rem; }
+    @media only screen and (max-width: 43.75rem) {
+      .user-nav__user-photo {
+        margin-right: 0; } }
   .user-nav__user-name {
     color: var(--color-primary-strong); }
   .user-nav__donolojaLoginbtn {
@@ -395,7 +475,8 @@ a {
   justify-content: space-between;
   align-items: flex-end;
   position: fixed;
-  box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.103); }
+  box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.103);
+  max-height: 100vh; }
 
 .side-nav {
   font-size: 1.7rem;
@@ -1276,6 +1357,7 @@ a {
   grid-template-columns: repeat(2, 1fr);
   grid-row-gap: 1rem;
   box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103);
+  max-width: 35rem;
   /*
    &__btn--2 {
       display: flex;
@@ -1388,7 +1470,6 @@ a {
   grid-template-columns: repeat(2, 1fr);
   box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103);
   max-width: 30rem;
-  max-height: 82vh;
   /*
     &__btn--2 {
        display: flex;
@@ -2182,7 +2263,7 @@ a {
       justify-content: center;
       align-items: center; }
     .messages__list--sent {
-      margin: 2rem;
+      margin: 0.5rem;
       padding: 1rem;
       max-height: 100%;
       max-width: 30rem;
@@ -2191,7 +2272,7 @@ a {
       border-radius: 3px;
       box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.103); }
     .messages__list--received {
-      margin: 2rem;
+      margin: 0.5rem;
       padding: 1rem;
       max-height: 100%;
       max-width: 30rem;

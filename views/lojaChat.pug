@@ -1,0 +1,10 @@
+extends base
+block content
+    include sidebarLojaChat
+    .chat__container
+        each mensagem in mensagens
+            a.chat__container__link(href=`/donoloja/chat/private/${mensagem.usuario.nomeUsuario}/${mensagem.store.nomeLoja}` lojaid=`${mensagem.store.id}` usuarioid=`${mensagem.usuario.id}`)
+                .chat__contact
+                    img.chat__contact__photo.chat__contact__photo--online(src=`/imagens/dev/usuarios/${mensagem.usuario.fotografia}` alt='')
+                    span.chat__contact--name= mensagem.usuario.nome
+        .chat__group

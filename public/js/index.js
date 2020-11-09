@@ -1,5 +1,8 @@
 /* eslint-disable */
 
+import { showWarning } from './warning';
+import { showAlert } from './alerts';
+
 /*---------------------------Usuario------------------------------*/
 import '@babel/polyfill';
 //import { displayMap } from './mapbox';
@@ -17,20 +20,23 @@ import { removerProdutoReview } from './usuario/removerProdutoReview';
 import { storeOwnerLogin, storeOwnerLogOut } from './donoLoja/donoLojaLogin';
 import { storeOwnerSignup } from './donoLoja/donoLojaSignup';
 import { storeOwnerUpdateSettings } from './donoLoja/donoLojaUpdateSettings';
+import { lojaUpdateSettings } from './donoLoja/lojaUpdateSettings';
+
 import { storeOwnerCreatestore } from './donoLoja/donoLojaCriarloja';
 import { storeOwnerUpdatestore } from './donoLoja/donoLojaUpdatestore';
 import { storeOwnerRemovestore } from './donoLoja/donoLojaRemoverloja';
 import { storeOwnerCreateproduct } from './donoLoja/donoLojaCriarproduto';
-import { storeOwnerUpdateproduct } from './donoLoja/donoLojaUpdateproduct';
+//import { storeOwnerUpdateproduct } from './donoLoja/donoLojaUpdateproduct';
+import { produtoUpdateDetails } from './donoLoja/produtoUpdateDetails';
 import { storeOwnerRemoveproduct } from './donoLoja/donoLojaRemoverproduto';
 //import { comprarServico } from './stripe';
-import { showAlert } from './alerts';
 
 /*------------------------------------------------------------------*/
 //DOM Elements
 //const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
 const userDataForm = document.querySelector('.form--userdetails');
+const userPhotoForm = document.querySelector('.photo__form');
 const userPasswordForm = document.querySelector('.form--userPassword');
 const userSignupForm = document.querySelector('.signup__form');
 const avaliarLojaBtn = document.querySelector('.form--reviewStore');
@@ -56,7 +62,7 @@ if (loginForm)
       const password = document.getElementById('password').value;
 
       login(userData, password);
-      console.log(userdata);
+      console.log(userData);
    });
 
 if (logOutBtn) logOutBtn.addEventListener('click', logOut);
@@ -70,7 +76,17 @@ if (userDataForm)
       form.append('nomeUsuario', document.getElementById('nomeUsuario').value);
       form.append('email', document.getElementById('email').value);
       form.append('numeroTelemovel', document.getElementById('numeroTelemovel').value);
-      //form.append('fotografia', document.getElementById('photo').files[0]);
+
+      updateSettings(form, 'dados');
+   });
+
+if (userPhotoForm)
+   userPhotoForm.addEventListener('submit', e => {
+      e.preventDefault();
+      document.querySelector('.save-details__btn').textContent = 'Actualizando...';
+
+      const form = new FormData();
+      form.append('fotografia', document.getElementById('photo').files[0]);
 
       updateSettings(form, 'dados');
    });
@@ -135,9 +151,7 @@ if (removerStoreReviewBtn)
    removerStoreReviewBtn.addEventListener('click', e => {
       e.preventDefault();
 
-      const reviewId = document.getElementById('reviewId').value;
-
-      removerStoreReview(reviewId);
+      showWarning();
    });
 
 if (avaliarProdutoBtn)
@@ -173,9 +187,7 @@ if (removerProdutoReviewBtn)
    removerProdutoReviewBtn.addEventListener('click', e => {
       e.preventDefault();
 
-      const reviewId = document.getElementById('reviewId').value;
-
-      removerProdutoReview(reviewId);
+      showWarning();
    });
 /*if (bookBtn)
    bookBtn.addEventListener('click', e => {
@@ -191,6 +203,7 @@ if (removerProdutoReviewBtn)
 const storeOwnerLoginForm = document.querySelector('.form--storeOwnerLogin');
 const storeOwnerLogOutBtn = document.getElementById('storeOwnerLogout');
 const storeOwnerDataForm = document.querySelector('.form--donoLojadetails');
+const donoLojaPhotoForm = document.querySelector('.donoLoja__photo');
 const storeOwnerPasswordForm = document.querySelector('.form--donoLojaPassword');
 const storeOwnerSignupForm = document.querySelector('.donoLojaSignup__form');
 
@@ -231,6 +244,15 @@ if (storeOwnerDataForm)
       form.append('email', document.getElementById('storeOwnerEmail').value);
       form.append('numeroTelemovel', document.getElementById('storeOwnerNumeroTelemovel').value);
       //form.append('fotografia', document.getElementById('photo').files[0]);
+
+      storeOwnerUpdateSettings(form, 'dados');
+   });
+if (donoLojaPhotoForm)
+   donoLojaPhotoForm.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const form = new FormData();
+      form.append('fotografia', document.getElementById('photo').files[0]);
 
       storeOwnerUpdateSettings(form, 'dados');
    });
@@ -276,17 +298,27 @@ if (storeOwnerCreatestorebtn)
       const numeroTelemovel = document.getElementById('numeroTelemovelLoja').value;
 
       storeOwnerCreatestore(nome, nomeLoja, numeroTelemovel);
+
+      /*const form = new FormData();
+      form.append('nome', document.getElementById('nome').value);
+      form.append('nomeLoja', document.getElementById('nomeLoja').value);
+      form.append('numeroTelemovel', document.getElementById('numeroTelemovelLoja').value);
+      form.append('imagemDeCapa', document.getElementById('photo').files[0]);
+
+
+      storeOwnerCreatestore(form,'dados');*/
    });
 if (storeOwnerUpdatestorebtn)
    storeOwnerUpdatestorebtn.addEventListener('submit', e => {
       e.preventDefault();
-
-      const nome = document.getElementById('nome').value;
-      const nomeLoja = document.getElementById('nomeLoja').value;
-      const numeroTelemovel = document.getElementById('numeroTelemovelLoja').value;
       const lojaId = document.getElementById('lojaId').value;
+      const form = new FormData();
+      form.append('nome', document.getElementById('nome').value);
+      form.append('nomeLoja', document.getElementById('nomeLoja').value);
+      form.append('numeroTelemovel', document.getElementById('numeroTelemovelLoja').value);
+      form.append('imagemDeCapa', document.getElementById('photo').files[0]);
 
-      storeOwnerUpdatestore(lojaId, nome, nomeLoja, numeroTelemovel);
+      lojaUpdateSettings(form, lojaId, 'dados');
    });
 
 if (storeOwnerCriarprodutobtn)
@@ -310,27 +342,67 @@ if (storeOwnerUpdateproductbtn)
    storeOwnerUpdateproductbtn.addEventListener('submit', e => {
       e.preventDefault();
 
-      const nome = document.getElementById('nome').value;
-      const tipo = document.getElementById('tipo').value;
-      const preco = document.getElementById('preco').value;
-      const tamanho = document.getElementById('tamanho').value;
-      const cor = document.getElementById('cor').value;
-      const marca = document.getElementById('marca').value;
-      const genero = document.getElementById('genero').value;
-      const descricao = document.getElementById('descricao').value;
-      //const imagemDeCapa = document.getElementById('productimg').value;
-      const storeId = document.getElementById('storeId').value;
-
+      const lojaId = document.getElementById('storeId').value;
       const produtoId = document.getElementById('produtoId').value;
+      const form = new FormData();
+      form.append('nome', document.getElementById('nome').value);
+      form.append('tipo', document.getElementById('tipo').value);
+      form.append('preco', document.getElementById('preco').value);
+      form.append('tamanho', document.getElementById('tamanho').value);
+      form.append('cor', document.getElementById('cor').value);
+      form.append('marca', document.getElementById('marca').value);
+      form.append('genero', document.getElementById('genero').value);
+      form.append('descricao', document.getElementById('descricao').value);
+      form.append('imagemDeCapa', document.getElementById('photo').files[0]);
+      form.append('lojaId', document.getElementById('storeId').value);
 
-      storeOwnerUpdateproduct(storeId, produtoId, nome, tipo, preco, tamanho, cor, marca, genero, descricao);
+      produtoUpdateDetails(form, lojaId, produtoId, 'dados');
    });
 
-if (storeOwnerRemovestorebtn) storeOwnerRemovestorebtn.addEventListener('click', storeOwnerRemovestore);
-if (storeOwnerRemoveproductbtn) {
-   storeOwnerRemoveproductbtn.addEventListener('click', storeOwnerRemoveproduct);
-}
+if (storeOwnerRemovestorebtn)
+   storeOwnerRemovestorebtn.addEventListener('click', e => {
+      e.preventDefault();
+      showWarning();
+   });
+if (storeOwnerRemoveproductbtn)
+   storeOwnerRemoveproductbtn.addEventListener('click', e => {
+      e.preventDefault();
+      showWarning();
+   });
+
 /* ---------------------------Alerts handler---------------------- */
 
 const alertMessage = document.querySelector('body').dataset.alert;
 if (alertMessage) showAlert('Success', alertMessage, 20);
+
+/* ---------------------------Warnings Handler--------------------- */
+const warningBtnYes = document.querySelector('.warning--yes');
+const warningBtnNo = document.querySelector('.warning--no');
+
+if (warningBtnYes)
+   warningBtnYes.addEventListener('click', e => {
+      e.preventDefault();
+
+      if (removerStoreReviewBtn) {
+         const reviewId = document.getElementById('reviewId').value;
+         removerStoreReview(reviewId);
+      }
+
+      if (removerProdutoReviewBtn) {
+         const reviewId = document.getElementById('reviewId').value;
+         removerProdutoReview(reviewId);
+      }
+
+      if (storeOwnerRemovestorebtn) {
+         storeOwnerRemovestore();
+      }
+      if (storeOwnerRemoveproductbtn) {
+         storeOwnerRemoveproduct();
+      }
+   });
+if (warningBtnNo)
+   warningBtnNo.addEventListener('click', e => {
+      e.preventDefault();
+
+      document.querySelector('.warning').style.display = 'none';
+   });

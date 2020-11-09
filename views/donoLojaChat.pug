@@ -3,7 +3,7 @@ block content
     include _sidebar
     .chat__container
         each loja in lojas
-            a.chat__container__link(href='/chat/private')
+            a.chat__container__link(href=`/donoloja/chat/${loja.id}`)
                 .chat__contact
                     img.chat__contact__photo.chat__contact__photo--online(src=`/imagens/dev/lojas/${loja.imagemDeCapa}` alt='')
                     span.chat__contact--name= loja.nome

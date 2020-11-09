@@ -20,7 +20,13 @@ const Usuario_StoreMensagemSchema = new mongoose.Schema(
             type: mongoose.Schema.ObjectId,
             ref: Store, //referencing to a model called 'Store', so mongoose will look in that collection
             required: [true, 'A mensagem deve ser enviada a uma loja']
-         }
+         },
+      sender: {
+         type: String
+      },
+      receiver: {
+         type: String
+      }
    },
    {
       //Show up virtual properties(fields that are not stored in the database) whenever there is an output
@@ -50,7 +56,7 @@ Usuario_StoreMensagemSchema.pre(/^find/, function (next) {
 
    this.populate({
       path: 'store', //This means that the 'store' property in our model is the field to be populated based on model
-      select: 'nome imagemDeCapa'
+      select: 'nome nomeLoja imagemDeCapa'
    });
 
    next();

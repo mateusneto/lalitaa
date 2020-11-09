@@ -1,5 +1,6 @@
 extends base
 block content
+    include warning
     include sidebarLoja
     .produto__container
         section.produtos
@@ -27,6 +28,6 @@ block content
                             use(xlink:href='/imagens/dev/sprite2.svg#icon-bookmark')
                         p= produto.tipo
                     button.btn.produto__btn
-                        span Comprar
+                        span Encomendar 
                         svg.side-nav__icon
                             use(xlink:href='/imagens/dev/sprite.svg#icon-shopping-bag')

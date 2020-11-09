@@ -27,7 +27,7 @@
    grid-template-columns: repeat(2, 1fr);
    box-shadow: $shadow-2;
    max-width: 30rem;
-   max-height: 82vh;
+   //max-height: 90vh;
 
    &:active {
       .produto__nome {

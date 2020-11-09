@@ -6597,6 +6597,75 @@ try {
   Function("r", "regeneratorRuntime = r")(runtime);
 }
 
+},{}],"warning.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.showWarning = exports.hideWarning = void 0;
+
+/* eslint-disable */
+var hideWarning = function hideWarning() {
+  var el = document.querySelector('.warning');
+  var warningText = document.querySelector('.warning__text');
+  if (el) el.style.display = 'none';
+  if (warningText) warningText.style.display = 'none';
+}; //type is either 'sim' or 'nao'
+
+
+exports.hideWarning = hideWarning;
+
+var showWarning = function showWarning(msg) {
+  var time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 30;
+  document.querySelector('.warning').style.display = 'block';
+  setTimeout(function () {
+    document.querySelector('.warning').style.display = 'none';
+  }, time * 1000);
+};
+/*const markUp = `
+<div class="warning">
+    <div class="warning__text">${msg}</div>
+    <button class="warning--no">
+        <span>Cancelar</span>
+    </button>
+    <button class="warning--yes">
+        <span>Apagar</span>
+    </button>
+</div>`;
+
+ document.querySelector('.header').insertAdjacentHTML('afterend', markUp);
+   window.setTimeout(hideWarning, time * 1000);
+*/
+
+
+exports.showWarning = showWarning;
+},{}],"alerts.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.showAlert = exports.hideAlert = void 0;
+
+/* eslint-disable */
+var hideAlert = function hideAlert() {
+  var el = document.querySelector('.alert');
+  if (el) el.parentElement.removeChild(el);
+}; //type is either 'success' or 'error'
+
+
+exports.hideAlert = hideAlert;
+
+var showAlert = function showAlert(type, msg) {
+  var time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 3;
+  hideAlert();
+  var markUp = "<div class=\"alert alert--".concat(type, "\">").concat(msg, "</div>");
+  document.querySelector('.header').insertAdjacentHTML('afterend', markUp);
+  window.setTimeout(hideAlert, time * 1000);
+};
+
+exports.showAlert = showAlert;
 },{}],"../../node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
 'use strict';
 
@@ -8360,33 +8429,7 @@ module.exports.default = axios;
 
 },{"./utils":"../../node_modules/axios/lib/utils.js","./helpers/bind":"../../node_modules/axios/lib/helpers/bind.js","./core/Axios":"../../node_modules/axios/lib/core/Axios.js","./core/mergeConfig":"../../node_modules/axios/lib/core/mergeConfig.js","./defaults":"../../node_modules/axios/lib/defaults.js","./cancel/Cancel":"../../node_modules/axios/lib/cancel/Cancel.js","./cancel/CancelToken":"../../node_modules/axios/lib/cancel/CancelToken.js","./cancel/isCancel":"../../node_modules/axios/lib/cancel/isCancel.js","./helpers/spread":"../../node_modules/axios/lib/helpers/spread.js"}],"../../node_modules/axios/index.js":[function(require,module,exports) {
 module.exports = require('./lib/axios');
-},{"./lib/axios":"../../node_modules/axios/lib/axios.js"}],"alerts.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.showAlert = exports.hideAlert = void 0;
-
-/* eslint-disable */
-var hideAlert = function hideAlert() {
-  var el = document.querySelector('.alert');
-  if (el) el.parentElement.removeChild(el);
-}; //type is either 'success' or 'error'
-
-
-exports.hideAlert = hideAlert;
-
-var showAlert = function showAlert(type, msg) {
-  var time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 7;
-  hideAlert();
-  var markUp = "<div class=\"alert alert--".concat(type, "\">").concat(msg, "</div>");
-  document.querySelector('body').insertAdjacentHTML('afterbegin', markUp);
-  window.setTimeout(hideAlert, time * 1000);
-};
-
-exports.showAlert = showAlert;
-},{}],"usuario/userLogin.js":[function(require,module,exports) {
+},{"./lib/axios":"../../node_modules/axios/lib/axios.js"}],"usuario/userLogin.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8473,7 +8516,12 @@ var logOut = /*#__PURE__*/function () {
 
           case 3:
             res = _context2.sent;
-            if (res.data.status = 'success') location.assign('/lojas'); //.reload(true); //forces reload from the server and not from the nrowser cache
+
+            if (res.data.status = 'success') {
+              (0, _alerts.showAlert)('success', 'Sessão terminada');
+              location.assign('/lojas');
+            } //.reload(true); //forces reload from the server and not from the nrowser cache
+
 
             _context2.next = 11;
             break;
@@ -8611,6 +8659,9 @@ var updateSettings = /*#__PURE__*/function () {
 
             if (res.data.status === 'success') {
               (0, _alerts.showAlert)('success', "".concat(type.toUpperCase(), " actualizada com sucesso"));
+              window.setTimeout(function () {
+                location.assign('/me');
+              }, 2000);
             }
 
             _context.next = 11;
@@ -9260,6 +9311,9 @@ var storeOwnerUpdateSettings = /*#__PURE__*/function () {
 
             if (res.data.status === 'success') {
               (0, _alerts.showAlert)('success', "".concat(type.toUpperCase(), " actualizada com sucesso"));
+              window.setTimeout(function () {
+                location.assign('/donoloja/me');
+              }, 2000);
             }
 
             _context.next = 11;
@@ -9284,6 +9338,74 @@ var storeOwnerUpdateSettings = /*#__PURE__*/function () {
 }();
 
 exports.storeOwnerUpdateSettings = storeOwnerUpdateSettings;
+},{"axios":"../../node_modules/axios/index.js","../alerts":"alerts.js"}],"donoLoja/lojaUpdateSettings.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.lojaUpdateSettings = void 0;
+
+var _axios = _interopRequireDefault(require("axios"));
+
+var _alerts = require("../alerts");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//'type' is either 'password' or 'dados'
+var lojaUpdateSettings = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(data, lojaId, type) {
+    var url, res;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            console.log(lojaId);
+            _context.prev = 1;
+            url = type === 'password' ? '/api/v1/donosdeloja/updatePassword' : "http://127.0.0.1:3000/api/v1/lojas/".concat(lojaId);
+            _context.next = 5;
+            return (0, _axios.default)({
+              method: 'PATCH',
+              url: url,
+              data: data
+            });
+
+          case 5:
+            res = _context.sent;
+
+            if (res.data.status === 'success') {
+              (0, _alerts.showAlert)('success', "".concat(type.toUpperCase(), " actualizada com sucesso"));
+              window.setTimeout(function () {
+                location.assign("/loja/".concat(lojaId, "/produtos"));
+              }, 2000);
+            }
+
+            _context.next = 12;
+            break;
+
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](1);
+            (0, _alerts.showAlert)('error', _context.t0.response.data.message);
+
+          case 12:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[1, 9]]);
+  }));
+
+  return function lojaUpdateSettings(_x, _x2, _x3) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+exports.lojaUpdateSettings = lojaUpdateSettings;
 },{"axios":"../../node_modules/axios/index.js","../alerts":"alerts.js"}],"donoLoja/donoLojaCriarloja.js":[function(require,module,exports) {
 "use strict";
 
@@ -9353,6 +9475,27 @@ var storeOwnerCreatestore = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+/*export const storeOwnerCreatestore = async (data, type) => {
+   try {
+      const url = type === 'password' ? '/api/v1/donosdeloja/updatePassword' : 'http://127.0.0.1:3000/api/v1/lojas';
+      const res = await axios({
+         method: 'POST',
+         url,
+         data
+      });
+
+      if (res.data.status === 'success') {
+         console.log('sucesso');
+         showAlert('success', 'Loja criada com sucesso');
+         window.setTimeout(() => {
+            location.assign('/minhaslojas');
+         }, 0);
+      }
+   } catch (err) {
+      showAlert('error', err.response.data.message);
+   }
+};*/
+
 
 exports.storeOwnerCreatestore = storeOwnerCreatestore;
 },{"axios":"../../node_modules/axios/index.js","../alerts":"alerts.js"}],"donoLoja/donoLojaUpdatestore.js":[function(require,module,exports) {
@@ -9462,7 +9605,7 @@ var storeOwnerRemovestore = /*#__PURE__*/function () {
 
           case 5:
             res = _context.sent;
-            if (res.data.status = 'success') location.assign('/lojas'); //.reload(true); //forces reload from the server and not from the nrowser cache
+            if (res.data.status = 'success') location.assign('/minhaslojas'); //.reload(true); //forces reload from the server and not from the nrowser cache
 
             _context.next = 13;
             break;
@@ -9549,7 +9692,7 @@ var storeOwnerCreateproduct = /*#__PURE__*/function () {
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0.response);
-            (0, _alerts.showAlert)(error, 'Error creating product! please try again');
+            (0, _alerts.showAlert)('error', 'Error creating product! please try again');
 
           case 11:
           case "end":
@@ -9565,13 +9708,13 @@ var storeOwnerCreateproduct = /*#__PURE__*/function () {
 }();
 
 exports.storeOwnerCreateproduct = storeOwnerCreateproduct;
-},{"axios":"../../node_modules/axios/index.js","../alerts":"alerts.js"}],"donoLoja/donoLojaUpdateproduct.js":[function(require,module,exports) {
+},{"axios":"../../node_modules/axios/index.js","../alerts":"alerts.js"}],"donoLoja/produtoUpdateDetails.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.storeOwnerUpdateproduct = void 0;
+exports.produtoUpdateDetails = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -9583,64 +9726,57 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var storeOwnerUpdateproduct = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(storeId, produtoId, nome, tipo, preco, tamanho, cor, marca, genero, descricao) {
-    var res;
+//'type' is either 'password' or 'dados'
+var produtoUpdateDetails = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(data, lojaId, produtoId, type) {
+    var url, res;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.prev = 0;
-            _context.next = 3;
+            console.log(lojaId);
+            console.log(produtoId);
+            _context.prev = 2;
+            url = type === 'password' ? '/api/v1/donosdeloja/updatePassword' : "/api/v1/lojas/".concat(lojaId, "/produto/").concat(produtoId);
+            _context.next = 6;
             return (0, _axios.default)({
               method: 'PATCH',
-              url: "http://127.0.0.1:3000/api/v1/lojas/".concat(storeId, "/produtos/").concat(produtoId),
-              //'/api/v1/sair' ----> change on production
-              data: {
-                nome: nome,
-                tipo: tipo,
-                preco: preco,
-                tamanho: tamanho,
-                cor: cor,
-                marca: marca,
-                genero: genero,
-                descricao: descricao
-              }
+              url: url,
+              data: data
             });
 
-          case 3:
+          case 6:
             res = _context.sent;
 
             if (res.data.status === 'success') {
-              (0, _alerts.showAlert)('success', 'Produto actualizado com sucesso');
+              (0, _alerts.showAlert)('success', "".concat(type.toUpperCase(), " actualizada com sucesso"));
               window.setTimeout(function () {
-                location.assign("/loja/".concat(storeId, "/produto/").concat(produtoId));
-              }, 0);
-            } //.reload(true); //forces reload from the server and not from the nrowser cache
+                location.assign("/loja/".concat(lojaId, "/produto/").concat(produtoId));
+              }, 2000);
+            }
 
-
-            _context.next = 10;
+            _context.next = 13;
             break;
 
-          case 7:
-            _context.prev = 7;
-            _context.t0 = _context["catch"](0);
-            (0, _alerts.showAlert)('error', 'Error updating product! please try again');
-
           case 10:
+            _context.prev = 10;
+            _context.t0 = _context["catch"](2);
+            (0, _alerts.showAlert)('error', _context.t0.response.data.message);
+
+          case 13:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[2, 10]]);
   }));
 
-  return function storeOwnerUpdateproduct(_x, _x2, _x3, _x4, _x5, _x6, _x7, _x8, _x9, _x10) {
+  return function produtoUpdateDetails(_x, _x2, _x3, _x4) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.storeOwnerUpdateproduct = storeOwnerUpdateproduct;
+exports.produtoUpdateDetails = produtoUpdateDetails;
 },{"axios":"../../node_modules/axios/index.js","../alerts":"alerts.js"}],"donoLoja/donoLojaRemoverproduto.js":[function(require,module,exports) {
 "use strict";
 
@@ -9674,13 +9810,13 @@ var storeOwnerRemoveproduct = /*#__PURE__*/function () {
             _context.next = 7;
             return (0, _axios.default)({
               method: 'DELETE',
-              url: "http://127.0.0.1:3000/api/v1/lojas/".concat(lojaId, "/produtos/").concat(produtoId) //'/api/v1/sair' ----> change on production
+              url: "http://127.0.0.1:3000/api/v1/lojas/".concat(lojaId, "/produto/").concat(produtoId) //'/api/v1/sair' ----> change on production
 
             });
 
           case 7:
             res = _context.sent;
-            if (res.data.status = 'success') location.assign('/lojas'); //.reload(true); //forces reload from the server and not from the nrowser cache
+            if (res.data.status = 'success') location.assign("/loja/".concat(lojaId, "/produtos")); //.reload(true); //forces reload from the server and not from the nrowser cache
 
             _context.next = 15;
             break;
@@ -9689,7 +9825,7 @@ var storeOwnerRemoveproduct = /*#__PURE__*/function () {
             _context.prev = 11;
             _context.t0 = _context["catch"](4);
             console.log(_context.t0.response);
-            (0, _alerts.showAlert)(error, 'Error removing product! please try again');
+            (0, _alerts.showAlert)('error', 'Error removing product! please try again');
 
           case 15:
           case "end":
@@ -9964,6 +10100,10 @@ require("core-js/modules/web.dom.iterable");
 
 require("regenerator-runtime/runtime");
 
+var _warning = require("./warning");
+
+var _alerts = require("./alerts");
+
 var _userLogin = require("./usuario/userLogin");
 
 var _userSignup = require("./usuario/userSignup");
@@ -9988,6 +10128,8 @@ var _donoLojaSignup = require("./donoLoja/donoLojaSignup");
 
 var _donoLojaUpdateSettings = require("./donoLoja/donoLojaUpdateSettings");
 
+var _lojaUpdateSettings = require("./donoLoja/lojaUpdateSettings");
+
 var _donoLojaCriarloja = require("./donoLoja/donoLojaCriarloja");
 
 var _donoLojaUpdatestore = require("./donoLoja/donoLojaUpdatestore");
@@ -9996,21 +10138,22 @@ var _donoLojaRemoverloja = require("./donoLoja/donoLojaRemoverloja");
 
 var _donoLojaCriarproduto = require("./donoLoja/donoLojaCriarproduto");
 
-var _donoLojaUpdateproduct = require("./donoLoja/donoLojaUpdateproduct");
+var _produtoUpdateDetails = require("./donoLoja/produtoUpdateDetails");
 
 var _donoLojaRemoverproduto = require("./donoLoja/donoLojaRemoverproduto");
-
-var _alerts = require("./alerts");
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//import { comprarServico } from './stripe';
 
 /*------------------------------------------------------------------*/
 //DOM Elements
 //const mapBox = document.getElementById('map');
 var loginForm = document.querySelector('.form--login');
 var userDataForm = document.querySelector('.form--userdetails');
+var userPhotoForm = document.querySelector('.photo__form');
 var userPasswordForm = document.querySelector('.form--userPassword');
 var userSignupForm = document.querySelector('.signup__form');
 var avaliarLojaBtn = document.querySelector('.form--reviewStore');
@@ -10034,7 +10177,7 @@ if (loginForm) loginForm.addEventListener('submit', function (e) {
   var userData = document.getElementById('userData').value;
   var password = document.getElementById('password').value;
   (0, _userLogin.login)(userData, password);
-  console.log(userdata);
+  console.log(userData);
 });
 if (logOutBtn) logOutBtn.addEventListener('click', _userLogin.logOut);
 if (userDataForm) userDataForm.addEventListener('submit', function (e) {
@@ -10043,8 +10186,14 @@ if (userDataForm) userDataForm.addEventListener('submit', function (e) {
   form.append('nome', document.getElementById('nome').value);
   form.append('nomeUsuario', document.getElementById('nomeUsuario').value);
   form.append('email', document.getElementById('email').value);
-  form.append('numeroTelemovel', document.getElementById('numeroTelemovel').value); //form.append('fotografia', document.getElementById('photo').files[0]);
-
+  form.append('numeroTelemovel', document.getElementById('numeroTelemovel').value);
+  (0, _updateSettings.updateSettings)(form, 'dados');
+});
+if (userPhotoForm) userPhotoForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  document.querySelector('.save-details__btn').textContent = 'Actualizando...';
+  var form = new FormData();
+  form.append('fotografia', document.getElementById('photo').files[0]);
   (0, _updateSettings.updateSettings)(form, 'dados');
 });
 if (userSignupForm) userSignupForm.addEventListener('submit', function (e) {
@@ -10112,8 +10261,7 @@ if (editarStoreReviewBtn) editarStoreReviewBtn.addEventListener('submit', functi
 });
 if (removerStoreReviewBtn) removerStoreReviewBtn.addEventListener('click', function (e) {
   e.preventDefault();
-  var reviewId = document.getElementById('reviewId').value;
-  (0, _removerStoreReview.removerStoreReview)(reviewId);
+  (0, _warning.showWarning)();
 });
 if (avaliarProdutoBtn) avaliarProdutoBtn.addEventListener('submit', function (e) {
   e.preventDefault();
@@ -10136,8 +10284,7 @@ if (editarProdutoReviewBtn) editarProdutoReviewBtn.addEventListener('submit', fu
 });
 if (removerProdutoReviewBtn) removerProdutoReviewBtn.addEventListener('click', function (e) {
   e.preventDefault();
-  var reviewId = document.getElementById('reviewId').value;
-  (0, _removerProdutoReview.removerProdutoReview)(reviewId);
+  (0, _warning.showWarning)();
 });
 /*if (bookBtn)
    bookBtn.addEventListener('click', e => {
@@ -10153,6 +10300,7 @@ if (removerProdutoReviewBtn) removerProdutoReviewBtn.addEventListener('click', f
 var storeOwnerLoginForm = document.querySelector('.form--storeOwnerLogin');
 var storeOwnerLogOutBtn = document.getElementById('storeOwnerLogout');
 var storeOwnerDataForm = document.querySelector('.form--donoLojadetails');
+var donoLojaPhotoForm = document.querySelector('.donoLoja__photo');
 var storeOwnerPasswordForm = document.querySelector('.form--donoLojaPassword');
 var storeOwnerSignupForm = document.querySelector('.donoLojaSignup__form');
 var storeOwnerCreatestorebtn = document.querySelector('.form--createStore');
@@ -10185,6 +10333,12 @@ if (storeOwnerDataForm) storeOwnerDataForm.addEventListener('submit', function (
   form.append('email', document.getElementById('storeOwnerEmail').value);
   form.append('numeroTelemovel', document.getElementById('storeOwnerNumeroTelemovel').value); //form.append('fotografia', document.getElementById('photo').files[0]);
 
+  (0, _donoLojaUpdateSettings.storeOwnerUpdateSettings)(form, 'dados');
+});
+if (donoLojaPhotoForm) donoLojaPhotoForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var form = new FormData();
+  form.append('fotografia', document.getElementById('photo').files[0]);
   (0, _donoLojaUpdateSettings.storeOwnerUpdateSettings)(form, 'dados');
 });
 if (storeOwnerSignupForm) storeOwnerSignupForm.addEventListener('submit', function (e) {
@@ -10240,14 +10394,22 @@ if (storeOwnerCreatestorebtn) storeOwnerCreatestorebtn.addEventListener('submit'
   var nomeLoja = document.getElementById('nomeLoja').value;
   var numeroTelemovel = document.getElementById('numeroTelemovelLoja').value;
   (0, _donoLojaCriarloja.storeOwnerCreatestore)(nome, nomeLoja, numeroTelemovel);
+  /*const form = new FormData();
+  form.append('nome', document.getElementById('nome').value);
+  form.append('nomeLoja', document.getElementById('nomeLoja').value);
+  form.append('numeroTelemovel', document.getElementById('numeroTelemovelLoja').value);
+  form.append('imagemDeCapa', document.getElementById('photo').files[0]);
+    storeOwnerCreatestore(form,'dados');*/
 });
 if (storeOwnerUpdatestorebtn) storeOwnerUpdatestorebtn.addEventListener('submit', function (e) {
   e.preventDefault();
-  var nome = document.getElementById('nome').value;
-  var nomeLoja = document.getElementById('nomeLoja').value;
-  var numeroTelemovel = document.getElementById('numeroTelemovelLoja').value;
   var lojaId = document.getElementById('lojaId').value;
-  (0, _donoLojaUpdatestore.storeOwnerUpdatestore)(lojaId, nome, nomeLoja, numeroTelemovel);
+  var form = new FormData();
+  form.append('nome', document.getElementById('nome').value);
+  form.append('nomeLoja', document.getElementById('nomeLoja').value);
+  form.append('numeroTelemovel', document.getElementById('numeroTelemovelLoja').value);
+  form.append('imagemDeCapa', document.getElementById('photo').files[0]);
+  (0, _lojaUpdateSettings.lojaUpdateSettings)(form, lojaId, 'dados');
 });
 if (storeOwnerCriarprodutobtn) storeOwnerCriarprodutobtn.addEventListener('submit', function (e) {
   e.preventDefault();
@@ -10265,30 +10427,63 @@ if (storeOwnerCriarprodutobtn) storeOwnerCriarprodutobtn.addEventListener('submi
 });
 if (storeOwnerUpdateproductbtn) storeOwnerUpdateproductbtn.addEventListener('submit', function (e) {
   e.preventDefault();
-  var nome = document.getElementById('nome').value;
-  var tipo = document.getElementById('tipo').value;
-  var preco = document.getElementById('preco').value;
-  var tamanho = document.getElementById('tamanho').value;
-  var cor = document.getElementById('cor').value;
-  var marca = document.getElementById('marca').value;
-  var genero = document.getElementById('genero').value;
-  var descricao = document.getElementById('descricao').value; //const imagemDeCapa = document.getElementById('productimg').value;
-
-  var storeId = document.getElementById('storeId').value;
+  var lojaId = document.getElementById('storeId').value;
   var produtoId = document.getElementById('produtoId').value;
-  (0, _donoLojaUpdateproduct.storeOwnerUpdateproduct)(storeId, produtoId, nome, tipo, preco, tamanho, cor, marca, genero, descricao);
+  var form = new FormData();
+  form.append('nome', document.getElementById('nome').value);
+  form.append('tipo', document.getElementById('tipo').value);
+  form.append('preco', document.getElementById('preco').value);
+  form.append('tamanho', document.getElementById('tamanho').value);
+  form.append('cor', document.getElementById('cor').value);
+  form.append('marca', document.getElementById('marca').value);
+  form.append('genero', document.getElementById('genero').value);
+  form.append('descricao', document.getElementById('descricao').value);
+  form.append('imagemDeCapa', document.getElementById('photo').files[0]);
+  form.append('lojaId', document.getElementById('storeId').value);
+  (0, _produtoUpdateDetails.produtoUpdateDetails)(form, lojaId, produtoId, 'dados');
 });
-if (storeOwnerRemovestorebtn) storeOwnerRemovestorebtn.addEventListener('click', _donoLojaRemoverloja.storeOwnerRemovestore);
-
-if (storeOwnerRemoveproductbtn) {
-  storeOwnerRemoveproductbtn.addEventListener('click', _donoLojaRemoverproduto.storeOwnerRemoveproduct);
-}
+if (storeOwnerRemovestorebtn) storeOwnerRemovestorebtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  (0, _warning.showWarning)();
+});
+if (storeOwnerRemoveproductbtn) storeOwnerRemoveproductbtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  (0, _warning.showWarning)();
+});
 /* ---------------------------Alerts handler---------------------- */
-
 
 var alertMessage = document.querySelector('body').dataset.alert;
 if (alertMessage) (0, _alerts.showAlert)('Success', alertMessage, 20);
-},{"core-js/modules/es6.array.copy-within":"../../node_modules/core-js/modules/es6.array.copy-within.js","core-js/modules/es6.array.fill":"../../node_modules/core-js/modules/es6.array.fill.js","core-js/modules/es6.array.find":"../../node_modules/core-js/modules/es6.array.find.js","core-js/modules/es6.array.find-index":"../../node_modules/core-js/modules/es6.array.find-index.js","core-js/modules/es7.array.flat-map":"../../node_modules/core-js/modules/es7.array.flat-map.js","core-js/modules/es6.array.from":"../../node_modules/core-js/modules/es6.array.from.js","core-js/modules/es7.array.includes":"../../node_modules/core-js/modules/es7.array.includes.js","core-js/modules/es6.array.iterator":"../../node_modules/core-js/modules/es6.array.iterator.js","core-js/modules/es6.array.of":"../../node_modules/core-js/modules/es6.array.of.js","core-js/modules/es6.array.sort":"../../node_modules/core-js/modules/es6.array.sort.js","core-js/modules/es6.array.species":"../../node_modules/core-js/modules/es6.array.species.js","core-js/modules/es6.date.to-primitive":"../../node_modules/core-js/modules/es6.date.to-primitive.js","core-js/modules/es6.function.has-instance":"../../node_modules/core-js/modules/es6.function.has-instance.js","core-js/modules/es6.function.name":"../../node_modules/core-js/modules/es6.function.name.js","core-js/modules/es6.map":"../../node_modules/core-js/modules/es6.map.js","core-js/modules/es6.math.acosh":"../../node_modules/core-js/modules/es6.math.acosh.js","core-js/modules/es6.math.asinh":"../../node_modules/core-js/modules/es6.math.asinh.js","core-js/modules/es6.math.atanh":"../../node_modules/core-js/modules/es6.math.atanh.js","core-js/modules/es6.math.cbrt":"../../node_modules/core-js/modules/es6.math.cbrt.js","core-js/modules/es6.math.clz32":"../../node_modules/core-js/modules/es6.math.clz32.js","core-js/modules/es6.math.cosh":"../../node_modules/core-js/modules/es6.math.cosh.js","core-js/modules/es6.math.expm1":"../../node_modules/core-js/modules/es6.math.expm1.js","core-js/modules/es6.math.fround":"../../node_modules/core-js/modules/es6.math.fround.js","core-js/modules/es6.math.hypot":"../../node_modules/core-js/modules/es6.math.hypot.js","core-js/modules/es6.math.imul":"../../node_modules/core-js/modules/es6.math.imul.js","core-js/modules/es6.math.log1p":"../../node_modules/core-js/modules/es6.math.log1p.js","core-js/modules/es6.math.log10":"../../node_modules/core-js/modules/es6.math.log10.js","core-js/modules/es6.math.log2":"../../node_modules/core-js/modules/es6.math.log2.js","core-js/modules/es6.math.sign":"../../node_modules/core-js/modules/es6.math.sign.js","core-js/modules/es6.math.sinh":"../../node_modules/core-js/modules/es6.math.sinh.js","core-js/modules/es6.math.tanh":"../../node_modules/core-js/modules/es6.math.tanh.js","core-js/modules/es6.math.trunc":"../../node_modules/core-js/modules/es6.math.trunc.js","core-js/modules/es6.number.constructor":"../../node_modules/core-js/modules/es6.number.constructor.js","core-js/modules/es6.number.epsilon":"../../node_modules/core-js/modules/es6.number.epsilon.js","core-js/modules/es6.number.is-finite":"../../node_modules/core-js/modules/es6.number.is-finite.js","core-js/modules/es6.number.is-integer":"../../node_modules/core-js/modules/es6.number.is-integer.js","core-js/modules/es6.number.is-nan":"../../node_modules/core-js/modules/es6.number.is-nan.js","core-js/modules/es6.number.is-safe-integer":"../../node_modules/core-js/modules/es6.number.is-safe-integer.js","core-js/modules/es6.number.max-safe-integer":"../../node_modules/core-js/modules/es6.number.max-safe-integer.js","core-js/modules/es6.number.min-safe-integer":"../../node_modules/core-js/modules/es6.number.min-safe-integer.js","core-js/modules/es6.number.parse-float":"../../node_modules/core-js/modules/es6.number.parse-float.js","core-js/modules/es6.number.parse-int":"../../node_modules/core-js/modules/es6.number.parse-int.js","core-js/modules/es6.object.assign":"../../node_modules/core-js/modules/es6.object.assign.js","core-js/modules/es7.object.define-getter":"../../node_modules/core-js/modules/es7.object.define-getter.js","core-js/modules/es7.object.define-setter":"../../node_modules/core-js/modules/es7.object.define-setter.js","core-js/modules/es7.object.entries":"../../node_modules/core-js/modules/es7.object.entries.js","core-js/modules/es6.object.freeze":"../../node_modules/core-js/modules/es6.object.freeze.js","core-js/modules/es6.object.get-own-property-descriptor":"../../node_modules/core-js/modules/es6.object.get-own-property-descriptor.js","core-js/modules/es7.object.get-own-property-descriptors":"../../node_modules/core-js/modules/es7.object.get-own-property-descriptors.js","core-js/modules/es6.object.get-own-property-names":"../../node_modules/core-js/modules/es6.object.get-own-property-names.js","core-js/modules/es6.object.get-prototype-of":"../../node_modules/core-js/modules/es6.object.get-prototype-of.js","core-js/modules/es7.object.lookup-getter":"../../node_modules/core-js/modules/es7.object.lookup-getter.js","core-js/modules/es7.object.lookup-setter":"../../node_modules/core-js/modules/es7.object.lookup-setter.js","core-js/modules/es6.object.prevent-extensions":"../../node_modules/core-js/modules/es6.object.prevent-extensions.js","core-js/modules/es6.object.to-string":"../../node_modules/core-js/modules/es6.object.to-string.js","core-js/modules/es6.object.is":"../../node_modules/core-js/modules/es6.object.is.js","core-js/modules/es6.object.is-frozen":"../../node_modules/core-js/modules/es6.object.is-frozen.js","core-js/modules/es6.object.is-sealed":"../../node_modules/core-js/modules/es6.object.is-sealed.js","core-js/modules/es6.object.is-extensible":"../../node_modules/core-js/modules/es6.object.is-extensible.js","core-js/modules/es6.object.keys":"../../node_modules/core-js/modules/es6.object.keys.js","core-js/modules/es6.object.seal":"../../node_modules/core-js/modules/es6.object.seal.js","core-js/modules/es7.object.values":"../../node_modules/core-js/modules/es7.object.values.js","core-js/modules/es6.promise":"../../node_modules/core-js/modules/es6.promise.js","core-js/modules/es7.promise.finally":"../../node_modules/core-js/modules/es7.promise.finally.js","core-js/modules/es6.reflect.apply":"../../node_modules/core-js/modules/es6.reflect.apply.js","core-js/modules/es6.reflect.construct":"../../node_modules/core-js/modules/es6.reflect.construct.js","core-js/modules/es6.reflect.define-property":"../../node_modules/core-js/modules/es6.reflect.define-property.js","core-js/modules/es6.reflect.delete-property":"../../node_modules/core-js/modules/es6.reflect.delete-property.js","core-js/modules/es6.reflect.get":"../../node_modules/core-js/modules/es6.reflect.get.js","core-js/modules/es6.reflect.get-own-property-descriptor":"../../node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js","core-js/modules/es6.reflect.get-prototype-of":"../../node_modules/core-js/modules/es6.reflect.get-prototype-of.js","core-js/modules/es6.reflect.has":"../../node_modules/core-js/modules/es6.reflect.has.js","core-js/modules/es6.reflect.is-extensible":"../../node_modules/core-js/modules/es6.reflect.is-extensible.js","core-js/modules/es6.reflect.own-keys":"../../node_modules/core-js/modules/es6.reflect.own-keys.js","core-js/modules/es6.reflect.prevent-extensions":"../../node_modules/core-js/modules/es6.reflect.prevent-extensions.js","core-js/modules/es6.reflect.set":"../../node_modules/core-js/modules/es6.reflect.set.js","core-js/modules/es6.reflect.set-prototype-of":"../../node_modules/core-js/modules/es6.reflect.set-prototype-of.js","core-js/modules/es6.regexp.constructor":"../../node_modules/core-js/modules/es6.regexp.constructor.js","core-js/modules/es6.regexp.flags":"../../node_modules/core-js/modules/es6.regexp.flags.js","core-js/modules/es6.regexp.match":"../../node_modules/core-js/modules/es6.regexp.match.js","core-js/modules/es6.regexp.replace":"../../node_modules/core-js/modules/es6.regexp.replace.js","core-js/modules/es6.regexp.split":"../../node_modules/core-js/modules/es6.regexp.split.js","core-js/modules/es6.regexp.search":"../../node_modules/core-js/modules/es6.regexp.search.js","core-js/modules/es6.regexp.to-string":"../../node_modules/core-js/modules/es6.regexp.to-string.js","core-js/modules/es6.set":"../../node_modules/core-js/modules/es6.set.js","core-js/modules/es6.symbol":"../../node_modules/core-js/modules/es6.symbol.js","core-js/modules/es7.symbol.async-iterator":"../../node_modules/core-js/modules/es7.symbol.async-iterator.js","core-js/modules/es6.string.anchor":"../../node_modules/core-js/modules/es6.string.anchor.js","core-js/modules/es6.string.big":"../../node_modules/core-js/modules/es6.string.big.js","core-js/modules/es6.string.blink":"../../node_modules/core-js/modules/es6.string.blink.js","core-js/modules/es6.string.bold":"../../node_modules/core-js/modules/es6.string.bold.js","core-js/modules/es6.string.code-point-at":"../../node_modules/core-js/modules/es6.string.code-point-at.js","core-js/modules/es6.string.ends-with":"../../node_modules/core-js/modules/es6.string.ends-with.js","core-js/modules/es6.string.fixed":"../../node_modules/core-js/modules/es6.string.fixed.js","core-js/modules/es6.string.fontcolor":"../../node_modules/core-js/modules/es6.string.fontcolor.js","core-js/modules/es6.string.fontsize":"../../node_modules/core-js/modules/es6.string.fontsize.js","core-js/modules/es6.string.from-code-point":"../../node_modules/core-js/modules/es6.string.from-code-point.js","core-js/modules/es6.string.includes":"../../node_modules/core-js/modules/es6.string.includes.js","core-js/modules/es6.string.italics":"../../node_modules/core-js/modules/es6.string.italics.js","core-js/modules/es6.string.iterator":"../../node_modules/core-js/modules/es6.string.iterator.js","core-js/modules/es6.string.link":"../../node_modules/core-js/modules/es6.string.link.js","core-js/modules/es7.string.pad-start":"../../node_modules/core-js/modules/es7.string.pad-start.js","core-js/modules/es7.string.pad-end":"../../node_modules/core-js/modules/es7.string.pad-end.js","core-js/modules/es6.string.raw":"../../node_modules/core-js/modules/es6.string.raw.js","core-js/modules/es6.string.repeat":"../../node_modules/core-js/modules/es6.string.repeat.js","core-js/modules/es6.string.small":"../../node_modules/core-js/modules/es6.string.small.js","core-js/modules/es6.string.starts-with":"../../node_modules/core-js/modules/es6.string.starts-with.js","core-js/modules/es6.string.strike":"../../node_modules/core-js/modules/es6.string.strike.js","core-js/modules/es6.string.sub":"../../node_modules/core-js/modules/es6.string.sub.js","core-js/modules/es6.string.sup":"../../node_modules/core-js/modules/es6.string.sup.js","core-js/modules/es7.string.trim-left":"../../node_modules/core-js/modules/es7.string.trim-left.js","core-js/modules/es7.string.trim-right":"../../node_modules/core-js/modules/es7.string.trim-right.js","core-js/modules/es6.typed.array-buffer":"../../node_modules/core-js/modules/es6.typed.array-buffer.js","core-js/modules/es6.typed.int8-array":"../../node_modules/core-js/modules/es6.typed.int8-array.js","core-js/modules/es6.typed.uint8-array":"../../node_modules/core-js/modules/es6.typed.uint8-array.js","core-js/modules/es6.typed.uint8-clamped-array":"../../node_modules/core-js/modules/es6.typed.uint8-clamped-array.js","core-js/modules/es6.typed.int16-array":"../../node_modules/core-js/modules/es6.typed.int16-array.js","core-js/modules/es6.typed.uint16-array":"../../node_modules/core-js/modules/es6.typed.uint16-array.js","core-js/modules/es6.typed.int32-array":"../../node_modules/core-js/modules/es6.typed.int32-array.js","core-js/modules/es6.typed.uint32-array":"../../node_modules/core-js/modules/es6.typed.uint32-array.js","core-js/modules/es6.typed.float32-array":"../../node_modules/core-js/modules/es6.typed.float32-array.js","core-js/modules/es6.typed.float64-array":"../../node_modules/core-js/modules/es6.typed.float64-array.js","core-js/modules/es6.weak-map":"../../node_modules/core-js/modules/es6.weak-map.js","core-js/modules/es6.weak-set":"../../node_modules/core-js/modules/es6.weak-set.js","core-js/modules/web.timers":"../../node_modules/core-js/modules/web.timers.js","core-js/modules/web.immediate":"../../node_modules/core-js/modules/web.immediate.js","core-js/modules/web.dom.iterable":"../../node_modules/core-js/modules/web.dom.iterable.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","./usuario/userLogin":"usuario/userLogin.js","./usuario/userSignup":"usuario/userSignup.js","./usuario/updateSettings":"usuario/updateSettings.js","./usuario/avaliarLoja":"usuario/avaliarLoja.js","./usuario/editarStoreReview":"usuario/editarStoreReview.js","./usuario/removerStoreReview":"usuario/removerStoreReview.js","./usuario/avaliarProduto":"usuario/avaliarProduto.js","./usuario/editarProdutoReview":"usuario/editarProdutoReview.js","./usuario/removerProdutoReview":"usuario/removerProdutoReview.js","./donoLoja/donoLojaLogin":"donoLoja/donoLojaLogin.js","./donoLoja/donoLojaSignup":"donoLoja/donoLojaSignup.js","./donoLoja/donoLojaUpdateSettings":"donoLoja/donoLojaUpdateSettings.js","./donoLoja/donoLojaCriarloja":"donoLoja/donoLojaCriarloja.js","./donoLoja/donoLojaUpdatestore":"donoLoja/donoLojaUpdatestore.js","./donoLoja/donoLojaRemoverloja":"donoLoja/donoLojaRemoverloja.js","./donoLoja/donoLojaCriarproduto":"donoLoja/donoLojaCriarproduto.js","./donoLoja/donoLojaUpdateproduct":"donoLoja/donoLojaUpdateproduct.js","./donoLoja/donoLojaRemoverproduto":"donoLoja/donoLojaRemoverproduto.js","./alerts":"alerts.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+/* ---------------------------Warnings Handler--------------------- */
+
+var warningBtnYes = document.querySelector('.warning--yes');
+var warningBtnNo = document.querySelector('.warning--no');
+if (warningBtnYes) warningBtnYes.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (removerStoreReviewBtn) {
+    var reviewId = document.getElementById('reviewId').value;
+    (0, _removerStoreReview.removerStoreReview)(reviewId);
+  }
+
+  if (removerProdutoReviewBtn) {
+    var _reviewId = document.getElementById('reviewId').value;
+    (0, _removerProdutoReview.removerProdutoReview)(_reviewId);
+  }
+
+  if (storeOwnerRemovestorebtn) {
+    (0, _donoLojaRemoverloja.storeOwnerRemovestore)();
+  }
+
+  if (storeOwnerRemoveproductbtn) {
+    (0, _donoLojaRemoverproduto.storeOwnerRemoveproduct)();
+  }
+});
+if (warningBtnNo) warningBtnNo.addEventListener('click', function (e) {
+  e.preventDefault();
+  document.querySelector('.warning').style.display = 'none';
+});
+},{"core-js/modules/es6.array.copy-within":"../../node_modules/core-js/modules/es6.array.copy-within.js","core-js/modules/es6.array.fill":"../../node_modules/core-js/modules/es6.array.fill.js","core-js/modules/es6.array.find":"../../node_modules/core-js/modules/es6.array.find.js","core-js/modules/es6.array.find-index":"../../node_modules/core-js/modules/es6.array.find-index.js","core-js/modules/es7.array.flat-map":"../../node_modules/core-js/modules/es7.array.flat-map.js","core-js/modules/es6.array.from":"../../node_modules/core-js/modules/es6.array.from.js","core-js/modules/es7.array.includes":"../../node_modules/core-js/modules/es7.array.includes.js","core-js/modules/es6.array.iterator":"../../node_modules/core-js/modules/es6.array.iterator.js","core-js/modules/es6.array.of":"../../node_modules/core-js/modules/es6.array.of.js","core-js/modules/es6.array.sort":"../../node_modules/core-js/modules/es6.array.sort.js","core-js/modules/es6.array.species":"../../node_modules/core-js/modules/es6.array.species.js","core-js/modules/es6.date.to-primitive":"../../node_modules/core-js/modules/es6.date.to-primitive.js","core-js/modules/es6.function.has-instance":"../../node_modules/core-js/modules/es6.function.has-instance.js","core-js/modules/es6.function.name":"../../node_modules/core-js/modules/es6.function.name.js","core-js/modules/es6.map":"../../node_modules/core-js/modules/es6.map.js","core-js/modules/es6.math.acosh":"../../node_modules/core-js/modules/es6.math.acosh.js","core-js/modules/es6.math.asinh":"../../node_modules/core-js/modules/es6.math.asinh.js","core-js/modules/es6.math.atanh":"../../node_modules/core-js/modules/es6.math.atanh.js","core-js/modules/es6.math.cbrt":"../../node_modules/core-js/modules/es6.math.cbrt.js","core-js/modules/es6.math.clz32":"../../node_modules/core-js/modules/es6.math.clz32.js","core-js/modules/es6.math.cosh":"../../node_modules/core-js/modules/es6.math.cosh.js","core-js/modules/es6.math.expm1":"../../node_modules/core-js/modules/es6.math.expm1.js","core-js/modules/es6.math.fround":"../../node_modules/core-js/modules/es6.math.fround.js","core-js/modules/es6.math.hypot":"../../node_modules/core-js/modules/es6.math.hypot.js","core-js/modules/es6.math.imul":"../../node_modules/core-js/modules/es6.math.imul.js","core-js/modules/es6.math.log1p":"../../node_modules/core-js/modules/es6.math.log1p.js","core-js/modules/es6.math.log10":"../../node_modules/core-js/modules/es6.math.log10.js","core-js/modules/es6.math.log2":"../../node_modules/core-js/modules/es6.math.log2.js","core-js/modules/es6.math.sign":"../../node_modules/core-js/modules/es6.math.sign.js","core-js/modules/es6.math.sinh":"../../node_modules/core-js/modules/es6.math.sinh.js","core-js/modules/es6.math.tanh":"../../node_modules/core-js/modules/es6.math.tanh.js","core-js/modules/es6.math.trunc":"../../node_modules/core-js/modules/es6.math.trunc.js","core-js/modules/es6.number.constructor":"../../node_modules/core-js/modules/es6.number.constructor.js","core-js/modules/es6.number.epsilon":"../../node_modules/core-js/modules/es6.number.epsilon.js","core-js/modules/es6.number.is-finite":"../../node_modules/core-js/modules/es6.number.is-finite.js","core-js/modules/es6.number.is-integer":"../../node_modules/core-js/modules/es6.number.is-integer.js","core-js/modules/es6.number.is-nan":"../../node_modules/core-js/modules/es6.number.is-nan.js","core-js/modules/es6.number.is-safe-integer":"../../node_modules/core-js/modules/es6.number.is-safe-integer.js","core-js/modules/es6.number.max-safe-integer":"../../node_modules/core-js/modules/es6.number.max-safe-integer.js","core-js/modules/es6.number.min-safe-integer":"../../node_modules/core-js/modules/es6.number.min-safe-integer.js","core-js/modules/es6.number.parse-float":"../../node_modules/core-js/modules/es6.number.parse-float.js","core-js/modules/es6.number.parse-int":"../../node_modules/core-js/modules/es6.number.parse-int.js","core-js/modules/es6.object.assign":"../../node_modules/core-js/modules/es6.object.assign.js","core-js/modules/es7.object.define-getter":"../../node_modules/core-js/modules/es7.object.define-getter.js","core-js/modules/es7.object.define-setter":"../../node_modules/core-js/modules/es7.object.define-setter.js","core-js/modules/es7.object.entries":"../../node_modules/core-js/modules/es7.object.entries.js","core-js/modules/es6.object.freeze":"../../node_modules/core-js/modules/es6.object.freeze.js","core-js/modules/es6.object.get-own-property-descriptor":"../../node_modules/core-js/modules/es6.object.get-own-property-descriptor.js","core-js/modules/es7.object.get-own-property-descriptors":"../../node_modules/core-js/modules/es7.object.get-own-property-descriptors.js","core-js/modules/es6.object.get-own-property-names":"../../node_modules/core-js/modules/es6.object.get-own-property-names.js","core-js/modules/es6.object.get-prototype-of":"../../node_modules/core-js/modules/es6.object.get-prototype-of.js","core-js/modules/es7.object.lookup-getter":"../../node_modules/core-js/modules/es7.object.lookup-getter.js","core-js/modules/es7.object.lookup-setter":"../../node_modules/core-js/modules/es7.object.lookup-setter.js","core-js/modules/es6.object.prevent-extensions":"../../node_modules/core-js/modules/es6.object.prevent-extensions.js","core-js/modules/es6.object.to-string":"../../node_modules/core-js/modules/es6.object.to-string.js","core-js/modules/es6.object.is":"../../node_modules/core-js/modules/es6.object.is.js","core-js/modules/es6.object.is-frozen":"../../node_modules/core-js/modules/es6.object.is-frozen.js","core-js/modules/es6.object.is-sealed":"../../node_modules/core-js/modules/es6.object.is-sealed.js","core-js/modules/es6.object.is-extensible":"../../node_modules/core-js/modules/es6.object.is-extensible.js","core-js/modules/es6.object.keys":"../../node_modules/core-js/modules/es6.object.keys.js","core-js/modules/es6.object.seal":"../../node_modules/core-js/modules/es6.object.seal.js","core-js/modules/es7.object.values":"../../node_modules/core-js/modules/es7.object.values.js","core-js/modules/es6.promise":"../../node_modules/core-js/modules/es6.promise.js","core-js/modules/es7.promise.finally":"../../node_modules/core-js/modules/es7.promise.finally.js","core-js/modules/es6.reflect.apply":"../../node_modules/core-js/modules/es6.reflect.apply.js","core-js/modules/es6.reflect.construct":"../../node_modules/core-js/modules/es6.reflect.construct.js","core-js/modules/es6.reflect.define-property":"../../node_modules/core-js/modules/es6.reflect.define-property.js","core-js/modules/es6.reflect.delete-property":"../../node_modules/core-js/modules/es6.reflect.delete-property.js","core-js/modules/es6.reflect.get":"../../node_modules/core-js/modules/es6.reflect.get.js","core-js/modules/es6.reflect.get-own-property-descriptor":"../../node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js","core-js/modules/es6.reflect.get-prototype-of":"../../node_modules/core-js/modules/es6.reflect.get-prototype-of.js","core-js/modules/es6.reflect.has":"../../node_modules/core-js/modules/es6.reflect.has.js","core-js/modules/es6.reflect.is-extensible":"../../node_modules/core-js/modules/es6.reflect.is-extensible.js","core-js/modules/es6.reflect.own-keys":"../../node_modules/core-js/modules/es6.reflect.own-keys.js","core-js/modules/es6.reflect.prevent-extensions":"../../node_modules/core-js/modules/es6.reflect.prevent-extensions.js","core-js/modules/es6.reflect.set":"../../node_modules/core-js/modules/es6.reflect.set.js","core-js/modules/es6.reflect.set-prototype-of":"../../node_modules/core-js/modules/es6.reflect.set-prototype-of.js","core-js/modules/es6.regexp.constructor":"../../node_modules/core-js/modules/es6.regexp.constructor.js","core-js/modules/es6.regexp.flags":"../../node_modules/core-js/modules/es6.regexp.flags.js","core-js/modules/es6.regexp.match":"../../node_modules/core-js/modules/es6.regexp.match.js","core-js/modules/es6.regexp.replace":"../../node_modules/core-js/modules/es6.regexp.replace.js","core-js/modules/es6.regexp.split":"../../node_modules/core-js/modules/es6.regexp.split.js","core-js/modules/es6.regexp.search":"../../node_modules/core-js/modules/es6.regexp.search.js","core-js/modules/es6.regexp.to-string":"../../node_modules/core-js/modules/es6.regexp.to-string.js","core-js/modules/es6.set":"../../node_modules/core-js/modules/es6.set.js","core-js/modules/es6.symbol":"../../node_modules/core-js/modules/es6.symbol.js","core-js/modules/es7.symbol.async-iterator":"../../node_modules/core-js/modules/es7.symbol.async-iterator.js","core-js/modules/es6.string.anchor":"../../node_modules/core-js/modules/es6.string.anchor.js","core-js/modules/es6.string.big":"../../node_modules/core-js/modules/es6.string.big.js","core-js/modules/es6.string.blink":"../../node_modules/core-js/modules/es6.string.blink.js","core-js/modules/es6.string.bold":"../../node_modules/core-js/modules/es6.string.bold.js","core-js/modules/es6.string.code-point-at":"../../node_modules/core-js/modules/es6.string.code-point-at.js","core-js/modules/es6.string.ends-with":"../../node_modules/core-js/modules/es6.string.ends-with.js","core-js/modules/es6.string.fixed":"../../node_modules/core-js/modules/es6.string.fixed.js","core-js/modules/es6.string.fontcolor":"../../node_modules/core-js/modules/es6.string.fontcolor.js","core-js/modules/es6.string.fontsize":"../../node_modules/core-js/modules/es6.string.fontsize.js","core-js/modules/es6.string.from-code-point":"../../node_modules/core-js/modules/es6.string.from-code-point.js","core-js/modules/es6.string.includes":"../../node_modules/core-js/modules/es6.string.includes.js","core-js/modules/es6.string.italics":"../../node_modules/core-js/modules/es6.string.italics.js","core-js/modules/es6.string.iterator":"../../node_modules/core-js/modules/es6.string.iterator.js","core-js/modules/es6.string.link":"../../node_modules/core-js/modules/es6.string.link.js","core-js/modules/es7.string.pad-start":"../../node_modules/core-js/modules/es7.string.pad-start.js","core-js/modules/es7.string.pad-end":"../../node_modules/core-js/modules/es7.string.pad-end.js","core-js/modules/es6.string.raw":"../../node_modules/core-js/modules/es6.string.raw.js","core-js/modules/es6.string.repeat":"../../node_modules/core-js/modules/es6.string.repeat.js","core-js/modules/es6.string.small":"../../node_modules/core-js/modules/es6.string.small.js","core-js/modules/es6.string.starts-with":"../../node_modules/core-js/modules/es6.string.starts-with.js","core-js/modules/es6.string.strike":"../../node_modules/core-js/modules/es6.string.strike.js","core-js/modules/es6.string.sub":"../../node_modules/core-js/modules/es6.string.sub.js","core-js/modules/es6.string.sup":"../../node_modules/core-js/modules/es6.string.sup.js","core-js/modules/es7.string.trim-left":"../../node_modules/core-js/modules/es7.string.trim-left.js","core-js/modules/es7.string.trim-right":"../../node_modules/core-js/modules/es7.string.trim-right.js","core-js/modules/es6.typed.array-buffer":"../../node_modules/core-js/modules/es6.typed.array-buffer.js","core-js/modules/es6.typed.int8-array":"../../node_modules/core-js/modules/es6.typed.int8-array.js","core-js/modules/es6.typed.uint8-array":"../../node_modules/core-js/modules/es6.typed.uint8-array.js","core-js/modules/es6.typed.uint8-clamped-array":"../../node_modules/core-js/modules/es6.typed.uint8-clamped-array.js","core-js/modules/es6.typed.int16-array":"../../node_modules/core-js/modules/es6.typed.int16-array.js","core-js/modules/es6.typed.uint16-array":"../../node_modules/core-js/modules/es6.typed.uint16-array.js","core-js/modules/es6.typed.int32-array":"../../node_modules/core-js/modules/es6.typed.int32-array.js","core-js/modules/es6.typed.uint32-array":"../../node_modules/core-js/modules/es6.typed.uint32-array.js","core-js/modules/es6.typed.float32-array":"../../node_modules/core-js/modules/es6.typed.float32-array.js","core-js/modules/es6.typed.float64-array":"../../node_modules/core-js/modules/es6.typed.float64-array.js","core-js/modules/es6.weak-map":"../../node_modules/core-js/modules/es6.weak-map.js","core-js/modules/es6.weak-set":"../../node_modules/core-js/modules/es6.weak-set.js","core-js/modules/web.timers":"../../node_modules/core-js/modules/web.timers.js","core-js/modules/web.immediate":"../../node_modules/core-js/modules/web.immediate.js","core-js/modules/web.dom.iterable":"../../node_modules/core-js/modules/web.dom.iterable.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","./warning":"warning.js","./alerts":"alerts.js","./usuario/userLogin":"usuario/userLogin.js","./usuario/userSignup":"usuario/userSignup.js","./usuario/updateSettings":"usuario/updateSettings.js","./usuario/avaliarLoja":"usuario/avaliarLoja.js","./usuario/editarStoreReview":"usuario/editarStoreReview.js","./usuario/removerStoreReview":"usuario/removerStoreReview.js","./usuario/avaliarProduto":"usuario/avaliarProduto.js","./usuario/editarProdutoReview":"usuario/editarProdutoReview.js","./usuario/removerProdutoReview":"usuario/removerProdutoReview.js","./donoLoja/donoLojaLogin":"donoLoja/donoLojaLogin.js","./donoLoja/donoLojaSignup":"donoLoja/donoLojaSignup.js","./donoLoja/donoLojaUpdateSettings":"donoLoja/donoLojaUpdateSettings.js","./donoLoja/lojaUpdateSettings":"donoLoja/lojaUpdateSettings.js","./donoLoja/donoLojaCriarloja":"donoLoja/donoLojaCriarloja.js","./donoLoja/donoLojaUpdatestore":"donoLoja/donoLojaUpdatestore.js","./donoLoja/donoLojaRemoverloja":"donoLoja/donoLojaRemoverloja.js","./donoLoja/donoLojaCriarproduto":"donoLoja/donoLojaCriarproduto.js","./donoLoja/produtoUpdateDetails":"donoLoja/produtoUpdateDetails.js","./donoLoja/donoLojaRemoverproduto":"donoLoja/donoLojaRemoverproduto.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -10316,7 +10511,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51243" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61255" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

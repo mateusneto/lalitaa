@@ -1,0 +1,22 @@
+extends base
+block content
+    include sidebarDonoLojaPrivateChat
+    if loja
+        .private__chat__container
+            .messages
+                ul.messages__list
+                    li.messages__list--info= `Conversando com ${chatUsuario.nome}`
+                    each mensagem in historico
+                        if mensagem.sender === loja.id
+                            li.messages__list--sent= `${mensagem.mensagem}`
+                        else
+                            li.messages__list--received= `${mensagem.mensagem}`
+            form.message__input(lojaid=`${loja.id}` nomeloja=`${loja.nomeLoja}`  sender=`${loja.id}` receiver=`${chatUsuario.id}` usuarioid=`${chatUsuario.id}` nomeusuario=`${chatUsuario.nomeUsuario}`)
+                input.message__input--box(type='text' required="required")
+                button.message__input__sendBtn
+                    span Enviar
+                    svg.message__input__sendBtn--icon
+                        use(xlink:href='/imagens/dev/sprite.svg#icon-send')
+    script(src='/socket.io/socket.io.js')
+    script(src="/js/chat/clientChat.js")
+    script(type="module" src="/js/chat/joinNs.js")

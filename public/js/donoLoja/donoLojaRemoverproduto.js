@@ -11,12 +11,12 @@ export const storeOwnerRemoveproduct = async () => {
    try {
       const res = await axios({
          method: 'DELETE',
-         url: `http://127.0.0.1:3000/api/v1/lojas/${lojaId}/produtos/${produtoId}` //'/api/v1/sair' ----> change on production
+         url: `http://127.0.0.1:3000/api/v1/lojas/${lojaId}/produto/${produtoId}` //'/api/v1/sair' ----> change on production
       });
 
-      if ((res.data.status = 'success')) location.assign('/lojas'); //.reload(true); //forces reload from the server and not from the nrowser cache
+      if ((res.data.status = 'success')) location.assign(`/loja/${lojaId}/produtos`); //.reload(true); //forces reload from the server and not from the nrowser cache
    } catch (err) {
       console.log(err.response);
-      showAlert(error, 'Error removing product! please try again');
+      showAlert('error', 'Error removing product! please try again');
    }
 };

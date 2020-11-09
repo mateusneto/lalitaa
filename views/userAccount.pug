@@ -4,11 +4,12 @@ block content
     .userDashboard__container
         section.userDashboard
             .userDashboard__item
-                form.form.item__form
+                form.form.photo__form(action='#')
                     img.form__userimg(src=`imagens/dev/usuarios/${usuario.fotografia}` alt='')
-                    input#photo.btn.form__upload(type='file' accept='image/*' name='photo')
+                    input#photo.btn.form__upload(type="file" accept='image/*',name='fotografia')
                     label(for='photo') Alterar foto
-                    button.btn.form__update Actualizar
+                    .form__group
+                        button.btn.save-details__btn Actualizar
             .userDashboard__item
                 form.form.form--userdetails(action='#')
                     .form__group

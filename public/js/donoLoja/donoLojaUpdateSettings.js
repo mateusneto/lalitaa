@@ -16,6 +16,9 @@ export const storeOwnerUpdateSettings = async (data, type) => {
 
       if (res.data.status === 'success') {
          showAlert('success', `${type.toUpperCase()} actualizada com sucesso`);
+         window.setTimeout(() => {
+            location.assign('/donoloja/me');
+         }, 2000);
       }
    } catch (err) {
       showAlert('error', err.response.data.message);

@@ -29,6 +29,6 @@ export const storeOwnerCreateproduct = async (storeId, nome, tipo, preco, tamanh
       } //.reload(true); //forces reload from the server and not from the nrowser cache
    } catch (err) {
       console.log(err.response);
-      showAlert(error, 'Error creating product! please try again');
+      showAlert('error', 'Error creating product! please try again');
    }
 };

@@ -1,26 +1,22 @@
 extends base
 block content
     include sidebarChat
-    if usuario && !storeOwner
+    if usuario
         .private__chat__container
             .messages
                 ul.messages__list
-                    li.messages__list--info= `Conversando com ${usuario.nome}`
-            form.message__input
+                    li.messages__list--info= `Conversando com ${loja.nomeLoja}`
+                    each mensagem in historico
+                        if mensagem.sender === usuario.id
+                            li.messages__list--sent= `${mensagem.mensagem}`
+                        else
+                            li.messages__list--received= `${mensagem.mensagem}`
+            form.message__input(lojaid=`${loja.id}` nomeloja=`${loja.nomeLoja}`  sender=`${usuario.id}` receiver=`${loja.id}` usuarioid=`${usuario.id}` nomeusuario=`${usuario.nomeUsuario}`)
                 input.message__input--box(type='text' required="required")
                 button.message__input__sendBtn
                     span Enviar
                     svg.message__input__sendBtn--icon
                         use(xlink:href='/imagens/dev/sprite.svg#icon-send')
-    if storeOwner && !usuario
-        .private__chat__container
-            .messages
-                ul.messages__list
-                    li.messages__list--info= `Conversando com ${storeOwner.nome}`
-            form.message__input
-                input.message__input--box(type='text' required="required")
-                button.message__input__sendBtn
-                    span Enviar
-                    svg.message__input__sendBtn--icon
-                        use(xlink:href='/imagens/dev/sprite.svg#icon-send')
-    //- if storeOwner && usuario
+    script(src='/socket.io/socket.io.js')
+    script(src="/js/chat/clientChat.js")
+    script(type="module" src="/js/chat/joinNs.js")

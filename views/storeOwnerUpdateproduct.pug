@@ -5,7 +5,10 @@ block content
     .produtoDashboard__container
         section.produtoDashboard
             .produtoDashboard__item
-                form.form.form--updateProduct(action='#')
+                form.form.form--updateProduct
+                    input#photo.btn.form__upload(type='file' accept='image/*' name='photo')
+                    label(for='photo') Adicionar foto
+                    img.form__userimg(src=`/imagens/dev/produtos/${produto.imagemDeCapa}` alt='')
                     .form__group
                         label.form__label(for='nome') Loja
                         input#storeId.form__input(type='text' value=`${storeId}` name='' readonly='readonly' required='')
@@ -36,8 +39,5 @@ block content
                     .form__group
                         label.form__label(for='descricao') Descri&ccedil;&atilde;o do produto
                         input#descricao.form__input(type='text' name='' placeholder='' value=`${produto.descricao}`)
-                        img.form__userimg(src='/imagens/dev/lojas/store.jpg' alt='')
-                    input#productimg.btn.form__upload(type='file' accept='image/*' name='photoo')
-                    label(for='productimg') Adicionar foto
                     .form__group
                         button.btn.updateProduct__btn Actualizar produto

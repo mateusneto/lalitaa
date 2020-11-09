@@ -13,15 +13,14 @@ header.header
             use(xlink:href='/imagens/dev/sprite2.svg#icon-heart')
         .user-nav__icon-box
           svg.user-nav__icon
-            use(xlink:href='/imagens/dev/sprite.svg#icon-shopping-cart')
+            use(xlink:href='/imagens/dev/sprite.svg#icon-shopping-bag')
           span.user-nav__notification 4
-        .user-nav__icon-box
-          a.user-nav__link(href='/chat')
+        a.user-nav__icon-box(href='/chat')
             svg.user-nav__icon
               use(xlink:href='/imagens/dev/sprite.svg#icon-message-square')
             span.user-nav__notification 7
-        .user-nav__user
-          a.user-nav__link(href='/me')
+        a.user-nav__user(href='/me')
+          .user-nav__link
             img.user-nav__user-photo(src=`/imagens/dev/usuarios/${usuario.fotografia}` alt='user photo')
             span.user-nav__user-name= usuario.nome.split(' ')[0]
       if storeOwner
@@ -29,9 +28,9 @@ header.header
           svg.user-nav__icon
             use(xlink:href='/imagens/dev/sprite.svg#icon-message-square')
           span.user-nav__notification 7
-        .user-nav__user
-          a.user-nav__link(href='/donoloja/me')
-            img.user-nav__user-photo(src=`/imagens/dev/usuarios/${storeOwner.fotografia}` alt='user photo')
+        a.user-nav__user(href='/donoloja/me')
+          .user-nav__link
+            img.user-nav__user-photo(src=`/imagens/dev/donoLoja/${storeOwner.fotografia}` alt='user photo')
             span.user-nav__user-name= storeOwner.nome.split(' ')[0]
       if (!usuario && !storeOwner && url !=='/entrar')
         .user-nav__icon-box

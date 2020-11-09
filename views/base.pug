@@ -9,7 +9,6 @@ html(lang='en')
             link(rel='stylesheet' href='/css/estilo.css')
             link(rel='stylesheet' href='/intl-tel-input-master/build/css/intlTelInput.css')
             script(src='/intl-tel-input-master/build/js/intlTelInput.js')
-            script(src='/socket.io/socket.io.js')
             link(rel='shortcut icon' href='/imagens/Lalitaa/favicons/favicon.ico' type='image/x-icon')
         if loja
             title #{loja.nome}
@@ -26,20 +25,5 @@ html(lang='en')
             h1 This is a placeholder heading
         //Footer
         //include _footer 
-        script(src='/js/bundle.js')
-        script(src="/js/chat/clientChat.js")
-
-
-        //- script(src='/js/userLogin.js')
-        //- script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js")
-        //- script.
-        //-     var input = document.querySelector('#numeroTelemovel');
-        //-     intlTelInput(input, {
-        //-     onlyCountries: ['AO'],
-        //-     initialCountry: 'AO',
-        //-     utilsScript: 'intl-tel-input-master/build/js/utils.js'
-        //-     });
-
-
-
-        //-(data-alert=`${alert ? alert:''}`)
+        script(src="/js/bundle.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js")

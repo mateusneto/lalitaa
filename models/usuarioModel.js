@@ -89,11 +89,11 @@ usuarioSchema.pre('save', function (next) {
    next();
 });
 
-usuarioSchema.pre('save', function (next) {
-   this.fotografia = slugify(this.nome.split(' ')[0] + '.jpg', { lower: true });
+// usuarioSchema.pre('save', function (next) {
+//    this.fotografia = slugify(this.nome.split(' ')[0] + '.jpg', { lower: true });
 
-   next();
-});
+//    next();
+// });
 
 usuarioSchema.pre(/^find/, function (next) {
    //this points to the current query

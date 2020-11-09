@@ -6,6 +6,7 @@ const Loja = require('../models/storeModel');
 const Produto = require('../models/produtoModel');
 const StoreReview = require('../models/storeReviewModel');
 const ProductReview = require('../models/produtoReviewModel');
+const Usuario_StoreMensagens = require('../models/mensagemUsuario_StoreModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 //const Booking = require('../models/bookingModel');
@@ -118,15 +119,57 @@ exports.mostrarContaDonoloja = catchAsync(async (req, res, next) => {
 });*/
 
 exports.mostrarChat = catchAsync(async (req, res, next) => {
-   res.status(200).render('chat', {});
+   const mensagensUsuario_Store = await Usuario_StoreMensagens.find({
+      usuario: req.usuario.id
+   });
+
+   let mensagens = [];
+
+   for (i = 0; i < mensagensUsuario_Store.length; i++) {
+      //console.log('in in');
+      if (mensagens.some(el => el.store === mensagensUsuario_Store[i].store)) {
+         continue;
+      } else {
+         mensagens.unshift(mensagensUsuario_Store[i]);
+      }
+   }
+
+   //console.log(mensagens);
+
+   res.status(200).render('chat', {
+      title: 'Conversas',
+      url: req.originalUrl,
+      mensagens
+   });
 });
 
 exports.mostrarPrivateChat = catchAsync(async (req, res, next) => {
-   res.status(200).render('privateChat', {});
+   const usuario = req.usuario;
+   const loja = await Loja.findOne({ nomeLoja: req.params.nomeLoja });
+
+   const historico = await Usuario_StoreMensagens.find({
+      $and: [{ usuario: usuario.id }, { store: loja.id }]
+   });
+
+   //console.log(historico);
+
+   res.status(200).render('privateChat', {
+      title: 'Chat',
+      url: req.originalUrl,
+      usuario,
+      loja,
+      historico
+   });
 });
 
 exports.mostrarDonolojaChat = catchAsync(async (req, res, next) => {
    const lojas = await Loja.find({ storeOwner: { $in: res.locals.storeOwner.id } });
+
+   const loja = lojas[0];
+
+   if (req.storeOwner.id !== loja.storeOwner.id) {
+      return next(new AppError('não podes ver as mensagens de outra loja', 401));
+   }
 
    const numLojas = lojas.length;
 
@@ -136,6 +179,63 @@ exports.mostrarDonolojaChat = catchAsync(async (req, res, next) => {
       lojas,
       numLojas
    });
+});
+
+exports.mostrarLojaChat = catchAsync(async (req, res, next) => {
+   const loja = await Loja.findById(req.params.lojaId);
+
+   if (req.storeOwner.id !== loja.storeOwner.id) {
+      return next(new AppError('não podes ver as mensagens de outra loja', 401));
+   }
+
+   const mensagensUsuario_Store = await Usuario_StoreMensagens.find({
+      store: loja.id
+   });
+
+   let mensagens = [];
+
+   for (i = 0; i < mensagensUsuario_Store.length; i++) {
+      //console.log('in in');
+      if (mensagens.some(el => el.usuario === mensagensUsuario_Store[i].usuario)) {
+         continue;
+      } else {
+         mensagens.unshift(mensagensUsuario_Store[i]);
+      }
+   }
+
+   //console.log(mensagens);
+
+   res.status(200).render('lojaChat', {
+      title: 'Conversas',
+      url: req.originalUrl,
+      mensagens,
+      loja
+   });
+});
+
+exports.mostrarLojaPrivateChat = catchAsync(async (req, res, next) => {
+   if (req.storeOwner) {
+      const chatUsuario = await Usuario.findOne({ nomeUsuario: req.params.nomeUsuario });
+      const loja = await Loja.findOne({ nomeLoja: req.params.nomeLoja });
+
+      if (req.storeOwner.id !== loja.storeOwner.id) {
+         return next(new AppError('não podes ver as mensagens de outra loja', 401));
+      }
+
+      const historico = await Usuario_StoreMensagens.find({
+         $and: [{ usuario: chatUsuario.id }, { store: loja.id }]
+      });
+
+      //console.log(historico);
+
+      res.status(200).render('donoLojaPrivateChat', {
+         title: 'Chat',
+         url: req.originalUrl,
+         chatUsuario,
+         loja,
+         historico
+      });
+   }
 });
 
 exports.mostrarLojas = catchAsync(async (req, res, next) => {
@@ -214,6 +314,7 @@ exports.mostrarLojaReviews = catchAsync(async (req, res, next) => {
       if (userReviewFind.length === 0) {
          return res.status(200).render('storeReviews', {
             title: 'Avaliações',
+            warningText: 'Remover review ?',
             url: req.originalUrl,
             loja,
             reviews
@@ -400,15 +501,21 @@ exports.criarProduto = catchAsync(async (req, res) => {
 });
 
 exports.editarProduto = catchAsync(async (req, res) => {
-   //const storeId = req.headers.referer.split('/')[4];
-   const produtoId = req.headers.referer.split('/')[6];
+   // const storeId = req.headers.referer.split('/')[4];
+   // const produtoId = req.headers.referer.split('/')[6];
 
-   const produto = await Produto.findById(produtoId);
+   // console.log(req.params.id === '5f736faf04f5cd7a38a726b7');
+
+   // console.log(storeId);
+   // console.log(produtoId);
+
+   const produto = await Produto.findById(req.params.produtoId);
+   console.log(produto);
    res.status(200).render('storeOwnerUpdateproduct', {
-      title: 'Crie a sua loja',
+      title: 'Actualizar produto',
       url: req.originalUrl,
-      storeId: req.headers.referer.split('/')[4],
-      produtoId: req.headers.referer.split('/')[6],
+      storeId: req.params.id,
+      produtoId: req.params.produtoId,
       produto
    });
 });
